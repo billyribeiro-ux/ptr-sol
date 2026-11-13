@@ -180,6 +180,7 @@ input[type='url'],
 input[type='number'] {
   -webkit-appearance: none;
   appearance: none;
+  appearance: none;
 }
 .table > thead > tr > th {
   border-bottom-width: 1px;
@@ -810,6 +811,7 @@ body {
   padding-bottom: 20px;
   -webkit-transform: translate3d(0, 0, 0);
   transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
 }
 .sidebar > .sidebar-nav > .nav {
   position: relative;
@@ -1427,6 +1429,7 @@ body {
   box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
   -webkit-transition: all 0.2s;
   transition: all 0.2s;
+  transition: all 0.2s;
 }
 .switch.switch-lg span {
   width: 50px;
@@ -1684,6 +1687,7 @@ body {
 */
 .btn {
   -webkit-appearance: none;
+  appearance: none;
   appearance: none;
   outline: none !important;
   /* -webkit-transition: all 0.1s;
@@ -5809,6 +5813,7 @@ input[type='url'],
 input[type='number'] {
   -webkit-appearance: none;
   appearance: none;
+  appearance: none;
 }
 .table > thead > tr > th {
   border-bottom-width: 1px;
@@ -6439,6 +6444,7 @@ body {
   padding-bottom: 20px;
   -webkit-transform: translate3d(0, 0, 0);
   transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
 }
 .sidebar > .sidebar-nav > .nav {
   position: relative;
@@ -7056,6 +7062,7 @@ body {
   box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
   -webkit-transition: all 0.2s;
   transition: all 0.2s;
+  transition: all 0.2s;
 }
 .switch.switch-lg span {
   width: 50px;
@@ -7313,6 +7320,7 @@ body {
 */
 .btn {
   -webkit-appearance: none;
+  appearance: none;
   appearance: none;
   outline: none !important;
   /* -webkit-transition: all 0.1s;

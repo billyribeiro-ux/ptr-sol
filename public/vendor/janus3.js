@@ -719,7 +719,7 @@ function Janus(gatewayCallbacks) {
 		$.ajax({
 			type: 'POST',
 			url: server + "/" + sessionId,
-			async: syncRequest,	// Sometimes we need false here, or destroying in onbeforeunload won't work
+			async: true, // Never block the UI while detaching media.
 			cache: false,
 			contentType: "application/json",
 			data: JSON.stringify(request),
@@ -1185,7 +1185,7 @@ function Janus(gatewayCallbacks) {
 		$.ajax({
 			type: 'POST',
 			url: server + "/" + sessionId + "/" + handleId,
-			async: syncRequest,	// Sometimes we need false here, or destroying in onbeforeunload won't work
+			async: true, // Never block the UI while detaching media.
 			cache: false,
 			contentType: "application/json",
 			data: JSON.stringify(request),

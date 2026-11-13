@@ -91,7 +91,7 @@
   <script src="/public/vendor/sockjs/1.4.0/sockjs.min.js"></script>
 
   <!--soundcould player-->
-  <script src="https://w.soundcloud.com/player/api.js" type="text/javascript"></script>
+
 
   <!-- endbuild -->
   <!-- app -->
@@ -168,7 +168,26 @@
         $('#scMusicVolumeVal').text(v);
       }
     }
+    var soundCloudReady;
+    function loadSoundCloud() {
+      var frame = document.getElementById('soundCloudIFrame');
+      if (frame && frame.getAttribute('data-player-src')) {
+        frame.src = frame.getAttribute('data-player-src');
+        frame.removeAttribute('data-player-src');
+      }
+      if (!soundCloudReady) soundCloudReady = new Promise(function (resolve, reject) {
+        if (window.SC) return resolve();
+        var script = document.createElement('script');
+        script.src = 'https://w.soundcloud.com/player/api.js';
+        script.async = true;
+        script.onload = resolve;
+        script.onerror = function () { soundCloudReady = null; reject(new Error('SoundCloud player could not load')); };
+        document.head.appendChild(script);
+      });
+      return soundCloudReady;
+    }
     function wireUpSoundCloud(newSoundUrl) {
+      return loadSoundCloud().then(function () {
       lg('** wiring up soundcloud...url:' + newSoundUrl);
       try {
         if (!sc_widget) {
@@ -192,6 +211,7 @@
       } catch (eee) {
         console.error(eee);
       }
+      }).catch(function (error) { console.error(error); });
     }
   </script>
 
