@@ -1,0 +1,29 @@
+<div class="modal-megamenu" id="disclosureModal" tabindex="-1">
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" ng-click="closeModal()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title">Room Disclosure &amp; Compliance </h4>
+
+    </div>
+    <div class="modal-body" style="height: 100%; max-height: 500px;">
+        <div class="panel panel-default" style="overflow-y: scroll; max-height: 500px;">
+                <div class="panel-body">
+                <div class="row">
+                    <textarea readonly="readonly" rows="10" width="100%" height="100%" style="width: 100%; height: 100%">{{disclosureText}}</textarea>
+                    <hr>
+                    <input type="text" value="" placeholder="Your Initials..." ng-model="userInitials">
+                </div>
+            </div>
+            
+
+        </div>
+    </div>
+    <div class="modal-footer">
+        
+        <button ng-click="closeModal()" class="btn  btn-sm btn-inverse pull-left">Disagree</button>
+        <button ng-click="agree()" class="btn  btn-sm btn-primary">I Agree</button>
+
+    </div>
+</div>

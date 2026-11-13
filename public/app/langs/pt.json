@@ -1,0 +1,29 @@
+{
+    "topbar": {
+        "search": {
+            "PLACEHOLDER": "Pesquisa .."
+        }
+    },
+    "main": {
+        "CHAT": "Conversa",
+        "PARTICIPANTS": "Participantes",
+        "SEND": "Enviar",
+        "TYPEMESSAGE": "Digite sua mensagem, pressione enter"
+    },
+    "sidebar": {
+        "heading": {
+            "HEADER": "Navegação principal"
+        },
+
+        "nav": {
+            "LANGUAGE": "Idioma",
+            "CLOSEPANEL": "Feche o Painel de",
+            "TOTALUSERS": "Usuários",
+            "PAGELAYOUTS": "Layouts de Página",
+            "ALLINONE": "Tudo em um",
+            "PRESSONLY": "Apresentação",
+            "CHATONLY": "Conversa",
+            "SEARCHUSERS": "Procurar Usuários"
+        }
+    }
+}

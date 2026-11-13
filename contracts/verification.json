@@ -1,0 +1,124 @@
+{
+  "checkedAt": "2026-11-13T01:45:40.511Z",
+  "application": "http://localhost:3031/ptrApp",
+  "scope": "Captured desktop AngularJS application, recovered public marketplace client and reconstructed local Docker backend",
+  "overallParity": "incomplete_not_certified_identical",
+  "runningImageMatchesCheckout": {
+    "files": 262,
+    "sha256": "8493a650aabc6907fd720b4c1355857eb486d00f00c39dc4157c4300f18b73a5",
+    "directories": [
+      "src",
+      "public",
+      "scripts"
+    ],
+    "algorithm": "SHA256(sorted relative path + NUL + file SHA256 hex + LF)"
+  },
+  "automated": {
+    "node24Docker": {
+      "command": "docker run --rm --network none --mount type=bind,src=$PWD/test,dst=/app/test,readonly --mount type=bind,src=$PWD/contracts,dst=/app/contracts,readonly ptr-parity-app npm test",
+      "nodeVersion": "v24.22.3",
+      "tests": 91,
+      "passed": 89,
+      "failed": 0,
+      "skipped": 2,
+      "skipReasons": [
+        "Separate local Mailpit integration",
+        "PHP Docker fixture runs separately on the host"
+      ]
+    },
+    "hostWithPHPDocker": {
+      "command": "PTR_TEST_PHP_DOCKER=1 npm test",
+      "tests": 91,
+      "passed": 90,
+      "failed": 0,
+      "skipped": 1,
+      "skipReasons": [
+        "Separate local Mailpit integration"
+      ]
+    },
+    "localMailpitIntegration": {
+      "command": "PTR_MAILPIT_INTEGRATION=1 node --test test/mailpit.integration.test.js",
+      "passed": 1,
+      "failed": 0,
+      "delivery": "Local Docker Mailpit only"
+    },
+    "isolatedChromiumDocker": {
+      "command": "npm run test:browser:docker",
+      "tests": 10,
+      "passed": 10,
+      "failed": 0,
+      "syntheticDevices": true,
+      "externalBrowserRequestsBlocked": true
+    },
+    "obsAuthPython": {
+      "command": "python3 test/obs-auth.py",
+      "passed": true
+    },
+    "npmVulnerabilities": 0
+  },
+  "browserVerified": [
+    "business owner portal login and tenant isolation",
+    "enterprise owner portal login and tenant isolation",
+    "delegated admin portal login and tenant isolation",
+    "room admin room entry and role UI",
+    "presenter room entry and role UI",
+    "participant room entry and role UI",
+    "owner Marketplace control opens recovered original dashboard",
+    "free buyer listing, subscription, delivered welcome credentials and normal room entry",
+    "synthetic direct Janus audio/video reception and processed recording download",
+    "OBS audio/video browser playback and stop"
+  ],
+  "earlierBrowserVerified": [
+    "room title persistence",
+    "live chat rendering",
+    "alert posting",
+    "poll audience and delivery",
+    "authenticated image upload and inline display"
+  ],
+  "additionalMediaVerified": [
+    "Janus-to-local-RTMP H264/AAC output frames",
+    "OBS rejects wrong ingest path",
+    "OBS sends decodable VP8/Opus into Janus",
+    "OBS stop revokes live publisher",
+    "private MediaMTX API rejects unauthenticated requests",
+    "simultaneous OBS-to-Janus and OBS-to-loopback-RTMP",
+    "synthetic signed Twilio WebSocket and second RTP participant exchange non-silent PCMU through local Janus",
+    "room media restart recreates audio/video while preserving a second room"
+  ],
+  "finalRuntime": {
+    "health": 200,
+    "ready": 200,
+    "qaMedia": 404,
+    "qaOBS": 404,
+    "privateSecretsAbsentFromBrowserConfig": true,
+    "activeRelays": 0,
+    "activeOBS": 0,
+    "outboundProvidersEnabled": [],
+    "nodeVersion": "v24.22.3"
+  },
+  "provisionedCredentials": {
+    "accounts": 6,
+    "mode": "0600",
+    "apiCredentials": {
+      "business": {
+        "list": 200,
+        "rooms": 1,
+        "crossTenantRead": 403
+      },
+      "enterprise": {
+        "list": 200,
+        "rooms": 1,
+        "crossTenantRead": 403
+      }
+    }
+  },
+  "remaining": [
+    "Real external Stripe, PSTN, SMS, FCM, X, video channel and recording-export delivery require issuer credentials and live verification; provider tests used mocks or local sinks",
+    "Opaque legacy SSO, external SSH/cluster/repeater protocols, original FCM custom payload and original webhook body were not captured",
+    "Native V5/mobile/Alerter source and complete pairing protocols are absent",
+    "All 268 captured controls are inventoried; static references and persistence do not establish every runtime effect or full pixel parity",
+    "Recorded original asset probes returned empty or invalid media for missing assets",
+    "Recording exports primary video with mixed AudioBridge audio rather than compositing the entire app layout",
+    "Remote deployment needs TLS, ICE/TURN, public media addresses and real-device testing"
+  ]
+}

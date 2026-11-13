@@ -1,0 +1,531 @@
+{
+  "scope": "Previously unresolved original V3 assets, probed read-only on both public hosts. Generic HTML/error responses are not recovered.",
+  "interpretation": "A missing URL is evidence only for these paths and hosts, not proof of feature absence. References are filename matches; unreferenced entries were recorded in earlier capture inventory.",
+  "assets": [
+    {
+      "path": "public/app/img/bg1.jpg",
+      "references": [
+        "public/app/css/styles.css",
+        "public/app/views/mailbox.view-mail.html"
+      ],
+      "probes": [
+        {
+          "url": "https://protradingroom.com/public/app/img/bg1.jpg",
+          "status": 200,
+          "content_type": "image/jpeg",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "valid_expected_media": false
+        },
+        {
+          "url": "https://ptrv3.protradingroom.com/public/app/img/bg1.jpg",
+          "status": 200,
+          "content_type": "image/jpeg",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "valid_expected_media": false
+        },
+        {
+          "url": "https://protradingroom.com/app/img/bg1.jpg",
+          "status": 200,
+          "content_type": "image/jpeg",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "valid_expected_media": false,
+          "reason": "Relative app/img reference in captured mailbox template"
+        },
+        {
+          "url": "https://ptrv3.protradingroom.com/app/img/bg1.jpg",
+          "status": 200,
+          "content_type": "image/jpeg",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "valid_expected_media": false,
+          "reason": "Relative app/img reference in captured mailbox template"
+        }
+      ]
+    },
+    {
+      "path": "public/app/img/bg2.jpg",
+      "references": [
+        "public/app/css/styles.css",
+        "public/app/views/mailbox.view-mail.html"
+      ],
+      "probes": [
+        {
+          "url": "https://protradingroom.com/public/app/img/bg2.jpg",
+          "status": 200,
+          "content_type": "image/jpeg",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "valid_expected_media": false
+        },
+        {
+          "url": "https://ptrv3.protradingroom.com/public/app/img/bg2.jpg",
+          "status": 200,
+          "content_type": "image/jpeg",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "valid_expected_media": false
+        },
+        {
+          "url": "https://protradingroom.com/app/img/bg2.jpg",
+          "status": 200,
+          "content_type": "image/jpeg",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "valid_expected_media": false,
+          "reason": "Relative app/img reference in captured mailbox template"
+        },
+        {
+          "url": "https://ptrv3.protradingroom.com/app/img/bg2.jpg",
+          "status": 200,
+          "content_type": "image/jpeg",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "valid_expected_media": false,
+          "reason": "Relative app/img reference in captured mailbox template"
+        }
+      ]
+    },
+    {
+      "path": "public/app/img/bg3.jpg",
+      "references": [
+        "public/app/css/styles.css",
+        "public/app/views/mailbox.view-mail.html"
+      ],
+      "probes": [
+        {
+          "url": "https://protradingroom.com/public/app/img/bg3.jpg",
+          "status": 200,
+          "content_type": "image/jpeg",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "valid_expected_media": false
+        },
+        {
+          "url": "https://ptrv3.protradingroom.com/public/app/img/bg3.jpg",
+          "status": 200,
+          "content_type": "image/jpeg",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "valid_expected_media": false
+        },
+        {
+          "url": "https://protradingroom.com/app/img/bg3.jpg",
+          "status": 200,
+          "content_type": "image/jpeg",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "valid_expected_media": false,
+          "reason": "Relative app/img reference in captured mailbox template"
+        },
+        {
+          "url": "https://ptrv3.protradingroom.com/app/img/bg3.jpg",
+          "status": 200,
+          "content_type": "image/jpeg",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "valid_expected_media": false,
+          "reason": "Relative app/img reference in captured mailbox template"
+        }
+      ]
+    },
+    {
+      "path": "public/app/img/bg4.jpg",
+      "references": [
+        "public/app/css/styles.css"
+      ],
+      "probes": [
+        {
+          "url": "https://protradingroom.com/public/app/img/bg4.jpg",
+          "status": 200,
+          "content_type": "image/jpeg",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "valid_expected_media": false
+        },
+        {
+          "url": "https://ptrv3.protradingroom.com/public/app/img/bg4.jpg",
+          "status": 200,
+          "content_type": "image/jpeg",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "valid_expected_media": false
+        }
+      ]
+    },
+    {
+      "path": "public/app/img/bg5.jpg",
+      "references": [
+        "public/app/css/styles.css"
+      ],
+      "probes": [
+        {
+          "url": "https://protradingroom.com/public/app/img/bg5.jpg",
+          "status": 200,
+          "content_type": "image/jpeg",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "valid_expected_media": false
+        },
+        {
+          "url": "https://ptrv3.protradingroom.com/public/app/img/bg5.jpg",
+          "status": 200,
+          "content_type": "image/jpeg",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "valid_expected_media": false
+        }
+      ]
+    },
+    {
+      "path": "public/app/img/bg6.jpg",
+      "references": [
+        "public/app/css/styles.css"
+      ],
+      "probes": [
+        {
+          "url": "https://protradingroom.com/public/app/img/bg6.jpg",
+          "status": 200,
+          "content_type": "image/jpeg",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "valid_expected_media": false
+        },
+        {
+          "url": "https://ptrv3.protradingroom.com/public/app/img/bg6.jpg",
+          "status": 200,
+          "content_type": "image/jpeg",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "valid_expected_media": false
+        }
+      ]
+    },
+    {
+      "path": "public/app/sounds/ding.ogg",
+      "references": [],
+      "probes": [
+        {
+          "url": "https://protradingroom.com/public/app/sounds/ding.ogg",
+          "status": 200,
+          "content_type": "text/html; charset=utf-8",
+          "bytes": 52,
+          "sha256": "0f6f0e925ef9fa791542cf02892e0a440ba4b396ac3402523ebd73ab450f628e",
+          "valid_expected_media": false
+        },
+        {
+          "url": "https://ptrv3.protradingroom.com/public/app/sounds/ding.ogg",
+          "status": 200,
+          "content_type": "text/html; charset=utf-8",
+          "bytes": 52,
+          "sha256": "0f6f0e925ef9fa791542cf02892e0a440ba4b396ac3402523ebd73ab450f628e",
+          "valid_expected_media": false
+        }
+      ]
+    },
+    {
+      "path": "public/app/sounds/fileShare.ogg",
+      "references": [],
+      "probes": [
+        {
+          "url": "https://protradingroom.com/public/app/sounds/fileShare.ogg",
+          "status": 200,
+          "content_type": "text/html; charset=utf-8",
+          "bytes": 52,
+          "sha256": "0f6f0e925ef9fa791542cf02892e0a440ba4b396ac3402523ebd73ab450f628e",
+          "valid_expected_media": false
+        },
+        {
+          "url": "https://ptrv3.protradingroom.com/public/app/sounds/fileShare.ogg",
+          "status": 200,
+          "content_type": "text/html; charset=utf-8",
+          "bytes": 52,
+          "sha256": "0f6f0e925ef9fa791542cf02892e0a440ba4b396ac3402523ebd73ab450f628e",
+          "valid_expected_media": false
+        }
+      ]
+    },
+    {
+      "path": "public/app/sounds/message.ogg",
+      "references": [],
+      "probes": [
+        {
+          "url": "https://protradingroom.com/public/app/sounds/message.ogg",
+          "status": 200,
+          "content_type": "text/html; charset=utf-8",
+          "bytes": 52,
+          "sha256": "0f6f0e925ef9fa791542cf02892e0a440ba4b396ac3402523ebd73ab450f628e",
+          "valid_expected_media": false
+        },
+        {
+          "url": "https://ptrv3.protradingroom.com/public/app/sounds/message.ogg",
+          "status": 200,
+          "content_type": "text/html; charset=utf-8",
+          "bytes": 52,
+          "sha256": "0f6f0e925ef9fa791542cf02892e0a440ba4b396ac3402523ebd73ab450f628e",
+          "valid_expected_media": false
+        }
+      ]
+    },
+    {
+      "path": "public/images/10.png",
+      "references": [],
+      "probes": [
+        {
+          "url": "https://protradingroom.com/public/images/10.png",
+          "status": 200,
+          "content_type": "text/html; charset=utf-8",
+          "bytes": 52,
+          "sha256": "0f6f0e925ef9fa791542cf02892e0a440ba4b396ac3402523ebd73ab450f628e",
+          "valid_expected_media": false
+        },
+        {
+          "url": "https://ptrv3.protradingroom.com/public/images/10.png",
+          "status": 200,
+          "content_type": "text/html; charset=utf-8",
+          "bytes": 52,
+          "sha256": "0f6f0e925ef9fa791542cf02892e0a440ba4b396ac3402523ebd73ab450f628e",
+          "valid_expected_media": false
+        }
+      ]
+    },
+    {
+      "path": "public/images/8.png",
+      "references": [],
+      "probes": [
+        {
+          "url": "https://protradingroom.com/public/images/8.png",
+          "status": 200,
+          "content_type": "text/html; charset=utf-8",
+          "bytes": 52,
+          "sha256": "0f6f0e925ef9fa791542cf02892e0a440ba4b396ac3402523ebd73ab450f628e",
+          "valid_expected_media": false
+        },
+        {
+          "url": "https://ptrv3.protradingroom.com/public/images/8.png",
+          "status": 200,
+          "content_type": "text/html; charset=utf-8",
+          "bytes": 52,
+          "sha256": "0f6f0e925ef9fa791542cf02892e0a440ba4b396ac3402523ebd73ab450f628e",
+          "valid_expected_media": false
+        }
+      ]
+    },
+    {
+      "path": "public/images/9.png",
+      "references": [],
+      "probes": [
+        {
+          "url": "https://protradingroom.com/public/images/9.png",
+          "status": 200,
+          "content_type": "text/html; charset=utf-8",
+          "bytes": 52,
+          "sha256": "0f6f0e925ef9fa791542cf02892e0a440ba4b396ac3402523ebd73ab450f628e",
+          "valid_expected_media": false
+        },
+        {
+          "url": "https://ptrv3.protradingroom.com/public/images/9.png",
+          "status": 200,
+          "content_type": "text/html; charset=utf-8",
+          "bytes": 52,
+          "sha256": "0f6f0e925ef9fa791542cf02892e0a440ba4b396ac3402523ebd73ab450f628e",
+          "valid_expected_media": false
+        }
+      ]
+    },
+    {
+      "path": "public/images/bg2.png",
+      "references": [
+        "public/css/compiled/theme.css"
+      ],
+      "probes": [
+        {
+          "url": "https://protradingroom.com/public/images/bg2.png",
+          "status": 200,
+          "content_type": "text/html; charset=utf-8",
+          "bytes": 52,
+          "sha256": "0f6f0e925ef9fa791542cf02892e0a440ba4b396ac3402523ebd73ab450f628e",
+          "valid_expected_media": false
+        },
+        {
+          "url": "https://ptrv3.protradingroom.com/public/images/bg2.png",
+          "status": 200,
+          "content_type": "text/html; charset=utf-8",
+          "bytes": 52,
+          "sha256": "0f6f0e925ef9fa791542cf02892e0a440ba4b396ac3402523ebd73ab450f628e",
+          "valid_expected_media": false
+        }
+      ]
+    },
+    {
+      "path": "public/images/bg3.png",
+      "references": [
+        "public/css/compiled/theme.css"
+      ],
+      "probes": [
+        {
+          "url": "https://protradingroom.com/public/images/bg3.png",
+          "status": 200,
+          "content_type": "text/html; charset=utf-8",
+          "bytes": 52,
+          "sha256": "0f6f0e925ef9fa791542cf02892e0a440ba4b396ac3402523ebd73ab450f628e",
+          "valid_expected_media": false
+        },
+        {
+          "url": "https://ptrv3.protradingroom.com/public/images/bg3.png",
+          "status": 200,
+          "content_type": "text/html; charset=utf-8",
+          "bytes": 52,
+          "sha256": "0f6f0e925ef9fa791542cf02892e0a440ba4b396ac3402523ebd73ab450f628e",
+          "valid_expected_media": false
+        }
+      ]
+    },
+    {
+      "path": "public/images/hexagon.png",
+      "references": [
+        "public/css/compiled/theme.css"
+      ],
+      "probes": [
+        {
+          "url": "https://protradingroom.com/public/images/hexagon.png",
+          "status": 200,
+          "content_type": "text/html; charset=utf-8",
+          "bytes": 52,
+          "sha256": "0f6f0e925ef9fa791542cf02892e0a440ba4b396ac3402523ebd73ab450f628e",
+          "valid_expected_media": false
+        },
+        {
+          "url": "https://ptrv3.protradingroom.com/public/images/hexagon.png",
+          "status": 200,
+          "content_type": "text/html; charset=utf-8",
+          "bytes": 52,
+          "sha256": "0f6f0e925ef9fa791542cf02892e0a440ba4b396ac3402523ebd73ab450f628e",
+          "valid_expected_media": false
+        }
+      ]
+    },
+    {
+      "path": "public/images/slide-arrow.png",
+      "references": [
+        "public/css/compiled/theme.css"
+      ],
+      "probes": [
+        {
+          "url": "https://protradingroom.com/public/images/slide-arrow.png",
+          "status": 200,
+          "content_type": "text/html; charset=utf-8",
+          "bytes": 52,
+          "sha256": "0f6f0e925ef9fa791542cf02892e0a440ba4b396ac3402523ebd73ab450f628e",
+          "valid_expected_media": false
+        },
+        {
+          "url": "https://ptrv3.protradingroom.com/public/images/slide-arrow.png",
+          "status": 200,
+          "content_type": "text/html; charset=utf-8",
+          "bytes": 52,
+          "sha256": "0f6f0e925ef9fa791542cf02892e0a440ba4b396ac3402523ebd73ab450f628e",
+          "valid_expected_media": false
+        }
+      ]
+    },
+    {
+      "path": "public/images/slider-bg.png",
+      "references": [
+        "public/css/compiled/theme.css"
+      ],
+      "probes": [
+        {
+          "url": "https://protradingroom.com/public/images/slider-bg.png",
+          "status": 200,
+          "content_type": "text/html; charset=utf-8",
+          "bytes": 52,
+          "sha256": "0f6f0e925ef9fa791542cf02892e0a440ba4b396ac3402523ebd73ab450f628e",
+          "valid_expected_media": false
+        },
+        {
+          "url": "https://ptrv3.protradingroom.com/public/images/slider-bg.png",
+          "status": 200,
+          "content_type": "text/html; charset=utf-8",
+          "bytes": 52,
+          "sha256": "0f6f0e925ef9fa791542cf02892e0a440ba4b396ac3402523ebd73ab450f628e",
+          "valid_expected_media": false
+        }
+      ]
+    },
+    {
+      "path": "public/images/slider/slide-left.png",
+      "references": [
+        "public/css/compiled/theme.css"
+      ],
+      "probes": [
+        {
+          "url": "https://protradingroom.com/public/images/slider/slide-left.png",
+          "status": 200,
+          "content_type": "text/html; charset=utf-8",
+          "bytes": 52,
+          "sha256": "0f6f0e925ef9fa791542cf02892e0a440ba4b396ac3402523ebd73ab450f628e",
+          "valid_expected_media": false
+        },
+        {
+          "url": "https://ptrv3.protradingroom.com/public/images/slider/slide-left.png",
+          "status": 200,
+          "content_type": "text/html; charset=utf-8",
+          "bytes": 52,
+          "sha256": "0f6f0e925ef9fa791542cf02892e0a440ba4b396ac3402523ebd73ab450f628e",
+          "valid_expected_media": false
+        }
+      ]
+    },
+    {
+      "path": "public/images/slider/slide-right.png",
+      "references": [
+        "public/css/compiled/theme.css"
+      ],
+      "probes": [
+        {
+          "url": "https://protradingroom.com/public/images/slider/slide-right.png",
+          "status": 200,
+          "content_type": "text/html; charset=utf-8",
+          "bytes": 52,
+          "sha256": "0f6f0e925ef9fa791542cf02892e0a440ba4b396ac3402523ebd73ab450f628e",
+          "valid_expected_media": false
+        },
+        {
+          "url": "https://ptrv3.protradingroom.com/public/images/slider/slide-right.png",
+          "status": 200,
+          "content_type": "text/html; charset=utf-8",
+          "bytes": 52,
+          "sha256": "0f6f0e925ef9fa791542cf02892e0a440ba4b396ac3402523ebd73ab450f628e",
+          "valid_expected_media": false
+        }
+      ]
+    },
+    {
+      "path": "public/images/static-hero.png",
+      "references": [
+        "public/css/compiled/theme.css"
+      ],
+      "probes": [
+        {
+          "url": "https://protradingroom.com/public/images/static-hero.png",
+          "status": 200,
+          "content_type": "text/html; charset=utf-8",
+          "bytes": 52,
+          "sha256": "0f6f0e925ef9fa791542cf02892e0a440ba4b396ac3402523ebd73ab450f628e",
+          "valid_expected_media": false
+        },
+        {
+          "url": "https://ptrv3.protradingroom.com/public/images/static-hero.png",
+          "status": 200,
+          "content_type": "text/html; charset=utf-8",
+          "bytes": 52,
+          "sha256": "0f6f0e925ef9fa791542cf02892e0a440ba4b396ac3402523ebd73ab450f628e",
+          "valid_expected_media": false
+        }
+      ]
+    }
+  ]
+}

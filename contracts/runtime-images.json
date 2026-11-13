@@ -1,0 +1,9 @@
+{
+  "verifiedLocalDigests": {
+    "canyan/janus-gateway:latest": "sha256:80970d0b1c407222e2f88d7a6d31a16686fb9a5145a491b4b4d843ee40ee4ce1",
+    "node:24-bookworm-slim": "sha256:dc26ae92c9fb15cf6b1d63e20f0944b2efe0f115b20e00be48fb23fceb061c54",
+    "axllent/mailpit:v1.27": "sha256:e22dce5b36f93c77082e204a3942fb6b283b7896e057458400a4c88344c3df68",
+    "bluenviron/mediamtx:1.21.3": "sha256:59e43552f3be43695b70c19424dc2a42fcec18075f88d91561a24ac5d70a586c"
+  },
+  "note": "Observed repository digests on the local verification machine. Compose/Dockerfile tags can resolve to newer builds on a later clean pull; re-run verification after updating runtime images. Python base was resolved by BuildKit and not retained as a named local image."
+}

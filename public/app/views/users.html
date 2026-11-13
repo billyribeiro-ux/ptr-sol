@@ -1,0 +1,37 @@
+<container-fh ng-controller="UsersCtrl">
+   <div class="l-table-fixed">
+      <div class="l-cell wd-md br">
+         <div class="l-table bg-white">
+            <div class="p bt">Participants</div>
+            <div class="l-row">
+               <div class="l-cell-wrapper">
+                  <div class="l-cell-inner">
+                     <div class="p">
+                        <ul ng-repeat="user in roster" class="list-block">
+                           <li class="media pb bb">
+                              <div class="pull-left">
+                                 <!-- Contact avatar-->
+                                 <div class="point-pin">
+                                    <a href="">
+                                       <img ng-src="{{::user.avatar || 'app/img/user/user.png' }}" alt="Image" class="media-object img-circle thumb40" />
+                                    </a>
+                                    <div class="point point-success point-lg"></div>
+                                 </div>
+                              </div>
+                              <!-- Contact info-->
+                              <div class="media-body">
+                                 <div class="media-heading"><a href="">{{::user.nick}}</a>
+                                    <br/>
+                                    <small class="text-muted">{{::user.tagline || 'Trader'}}</small>
+                                 </div>
+                              </div>
+                           </li>
+                        </ul>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</container-fh>

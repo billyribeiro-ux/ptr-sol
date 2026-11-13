@@ -1,0 +1,27 @@
+<!doctype html><meta charset="utf-8"><title>Local OBS verification</title>
+<style>body{font:16px system-ui;margin:2rem;max-width:850px}video{width:320px;background:#111}textarea{width:100%;height:5rem}pre{white-space:pre-wrap}</style>
+<h1>Local OBS verification</h1><p>Creates disposable local data. Publish synthetic H.264/AAC to the temporary local ingest URL, then this page verifies Janus playback and cleanup.</p><button id="run">Prepare OBS verification</button><p id="result">Not started</p><textarea id="url" readonly aria-label="Temporary local OBS publish URL"></textarea><video id="video" muted autoplay playsinline></video><audio id="audio" autoplay></audio><pre id="log"></pre>
+<script src="/public/dist/vendor.min.js"></script><script src="/public/vendor/adapter.js"></script><script src="/public/ptr-config.js"></script><script src="/public/vendor/janus3.js"></script>
+<script>
+const out=document.querySelector('#result'),log=document.querySelector('#log'),video=document.querySelector('#video');
+function report(s){log.textContent+=s+'\n'}
+const pause=ms=>new Promise(r=>setTimeout(r,ms));
+async function until(fn,label,ms=120000){const end=Date.now()+ms;while(Date.now()<end){const v=fn();if(v)return v;await pause(100)}throw Error('Timed out: '+label)}
+async function post(url,body){const r=await fetch(url,{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify(body)}),d=await r.json();if(!r.ok||d.success===false)throw Error(d.message||'Request failed');return d}
+document.querySelector('#run').onclick=async function(){this.disabled=true;out.textContent='Running';let socket,janus;const events=[];
+try{
+ const email='obs-'+crypto.randomUUID().slice(0,12)+'@example.test',pw='Test-'+crypto.randomUUID();
+ const account=await post('/users/v1/signup',{name:'OBS QA',email,pw});await post('/users/v1/login',{email,pw});
+ const login=await post('/users/v1/users.json',{cmd:'loginChat',roomID:account.roomUUID,token:account.token});
+ socket=new WebSocket('ws://'+location.host+'/talk/websocket');socket.onmessage=e=>{const m=JSON.parse(e.data);events.push(m);if(m.type==='error')report('Server error: '+m.data.message)};
+ await new Promise((resolve,reject)=>{socket.onopen=resolve;socket.onerror=reject});const send=(type,data)=>socket.send(JSON.stringify({type,data}));send('join',{roomID:account.roomUUID,jwtToken:login.token});await until(()=>events.some(e=>e.type==='loggedIn'),'room entry');
+ send('startOBSStream',{});const ready=await until(()=>events.find(e=>e.type==='obsIngestReady')?.data,'ingest allocation',20000);document.querySelector('#url').value=ready.url;report('Private local ingest allocated; waiting for synthetic publisher.');
+ const stream=await until(()=>events.find(e=>e.type==='obsStreamStarted')?.data,'OBS media frames');report('OBS media reached Janus.');
+ report('Initializing Janus playback.');await new Promise(resolve=>Janus.init({debug:false,callback:resolve}));
+ janus=await new Promise((resolve,reject)=>{let j;j=new Janus({server:location.origin+'/janus',token:login.token,success:()=>resolve(j),error:reject})});report('Janus session created.');let handle,hasAudio=false;
+ handle=await new Promise((resolve,reject)=>janus.attach({plugin:'janus.plugin.streaming',success:resolve,error:reject,onmessage:async(msg,jsep)=>{if(msg.error)report('Gateway error: '+msg.error);if(jsep){handle.createAnswer({jsep,media:{audioSend:false,videoSend:false},success:sdp=>handle.send({message:{request:'start'},jsep:sdp}),error:e=>report('Answer failed: '+e)})}},onremotestream:stream=>{video.srcObject=stream;document.querySelector('#audio').srcObject=stream;hasAudio=stream.getAudioTracks().length>0;video.play().catch(()=>{})}}));
+ report('Streaming handle attached.');handle.send({message:{request:'watch',id:stream.streamID}});await until(()=>video.videoWidth>0&&video.currentTime>0&&hasAudio,'browser OBS audio/video',30000);report('Browser received OBS video frames and an audio track.');
+ const marker=events.length;send('stopOBSStream',null);await until(()=>events.slice(marker).some(e=>e.type==='obsStreamStopped'),'ingest cleanup',15000);report('OBS ingest stopped and mount removed.');out.textContent='PASS — OBS ingest, browser playback, and cleanup verified';
+}catch(e){out.textContent='FAIL — '+(e.message||String(e));report(e.message||String(e))}finally{document.querySelector('#url').value='';try{janus?.destroy();socket?.close()}catch{}this.disabled=false}
+};
+</script>

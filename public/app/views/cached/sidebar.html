@@ -1,0 +1,333 @@
+<!-- START Sidebar-->
+<div class="sidebar-wrapper">
+  <div ui-sidebar="" ng-controller="SideBarCtrl" class="sidebar" style="height: auto !important">
+    <div class="sidebar-nav" style="font-size: 12px; line-height: 1">
+      <ul class="nav" style="width: 230px">
+        <li ng-show="exitIframe" style="text-align: center; margin-top: 10px">
+          <a ng-click="doExitIframe()">Exit Iframe to present</a>
+        </li>
+        <li style="text-align: center; margin-top: 10px">
+          <p ng-hide="hidePoweredBy">
+            Powered by:
+            <a href="https://protradingroom.com" target="_blank">ProTradingRoom.com</a>
+          </p>
+          <p>Version: {{_ver}}f</p>
+          <p>
+            <button ng-show="hasPTRApp" ng-click="doMobileAppDialog()" class="btn btn-small btn-inverse">Mobile App Info</button>
+          </p>
+          <!-- <p><button ng-click="manualPlay"  class="btn btn-small btn-default icon fa fa-play">&nbsp;Play Audio</button></p> -->
+
+          <!--                    <p ><i class="fa fa-cloud-upload" aria-hidden="true"></i> {{upBand}}Kbps Up  |  <i class="fa fa-cloud-download" aria-hidden="true"></i> {{downBand}}Kbps Down</p>-->
+          <hr />
+        </li>
+        <li ng-hide="alwaysShowRoster">
+          <a href="" ng-click="app.sidebar.isOffscreen = true;" style="color: #000">
+            <em class="sidebar-item-icon fa fa-arrow-left"></em>
+            <span translate="sidebar.nav.CLOSEPANEL">Close panel</span>
+          </a>
+        </li>
+        <br />
+
+        <li ng-show="hasNews">
+          <a
+            href="/public/bz/index.html?sessID={{sessionID}}&id={{roomID}}&tok={{token}}"
+            target="_blank"
+            title="Benzinga News "
+            ripple=""
+          >
+            <em class="sidebar-item-icon fa fa-newspaper-o"></em>
+            <span>Benzinga News</span>
+          </a>
+        </li>
+
+        <!-- Iterates over all sidebar items-->
+        <!--li.nav-heading-->
+        <!--   span.text-muted(translate='sidebar.heading.HEADER') Main Navigation-->
+        <li ng-show="isPresenter && hasYTStreaming">
+          <a href="" ng-click="doOBSStream()" style="color: #000">
+            <em class="sidebar-item-icon fa fa-youtube-square"></em>
+            <span ng-show="!isOBSStreaming">Start Streaming</span>
+            <span ng-show="isOBSStreaming">Stop Streaming</span>
+          </a>
+        </li>
+
+        <li ng-show="isPresenter">
+          <a href="" ng-click="toggleSlowLinkThrottle()" style="color: #000">
+            <em ng-show="slowLinkOn" class="sidebar-item-icon fa fa-check"></em>
+            <span ng-show="slowLinkOn">Throttle Screens on SlowLink</span>
+            <em ng-show="!slowLinkOn" class="sidebar-item-icon fa fa-times"></em>
+            <span ng-show="!slowLinkOn">DON'T Throttle Screens on SlowLink</span>
+          </a>
+        </li>
+        <li ng-show="isPresenter || (showArchives && !loggedUser.denyArchivesAccess)">
+          <!-- archives-->
+          <a href="" title="Archives" ripple="">
+            <em class="sidebar-item-icon fa fa-hdd-o"></em>
+            <em class="sidebar-item-caret fa pull-right fa-angle-right"></em>
+            <span>Archives</span>
+          </a>
+          <ul class="nav sidebar-subnav">
+            <li class="sidebar-subnav-header">
+              <a> <em class="sidebar-item-icon fa fa-angle-right"></em>Archives </a>
+            </li>
+            <li ui-sref-active="active">
+              <a ng-click="openRecs()" title="Recordings" ripple="">
+                <em class="sidebar-item-icon fa fa-circle"></em>
+                <span>&nbsp; Recordings</span>
+              </a>
+            </li>
+
+            <li ui-sref-active="active">
+              <a ng-click="getUserStats()" title="Stats" ripple="">
+                <em class="sidebar-item-icon fa fa-bar-chart"></em>
+                <span>&nbsp;User Stats</span>
+              </a>
+            </li>
+            <li ui-sref-active="active">
+              <a ng-click="getPrevChatLog('renderAlerts')" title="Stats" ripple="">
+                <em class="sidebar-item-icon icon-bell"></em>
+                <span>&nbsp;Alert Logs</span>
+              </a>
+            </li>
+            <li ui-sref-active="active">
+              <a ng-click="getPrevChatLog('renderChat')" title="Stats" ripple="">
+                <em class="sidebar-item-icon fa fa-comment-o"></em>
+                <span>&nbsp;Chat Logs</span>
+              </a>
+            </li>
+          </ul>
+        </li>
+        <!-- /archives-->
+        <li>
+          <a href="" ng-click="toggleSaveData()" style="color: #000">
+            <em class="sidebar-item-icon fa fa-desktop"></em>
+            <span ng-show="!saveData">Disable Video <span class="muted" style="font-size: 10px">(saves bandwidth)</span></span>
+            <span ng-show="saveData">Enable Video</span>
+          </a>
+        </li>
+
+        <li>
+          <a href="" ng-click="toggleSaveDataWebcam()" style="color: #000">
+            <em class="sidebar-item-icon fa fa-video-camera"></em>
+            <span ng-show="!saveDataWebcam">Disable Webcam <span class="muted" style="font-size: 10px"></span></span>
+            <span ng-show="saveDataWebcam">Enable Webcam</span>
+          </a>
+        </li>
+
+        <li>
+          <a href="" title="Page Settings" ripple="">
+            <em class="sidebar-item-icon icon-cog"></em>
+            <em class="sidebar-item-caret fa pull-right fa-angle-right"></em>
+            <span>Page Settings</span>
+          </a>
+          <ul class="nav sidebar-subnav">
+            <li class="sidebar-subnav-header">
+              <a> <em class="sidebar-item-icon fa fa-angle-right"></em>Layouts</a>
+            </li>
+            <li ng-if="alertsChatOnBottom">
+              <a href="" ng-click="changeLayoutAlt('regular')" title="Switch to regular layout" ripple="">
+                <i class="fa fa-columns" aria-hidden="true"></i>
+                <span class="page-layout-types">Switch To Alerts & Chat on the side</span>
+              </a>
+            </li>
+
+            <li ng-if="!alertsChatOnBottom">
+              <a href="" ng-click="changeLayoutAlt('alt')" title="Switch to Alt layout" ripple="">
+                <i class="fa fa-arrow-down" aria-hidden="true"></i>
+                <span class="page-layout-types">Switch To Alerts & Chat on the bottom </span>
+              </a>
+            </li>
+            <p class="text-left ml-2"><strong style="text-decoration: underline">Chat Mode:</strong></p>
+            <li>
+              <a href="" ng-click="setOption('compactMode','1')" title="Switch to Light Theme" ripple="">
+                <i ng-show="checkChatMode()" class="fa fa-check" aria-hidden="true"></i>
+                <span class="page-layout-types">Compact Mode</span>
+              </a>
+            </li>
+            <li>
+              <a href="" ng-click="setOption('compactMode','0')" title="Switch to Dark Theme" ripple="">
+                <i ng-show="!checkChatMode()" class="fa fa-check" aria-hidden="true"></i>
+                <span class="page-layout-types">Regular Mode</span>
+              </a>
+            </li>
+            <p class="text-left ml-2"><strong style="text-decoration: underline">Color Theme:</strong></p>
+            <li>
+              <a href="" ng-click="switchTheme('light')" title="Switch to Light Theme" ripple="">
+                <i ng-show="checkColorTheme()" class="fa fa-check" aria-hidden="true"></i>
+                <span class="page-layout-types">Light Theme</span>
+              </a>
+            </li>
+            <li>
+              <a href="" ng-click="switchTheme('dark')" title="Switch to Dark Theme" ripple="">
+                <i ng-show="!checkColorTheme()" class="fa fa-check" aria-hidden="true"></i>
+                <span class="page-layout-types">Dark Theme</span>
+              </a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="" title="Page Layouts" ripple="">
+            <em class="sidebar-item-icon icon-layout"></em>
+            <em class="sidebar-item-caret fa pull-right fa-angle-right"></em>
+            <span>Page Layouts</span>
+          </a>
+          <ul class="nav sidebar-subnav">
+            <li class="sidebar-subnav-header">
+              <a> <em class="sidebar-item-icon fa fa-angle-right"></em>Layouts</a>
+            </li>
+            <li ui-sref-active="active">
+              <a ng-click="changeLayout('allinone')" title="All In One" ripple="">
+                <em class="sidebar-item-icon icon-layout"></em>
+                <span class="page-layout-types" translate="sidebar.nav.ALLINONE">All In One</span>
+              </a>
+            </li>
+            <li ui-sref-active="active">
+              <a ng-click="changeLayout('screen')" title="Screen Share" ripple="">
+                <em class="sidebar-item-icon fa fa-desktop"></em>
+                <span class="page-layout-types" translate="sidebar.nav.PRESSONLY">Presentation Only</span>
+              </a>
+            </li>
+            <li ui-sref-active="active">
+              <a ng-click="changeLayout('alertschat')" title="Alerts" ripple="">
+                <em class="sidebar-item-icon icon-bell"></em>
+                <span class="page-layout-types">Alerts &amp; Chat</span>
+              </a>
+            </li>
+            <li ui-sref-active="active">
+              <a ng-click="changeLayout('chat')" title="Full Screen Chat" ripple="">
+                <em class="sidebar-item-icon fa fa-comment-o"></em>
+                <span class="page-layout-types" translate="sidebar.nav.CHATONLY">Chat Only</span>
+              </a>
+            </li>
+            <li ui-sref-active="active">
+              <a ng-click="changeLayout('alerts')" title="Alerts" ripple="">
+                <em class="sidebar-item-icon icon-bell"></em>
+                <span class="page-layout-types">Alerts Only</span>
+              </a>
+            </li>
+          </ul>
+        </li>
+        <li ng-show="doScreenshareStats">
+          <a href="" ng-click="doEnableScreenStats()">
+            <i class="fa fa-desktop"></i
+            ><label>&nbsp;Enable Screen Stats <i class="icon fa fa-check" ng-show="enableScreenStats"></i></label>
+          </a>
+        </li>
+        <!--
+                <li>
+                    <a href="" title="Language" ripple="">
+                        <em class="sidebar-item-icon fa fa-language"></em>
+                        <em class="sidebar-item-caret fa pull-right  fa-angle-right"></em>
+                        <span translate="sidebar.nav.LANGUAGE">Language</span><span>: {{language.selected}}</span>
+                    </a>
+                    <ul class="nav sidebar-subnav">
+                        <li ng-repeat="(localeId, langName) in language.available">
+                            <a ng-click="language.set(localeId, $event)" href="">{{langName}}</a>
+                        </li>
+                    </ul>
+                </li>
+-->
+        <li>
+          <a href="" ng-click="openUser2UserMuteModal()" style="color: #000">
+            <em class="sidebar-item-icon fa fa-comments"></em><span>Manage Muted Users</span>
+          </a>
+        </li>
+        <li ng-show="isPresenter">
+          <a href="" ng-click="getRandomUser()" style="color: #000">
+            <em class="sidebar-item-icon fa fa-user"></em><span>Get Random User</span>
+          </a>
+        </li>
+        <li ng-show="showRoster">
+          <a href="" title="Page Layouts" ripple="" ng-show="showRosterCount">
+            <em class="sidebar-item-icon fa fa-user"></em>
+            <span translate="sidebar.nav.TOTALUSERS">Total Users</span>
+            <div class="label pull-right" style="background-color: #2095f2">
+              <span id="rosterLenSide">0</span>
+            </div>
+          </a>
+          <div style="width: 100%" class="input-group">
+            <input
+              type="text"
+              placeholder="{{ 'sidebar.nav.SEARCHUSERS'| translate}}"
+              ng-model="userSearch"
+              ng-keypress="doSearch($event)"
+              class="form-control"
+            />
+            <div dropdown="dropdown" class="input-group-btn">
+              <button type="button" tabindex="-1" ng-click="doSearchClear()" class="btn btn-default toolbarBtn">
+                <div class="icon fa fa-times"></div>
+              </button>
+
+              <button
+                ng-show="beepOnUserJoin"
+                type="button"
+                tabindex="-1"
+                ng-click="alertUserJoinLeavesOn=!alertUserJoinLeavesOn;"
+                class="btn btn-default toolbarBtn"
+              >
+                <div ng-show="alertUserJoinLeavesOn" class="icon fa fa-bell-o"></div>
+                <div ng-show="!alertUserJoinLeavesOn" class="icon fa fa-bell-slash-o"></div>
+              </button>
+
+              <button
+                type="button"
+                tabindex="-1"
+                ng-click="sortUsersClick()"
+                class="btn btn-default toolbarBtn"
+                ng-class="{'btn-inverse': sortOn}"
+              >
+                <div class="icon fa fa-sort-alpha-asc"></div>
+              </button>
+
+              <!-- <button ng-show="isPresenter" type="button" tabindex="-1" class="btn btn-default toolbarBtn"  ng-click="doUserInvite()">
+                                <div class="icon fa fa fa-user-plus" ></div>
+                            </button> -->
+              <button type="button" dropdown-toggle="" class="btn btn-default toolbarBtn dropdown-toggle">
+                <span class="fa fa-cog"></span>
+              </button>
+              <ul class="dropdown-menu" ng-show="isPresenter">
+                <li ng-click="toggleFreeTrials()">
+                  <label><span class="label label-success">Filter Trials</span></label>
+                </li>
+                <li>
+                  <label><em class="sidebar-item-icon fa fa-user"></em>&nbsp;<span id="ftCountSide"></span></label>
+                </li>
+                <li ng-click="removeFreeTrials()">
+                  <label> <span class="label label-danger"> Remove Trials</span></label>
+                </li>
+                <li ng-click="countUsersMobile()">
+                  <label>Mobile: &nbsp<em class="sidebar-item-icon fa fa-user"></em>&nbsp;<span id="mobileCountSide"></span></label>
+                </li>
+                <li ng-click="sortUsers()">
+                  <label>Sort</label>
+                </li>
+                <li ng-show="hasTyping" ng-click="resetTyping()">
+                  <label>Reset Typing</label>
+                </li>
+                <li ng-click="unbanUser()">
+                  <label>Unban User</label>
+                </li>
+                <li ng-click="toggleLargeFont()">
+                  <label>Large Font</label>
+                </li>
+
+                <!-- <li>
+                                    <a href=""  ng-click="doUserInvite()" class="icon fa fa-user-plus">Invite</a>
+                                </li> -->
+              </ul>
+            </div>
+          </div>
+        </li>
+        <li style="margin-left: 10px" ng-show="showRoster" ng-class="fontSize">
+          <p>Moderators</p>
+          <ul id="presoRosterUL" class="list-block" style="background-color: #f0f0f0"></ul>
+        </li>
+        <li style="margin-left: 10px" class="bt" ng-show="showRoster" ng-class="fontSize">
+          <p style="border-top: 1px solid gray">Users</p>
+          <ul id="userRosterUL" class="list-block"></ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+<!-- END Sidebar-->

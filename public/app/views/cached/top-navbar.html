@@ -1,0 +1,478 @@
+<!-- START Top Navbar-->
+<nav role="navigation" id="topNav" ng-controller="HeaderNavController" class="navbar topnavbar">
+  <!-- START button offset-->
+  <!--.btn-offset//button(type="button", btn-layer-morph="", target="#layer-search", ripple="").btn.btn-info.btn-circle.btn-lg.shadow-z1
+  //em.fa.fa-search-->
+  <!-- START button offset-->
+  <!-- START navbar header-->
+  <div class="navbar-header" ng-init="showRosterCountToggle=true" id="#cssNavBar">
+    <div class="navbar-brand">
+      <a
+        ng-show="!alwaysShowRoster"
+        href=""
+        ng-show="isOpen"
+        ng-click="toggleSideBar()"
+        class="title navSwitcher hidden-xs fa fa-bars"
+        style="margin-right: 5px"
+      ></a>
+      <a
+        ng-show="hasPTRApp"
+        ng-click="doMobileAppDialog()"
+        class="fa fa-mobile hasMobileApp"
+        tooltip-placement="right"
+        tooltip="Launch in Mobile App"
+      ></a>
+      <a
+        href=""
+        ng-show="showRosterCount"
+        ng-click="toggleSideBar()"
+        ng-dblclick="showRosterCountToggle=!showRosterCountToggle"
+        style="color: #ffffff; margin-right: 15px"
+        class="icon fa fa-user animated"
+        tooltip-placement="bottom"
+        tooltip="Users Connected"
+      >
+        <span
+          id="rosterLen"
+          style="font-family: 'Roboto', Helvetica, Arial, sans-serif"
+          ng-show="showRosterCountToggle"
+          class="animated"
+          >&nbsp;0</span
+        >
+      </a>
+      <a href="">
+        <img
+          id="cssLogo"
+          ng-hide="hideLogo|| !logoURL"
+          ng-src="{{logoURL}}"
+          class="brand-logo"
+          style="max-width: 180px; height: auto; max-height: 40px"
+        />
+        <span class="title"></span>
+      </a>
+
+      <!-- <a  ng-show="otherSessions && otherSessions.length>0" data-toggle="dropdown" href="" style="color: #FFFFFF; display: inline;" class="dropdown-toggle icon fa fa-list-ul" tooltip-placement="bottom" tooltip="Switch Rooms">
+              <span class="caret" style="display: inline;"></span>
+         </a>
+         <ul  class="dropdown-menu ">
+            <li ng-repeat="sess in otherSessions"><a href="" ng-click="switchSession(sess)">{{sess.name}}</a></li>
+         </ul> -->
+    </div>
+
+    <!-- Mobile buttons-->
+    <div class="mobile-toggles" ng-show="isPresenter || isOpen">
+      <!-- Button to show/hide the sidebar on mobile. Visible on mobile only.-->
+      <a href="" ng-click="app.sidebar.isOffscreen = !app.sidebar.isOffscreen" class="sidebar-toggle">
+        <em class="fa fa-navicon"></em>
+      </a>
+      <!-- Button to show/hide the header menu on mobile. Visible on mobile only.-->
+      <a href="" ng-click="toggleHeaderMenu()" class="menu-toggle hidden-material">
+        <em class="fa fa-ellipsis-v fa-fw"></em>
+      </a>
+    </div>
+  </div>
+  <!-- END navbar header   -->
+  <!-- START Nav wrapper-->
+  <div collapse="headerMenuCollapsed" class="nav-wrapper collapse navbar-collapse">
+    <!-- START Left navbar-->
+
+    <ul class="nav navbar-nav navbar-right hidden-material">
+      <!-- <button class="btn dropdown-toggle" ng-show="otherSessions && otherSessions.length>0"  data-toggle="dropdown">{{currRoomName}} <span class="caret"></span></button>
+         <ul class="dropdown-menu">
+            <li ng-repeat="sess in otherSessions"><a href=""><a href="" ng-click="switchSession(sess)">{{sess.name}}</a></a></li>
+
+         </ul> -->
+
+      <li ng-show="hasNews" style="max-height: 30px" class="visible-lg visible-md">
+        <a
+          class="brand-logo"
+          style="margin-left: 20px"
+          href="/public/bz/index.html?sessID={{sessionID}}&id={{roomID}}&tok={{token}}"
+          target="_blank"
+          title="Benzinga News "
+          ripple=""
+        >
+          <img src="/public/images/benzinga-logo.png" style="max-height: 30px" />
+        </a>
+      </li>
+
+      <li
+        ng-show="isTalking"
+        id="cssIsTalkingIndicator"
+        class="animated fadeIn"
+        style="max-width: 400px; white-space: nowrap; text-overflow: ellipsis"
+      >
+        <a href="" style="padding: 5px; color: #ffcc00; margin-top: 10px" ng-dblclick="toggleTalkingLevelIndi()">
+          <i class="icon fa fa-microphone"></i>&nbsp;{{isTalking}}
+          <img id="talkingLevelsImg" src="/public/images/talking.gif" style="max-height: 25px; display: none; margin-top: -3px" />
+          <img id="nolevelsImg" src="/public/images/notalking.png" style="max-height: 25px; display: none; margin-top: -3px" />
+        </a>
+      </li>
+      <li
+        ng-show="audioReconnecting"
+        class="animated infinite flash"
+        style="max-width: 400px; white-space: nowrap; text-overflow: ellipsis"
+      >
+        <a href="" style="padding: 5px; color: #ffcc00; margin-top: 10px">
+          <i class="fa fa-volume-up" aria-hidden="true"></i>&nbsp;&nbsp;Connecting Audio...<i
+            class="fa fa-circle-o-notch fa-spin fa-fw"
+          ></i>
+        </a>
+      </li>
+      <li
+        ng-show="!isTalking && isOpen && !audioReconnecting && !isChatOnlyRoom"
+        style="max-width: 400px; white-space: wrap; text-overflow: ellipsis"
+      >
+        <a id="cssNobodyTalking" href="" style="padding: 5px; color: #ffcc00; margin-top: 10px"> ( nobody is speaking )</a>
+      </li>
+
+      <li ng-show="isRecording">
+        <a href="" id="cssRecLabel" style="padding: 5px; color: #ff0000; margin-top: 10px" class="animated fadeIn"> [ REC ] </a>
+      </li>
+      <!-- presenter -->
+
+      <li ng-show="isPresenter && isOpen && !isChatOnlyRoom">
+        <a
+          href=""
+          id="cssRecIcon"
+          ng-click="doRecDialog()"
+          ng-style="{color: recClass}"
+          class="icon fa fa-dot-circle-o fa-2x"
+          tooltip-placement="bottom"
+          tooltip="Start / Stop Recording"
+        ></a>
+      </li>
+
+      <li ng-show="isPresenter && isOpen && micEnabled ">
+        <a
+          href=""
+          id="cssMicIcon"
+          ng-click="toggleMicMute()"
+          ng-style="{color: micClass}"
+          class="icon fa fa-2x fa-microphone"
+          tooltip-placement="bottom"
+          tooltip="Mute / Unmute Mic"
+        >
+          <!-- span(ng-hide="micMuted").onLabel on-->
+        </a>
+      </li>
+
+      <li ng-show="isPresenter && isOpen && screenEnabled && !screenShareLaunching" ng-click="stopScreen(0)" class="dropdown">
+        <a
+          id="cssScreenShareIcon"
+          data-toggle="dropdown"
+          href=""
+          ng-disabled="screenShareLaunching"
+          ng-style="{color: screenClass}"
+          class="dropdown-toggle icon fa fa-2x fa-desktop"
+          tooltip-placement="bottom"
+          tooltip="Start / Stop ScreenSharing"
+        >
+          <span class="caret"></span
+        ></a>
+        <ul class="dropdown-menu">
+          <!--<li><a href="" ng-click="launchScreen(1)">ALT (Alt Method, Testing)</a></li>-->
+          <li>
+            <a href="" ng-click="launchScreen(128000)">LOW (Lowest Bandwidth)</a>
+          </li>
+          <li>
+            <a href="" ng-click="launchScreen(256000)">SD (Medium Bandwidth / WiFi)</a>
+          </li>
+          <li>
+            <a href="" ng-click="launchScreen(512000)">HD (Regular Bandwidth) ** RECOMMENDED</a>
+          </li>
+          <li ng-show="hqVideo">
+            <a href="" ng-click="launchScreen(1024000)">1Mbps (Higher Bandwidth/Quality)</a>
+          </li>
+          <li class="divider"></li>
+          <li>
+            <a href="" ng-click="launchWebcamScreen(512000)">WebCam HD (Xsplit/OBS/Etc)</a>
+          </li>
+          <li>
+            <a href="" ng-show="hqVideo" ng-click="launchWebcamScreen(1024000)">WebCam HHD (1MBps Xsplit/OBS/Etc)</a>
+          </li>
+          <!-- <li ng-show="hqVideo"><a href="" ng-click="launchScreen(2048000)">2Mbps (Much Higher Bandwidth/Quality)</a></li> -->
+
+          <!--
+            <li><a href="" ng-click="launchScreen(768000)">HD - Medium Bandwidth (768K)</a></li>
+            <li><a href="" ng-click="launchScreen(1024000)">ULTRA HD - High Bandwidth (1024K)</a></li>
+          -->
+          <li class="divider"></li>
+          <li><a href="" ng-click="launchScreen(0)">STOP SHARING</a></li>
+          <li class="divider"></li>
+          <li><a href="" ng-click="doWebRTCReset('s')">WebRTC Reset</a></li>
+        </ul>
+      </li>
+
+      <li ng-show="isPresenter && isOpen && screenShareLaunching" ng-click="doWebRTCReset('s')">
+        <img src="/public/app/img/ajax_loader.gif" style="width: auto; height: 45px; padding-top: 12px; padding-bottom: 10px" />
+      </li>
+
+      <li ng-show="isPresenter && isOpen && !camLaunching && camEnabled">
+        <a
+          href=""
+          id="cssCamIcon"
+          ng-disabled="camLaunching"
+          ng-click="toggleCamMute()"
+          ng-style="{color: camClass}"
+          class="icon fa fa-2x fa-video-camera"
+          tooltip-placement="bottom"
+          tooltip="Start / Stop WebCam"
+        ></a>
+      </li>
+      <li ng-show="isPresenter && isOpen && camLaunching" ng-click="doWebRTCReset('c')">
+        <img src="/public/app/img/ajax_loader.gif" style="width: auto; height: 45px; padding-top: 12px; padding-bottom: 10px" />
+      </li>
+
+      <li ng-show="isPresenter && isOpen && videPlayerEnabled">
+        <a
+          href=""
+          ng-click="toggleVideos()"
+          ng-style="{color: videosClass}"
+          class="icon fa fa-2x fa-file-video-o"
+          tooltip-placement="bottom"
+          tooltip="Play Videos for everyone"
+        ></a>
+      </li>
+
+      <li ng-show="isPresenter" class="dropdown">
+        <a
+          id="cssSoundCloudIcon"
+          data-toggle="dropdown"
+          href=""
+          ng-style="{color: scClass}"
+          class="dropdown-toggle icon fa fa-2x fa-soundcloud"
+          ng-class="{'playingSC': scPlaying}"
+          tooltip-placement="bottom"
+          tooltip="Play music from SoundCloud for all"
+        >
+          <span class="caret"></span><img ng-show="scPlaying" src="/public/images/playing.gif" style="max-height: 25px"
+        /></a>
+        <ul class="dropdown-menu">
+          <li>
+            <a href="" ng-click="doSoundCloudEmbed($event)">
+              <i class="fa fa-play-circle"></i>
+              Play a track or playlist from SoundCloud
+            </a>
+          </li>
+          <li>
+            <a href="" ng-click="stopSoundCloudEmbed($event)">
+              <i class="fa fa-square"></i>
+              <i class="fa fa-users"></i>
+              Stop Playing For All</a
+            >
+          </li>
+          <li class="divider"></li>
+          <li>
+            <a href="" ng-click="doSoundCloudUserStop()">
+              <i class="fa fa-square"></i>
+              Stop Playing For Me</a
+            >
+          </li>
+        </ul>
+      </li>
+
+      <li ng-show="!isPresenter && scPlaying">
+        <a
+          id="cssSoundCloudIcon"
+          data-toggle="dropdown"
+          href=""
+          ng-style="{color: scClass}"
+          ng-class="{'playingSC': scPlaying}"
+          class="icon fa fa-2x fa-soundcloud"
+          ng-click="doSoundCloudUserStop()"
+          tooltip-placement="bottom"
+          tooltip="Music is playing from SoundCloud for all"
+        >
+          <img src="/public/images/playing.gif" style="max-height: 25px" />
+        </a>
+      </li>
+
+      <!-- presenter -->
+
+      <li ng-show="isPresenter || showFiles">
+        <a
+          href=""
+          ng-click="toggleFiles($event)"
+          ng-style="{color: filesClass}"
+          class="icon fa fa-2x fa-folder-open-o"
+          tooltip-placement="bottom"
+          tooltip="Room Drive"
+        ></a>
+      </li>
+
+      <!-- START Apps menu-->
+      <li>
+        <a
+          href=""
+          ng-click="openNewsFeed()"
+          style="color: #ffffff"
+          class="icon fa fa-2x fa-newspaper-o"
+          tooltip-placement="bottom"
+          tooltip="Open News Feed"
+          ng-show="showNewsFeed"
+        ></a>
+      </li>
+
+      <li ng-show="isOpen && !isChatOnlyRoom">
+        <a
+          href=""
+          data-toggle="dropdown"
+          class="dropdown-toggle icon fa fa-2x"
+          style="color: #ffffff"
+          ng-class="audioMuted ? 'fa-volume-off':'fa-volume-up'"
+        ></a>
+        <!-- START Dropdown menu-->
+        <ul id="bg-white" class="dropdown-menu wd-lg animated fadeIn">
+          <div class="pv" style="text-align: center">
+            <h4>Audio Volume</h4>
+            <p ng-show="volumeUnsuported && !audioMuted">
+              Sorry, volume control is not supported on this browser yet... Use your device volume instead.
+            </p>
+            <input ng-hide="audioMuted || volumeUnsuported" type="text" value="100" class="dial" /><br />
+            <button type="button" ng-click="toggleMute()" ripple="" class="mr mb-sm btn btn-primary">
+              <div ng-show="audioMuted"><i class="fa fa-volume-up"></i> UnMute</div>
+              <div ng-show="!audioMuted"><i class="fa fa-volume-off"></i> Mute</div>
+            </button>
+            <button type="button" ng-click="restartAudio()" ripple="" class="mr mb-sm btn btn-inverse">Reconnect Audio</button>
+            <div ng-show="scPlaying || true" style="text-align: center">
+              <hr />
+              <h4>Background Music: <span id="scMusicVolumeVal">100</span>%</h4>
+              <input
+                style="width: 50%; margin-left: auto; margin-right: auto"
+                type="range"
+                id="scMusicVolume"
+                name="scMusicVolumeName"
+                min="0"
+                max="100"
+                value="100"
+                width="50%"
+                onchange="setBkgMusicVol(this.value)"
+                oninput="setBkgMusicVol(this.value)"
+              />
+            </div>
+          </div>
+        </ul>
+      </li>
+
+      <li ng-show="screenPresenter">
+        <div class="btn-group" style="border: 0px solid #fafafa; padding: 5px">
+          <button
+            class="btn btn-inverse btn-sm dropdown-toggle"
+            type="button"
+            data-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >
+            <i
+              ng-show="screenLockedOnPres"
+              ng-click="unlockPresenter($event)"
+              class="fa fa-2x fa-lock pull-left"
+              aria-hidden="true"
+            ></i>
+            <i ng-show="screenPresenterType=='screen'" class="fa fa-2x fa-desktop pull-left"></i>
+            <i ng-show="screenPresenterType=='video'" class="fa fa-2x fa-file-video-o pull-left"></i>
+            <span ng-class="'pull-left'" class="chat-img">
+              <img gravatar-src="screenPresenterAvatar" style="margin-right: 5px" class="thumb24" /> </span
+            >{{screenPresenter}} <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu">
+            <li ng-repeat="pre in screenPresenters track by $index">
+              <a href="" ng-click="switchScreenToUser(pre.uid)">
+                <div ng-class="'pull-left'">
+                  <i ng-show="pre.isScreenSharing" class="fa fa-2x fa-desktop pull-left"></i>
+                  <i ng-show="pre.isVideoSharing" class="fa fa-2x fa-file-video-o pull-left"></i>
+
+                  <span class="chat-img">
+                    <img gravatar-src="pre.email" style="margin-right: 5px" class="thumb24" />
+                  </span>
+                </div>
+
+                <span>{{pre.nick}}</span></a
+              >
+            </li>
+
+            <li role="separator" class="divider"></li>
+            <li>
+              <a href="" ng-click="fullScreen()">Double Click presentation ⬇ to zoom</a>
+            </li>
+          </ul>
+        </div>
+      </li>
+
+      <li ng-show="isPresenter && !isTempPres">
+        <a
+          href=""
+          ng-click="doSessionControl()"
+          style="color: #ffffff"
+          class="icon fa fa-2x fa-cog"
+          tooltip-placement="bottom"
+          tooltip="Session Control"
+        ></a>
+      </li>
+
+      <li>
+        <a
+          href=""
+          onclick="window.location.reload();"
+          style="color: #ffffff"
+          class="icon fa fa-2x fa-refresh"
+          tooltip-placement="bottom"
+          tooltip="Refresh/Reload the Room"
+        ></a>
+      </li>
+
+      <li ng-hide="otherSessions && otherSessions.length>1">
+        <a
+          href=""
+          ng-click="doHangup()"
+          style="color: #ffffff"
+          class="icon fa fa-2x fa-power-off"
+          tooltip-placement="bottom"
+          tooltip="Leave Session"
+        ></a>
+      </li>
+
+      <li ng-show="otherSessions && otherSessions.length>1">
+        <a
+          data-toggle="dropdown"
+          href=""
+          style="
+            color: #ffffff;
+            padding-left: 0px;
+            padding-top: 15px;
+            max-width: 350px;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            overflow: hidden;
+          "
+          class="dropdown-toggle"
+          tooltip-placement="bottom"
+          tooltip="Switch Rooms"
+        >
+          <i class="icon fa fa-caret-down"></i>&nbsp;{{currRoomName}}
+        </a>
+        <ul class="dropdown-menu">
+          <li ng-repeat="sess in otherSessions">
+            <a href="" ng-click="switchSession(sess)">{{sess.name}}</a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+
+    <!-- END Left navbar-->
+  </div>
+  <!-- END Nav wrapper-->
+  <div id="soundCloudDiv" style="visibility: hidden; position: absolute; bottom: calc(-100vh + 100px); right: 10px">
+    <iframe
+      id="soundCloudIFrame"
+      width="100%"
+      height="150"
+      scrolling="no"
+      frameborder="no"
+      allow="autoplay"
+      src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/293&amp;auto_play=false"
+    ></iframe>
+  </div>
+</nav>
+<!-- END Top Navbar-->

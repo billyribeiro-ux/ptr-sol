@@ -1,0 +1,14 @@
+node_modules
+.git
+.env
+.env.*
+data
+.runtime
+test
+contracts
+*.log
+secrets
+test-results
+playwright-report
+docs
+.github

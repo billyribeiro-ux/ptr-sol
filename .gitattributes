@@ -1,0 +1,12 @@
+* text=auto eol=lf
+# Preserve captured asset bytes and their original whitespace.
+public/** -text -whitespace
+contracts/reference/** -text -whitespace
+*.png binary
+*.jpg binary
+*.gif binary
+*.ico binary
+*.woff binary
+*.woff2 binary
+*.mp3 binary
+*.ogg binary

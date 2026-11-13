@@ -1,0 +1,14 @@
+node_modules/
+.env
+.env.*
+!.env.example
+data/
+.runtime/
+*.log
+__pycache__/
+*.pyc
+secrets/
+test-results/
+playwright-report/
+coverage/
+.DS_Store

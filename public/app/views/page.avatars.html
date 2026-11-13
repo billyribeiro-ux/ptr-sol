@@ -1,0 +1,17 @@
+<div ng-controller="AvatarsCtrl" class="container-fh">
+   <div class="l-table-fixed">
+      <div class="l-cell wd-md br">
+         <div class="l-table bg-white">
+            <div class="p bt center">Choose The Avatar you want to use</div>
+            <hr/>
+            <div class="l-row">
+               <div ng-repeat="avatar in avatars" class="col-md-1">
+                  <a href="" ng-click="selectAvatar(avatar)" class="avatarChooser">
+                     <img ng-src="{{::avatar}}" alt="Image" class="thumb80" />
+                  </a>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>

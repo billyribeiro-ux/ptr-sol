@@ -1,0 +1,53 @@
+{
+  "name": "ptr-sol",
+  "version": "1.0.0",
+  "description": "ProTradingRoom reference application with a Docker backend and captured client contracts",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "node --watch src/server.js",
+    "test": "node --test test/*.test.js",
+    "contracts": "node scripts/extract-contracts.mjs",
+    "docker:up": "docker compose up --build -d",
+    "docker:down": "docker compose down",
+    "setup": "node scripts/setup-local.mjs",
+    "accounts:provision": "docker compose exec -T app node scripts/provision-accounts.cjs",
+    "test:browser": "playwright test",
+    "format": "prettier --write src scripts test/*.test.js playwright.config.js test/browser/*.spec.js",
+    "format:check": "prettier --check src scripts test/*.test.js playwright.config.js test/browser/*.spec.js",
+    "test:browser:docker": "node scripts/test-browser.mjs",
+    "repo:check": "node scripts/check-repository.mjs",
+    "contracts:settings": "python3 scripts/build-settings-parity.py"
+  },
+  "license": "UNLICENSED",
+  "type": "commonjs",
+  "engines": {
+    "node": ">=24"
+  },
+  "overrides": {
+    "sockjs": {
+      "uuid": "^11.1.1"
+    }
+  },
+  "dependencies": {
+    "bcryptjs": "^3.0.3",
+    "cors": "^2.8.6",
+    "dotenv": "^18.0.10",
+    "express": "^5.3.0",
+    "jsonwebtoken": "^9.0.3",
+    "multer": "^2.5.0",
+    "nodemailer": "^10.5.0",
+    "sockjs": "^0.3.24",
+    "uuid": "^14.0.3",
+    "ws": "8.23.0"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.65.0",
+    "prettier": "3.10.1"
+  },
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/billyribeiro-ux/ptr-sol.git"
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "source": "App Store metadata captured by original evidence collection",
+  "apps": [
+    {
+      "trackName": "Pro Trading Room",
+      "bundleId": "com.bellesoft.protradingroom",
+      "version": "2.19.1",
+      "trackId": 1147825433,
+      "trackViewUrl": "https://apps.apple.com/us/app/pro-trading-room/id1147825433?uo=4",
+      "minimumOsVersion": "10.2",
+      "captured_screenshot_count": 6
+    },
+    {
+      "trackName": "Pro Trading Room Alerts",
+      "bundleId": "com.bellesoft.ptrAlerter",
+      "version": "1.0.3",
+      "trackId": 1542468993,
+      "trackViewUrl": "https://apps.apple.com/us/app/pro-trading-room-alerts/id1542468993?uo=4",
+      "minimumOsVersion": "11.0",
+      "captured_screenshot_count": 10
+    },
+    {
+      "trackName": "Pro Trading Room V5",
+      "bundleId": "com.bellesoft.protradingroomv3",
+      "version": "3.0.50",
+      "trackId": 1587924329,
+      "trackViewUrl": "https://apps.apple.com/us/app/pro-trading-room-v5/id1587924329?uo=4",
+      "minimumOsVersion": "15.0",
+      "captured_screenshot_count": 10
+    },
+    {
+      "trackName": "Simpler Trading Mobile",
+      "bundleId": "com.bellesoft.stprotradingroomios",
+      "version": "3.6.23",
+      "trackId": 1278652736,
+      "trackViewUrl": "https://apps.apple.com/us/app/simpler-trading-mobile/id1278652736?uo=4",
+      "minimumOsVersion": "15.6",
+      "captured_screenshot_count": 18
+    }
+  ]
+}

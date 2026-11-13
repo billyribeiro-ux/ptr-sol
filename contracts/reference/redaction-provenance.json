@@ -1,0 +1,53 @@
+{
+  "source": "Captured public original application bundle, contracts/reference/app.min.js",
+  "pre_redaction_bundle_sha256": "79c5d8ce574a9cfdbf7f239d6b569c43d6c972b1ddced4e5e9058650b94aee77",
+  "redacted_bundle_sha256": "ac0e8691d77a88c8437e221d43029b78e03ee2e3dd5d9cd4f0445cc498f9e322",
+  "redactions": [
+    {
+      "category": "RapidAPI subscription key",
+      "occurrences": 3
+    },
+    {
+      "category": "Imgur client identifier",
+      "occurrences": 3
+    },
+    {
+      "category": "Giphy browser API key",
+      "occurrences": 1
+    },
+    {
+      "category": "TURN username",
+      "occurrences": 1
+    },
+    {
+      "category": "TURN password",
+      "occurrences": 1
+    },
+    {
+      "category": "Verto password",
+      "occurrences": 1
+    },
+    {
+      "category": "Audio bridge shared value",
+      "occurrences": 1
+    }
+  ],
+  "additional_files": [
+    {
+      "source": "contracts/reference/specs/03_controllers_wire_protocol_rest.md",
+      "pre_redaction_sha256": "42cbb69276b92a60dc8f5395bc3467ba6d4e21019e0d8744effb8c523bd11123",
+      "redacted_sha256": "26a4e2c36aed70c42f371f36707ae3db88d4b2e5146c8e9f129b44d82817b98f",
+      "redactions": [
+        {
+          "category": "RapidAPI subscription key",
+          "occurrences": 1
+        },
+        {
+          "category": "Imgur client identifier",
+          "occurrences": 1
+        }
+      ]
+    }
+  ],
+  "note": "Whole-file hashes document provenance; credential-value hashes are intentionally omitted. Captured RapidAPI and Giphy keys may permit billable use. TURN and Verto passwords are authentication material; identifiers are redacted alongside them. Public reCAPTCHA site keys are not secrets. Validity of captured values is unknown."
+}

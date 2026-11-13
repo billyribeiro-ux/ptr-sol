@@ -1,0 +1,140 @@
+<style>
+    .row {
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+
+    .modal .modal-dialog {
+        width: 80% !important;
+    }
+</style>
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close" ng-click="closeModal()"><span
+            aria-hidden="true">&times;</span></button>
+    <h4 id="myModalLabel" class="modal-title">Session Control</h4>
+
+</div>
+<div class="modal-body">
+    <div class="row">
+        <ul class="nav nav-tabs">
+            <li class="active"><a data-toggle="tab" href="#resetAudio" target="_self">Reset Audio</a></li>
+            <li><a data-toggle="tab" href="#hardReset" target="_self">Hard Reset/Reload</a></li>
+            <li><a data-toggle="tab" href="#softReset" target="_self">Soft Reset</a></li>
+            <li><a data-toggle="tab" href="#lockRoom" target="_self">Lock Room</a></li>
+            <li><a data-toggle="tab" href="#closeRoom" target="_self">Close Room</a></li>
+            <li><a data-toggle="tab" href="#avSettings" target="_self">A/V Device Selection</a></li>
+        </ul>
+
+        <div class="tab-content">
+            <div id="resetAudio" class="tab-pane fade in active">
+                <button ng-click="resetAudioRoom()" type="button" ripple="" class="mr mb-sm btn btn-info">Reset Audio
+                    Bridge </button>
+                <p ng-init="showStop=false;" ng-click="showStop=true;">Resetting the audio bridge is useful when nobody
+                    can hear the presenters</p>
+                <hr>
+                <button ng-show="showStop" ng-click="stopAudioRoom()" type="button" ripple=""
+                    class="mr mb-sm btn btn-inverde">STOP Audio Bridge </button>
+
+                <p>Just 1 server bad? restart just this server:</p>
+
+                <div ng-repeat="server in mediaServersArr" style="display: inline-block;">
+                    <a href="" ng-click="restartSingleAudioServer(server)">Restart Audio for {{server}}</a>
+                    <a target="_blank"
+                        href="/session?id={{roomSessionId}}&forcedStreamServer={{mediaServersCompArr[$index]}}"
+                        style="color: black;">(Test it)</a>
+                </div>
+
+            </div>
+            <div id="hardReset" class="tab-pane fade">
+                <button ng-click="resetRoom()" type="button" ripple="" class="mr mb-sm btn btn-danger">Hard Reset/Force
+                    Reload </button>
+                <!-- <button ng-click="restartServerSSH()" type="button" ripple="" class="mr mb-sm btn btn-warning">Hard Reset Media Server </button> -->
+                <div ng-repeat="server in mediaServersArr" style="display: inline-block;">
+                    <button ng-click="restartSingleServerSSH(server)" type="button" ripple=""
+                        style="display: inline-block;" class="mr mb-sm btn btn-warning btn-link">Reset {{server}}
+                    </button>
+                </div>
+
+                <p>Resetting forces everyone to reload the session wihle clearing access tokens, sends users back to the
+                    login page</p>
+
+                <p>NOTE: Hard Reset the Media server if you are encountering black screens or choppy audio for everyone,
+                    use as a last resort</p>
+            </div>
+            <div id="softReset" class="tab-pane fade">
+                <button ng-click="resetRoomSoft()" type="button" ripple="" class="mr mb-sm btn btn-danger">Soft Reset
+                    Session </button>
+                <p>Soft reset, reloads DB settings, makes all users reconnect to the media servers gently...</p>
+            </div>
+
+            <div id="lockRoom" class="tab-pane fade">
+                <button class="mr mb-sm btn btn-warning" ng-click="doSessionLock()"
+                    ng-hide="sessionLocked">Lock</button>
+                <button class="mr mb-sm  btn btn-info" ng-click="doSessionLock()"
+                    ng-hide="!sessionLocked">Unlock</button>
+                <p>Lock Session? If locked only presenters/admins will be able to use the room, regular users
+                    <strong>will be kicked out</strong> and will be able to enter the room untill it is unlocked</p>
+            </div>
+            <div id="closeRoom" class="tab-pane fade">
+                <div class="form-group">
+                    <label control-label">Closed Room Message:</label>
+                    <div class="col-sm-12" ng-init="freeformEditor=false">
+                        <button class="btn btn-small btn-warning" ng-click="freeformEditor=!freeformEditor">Free
+                            From</button>
+
+                        <div ng-show="!freeformEditor" text-angular="" ng-model="closedMsg"
+                            placeholder="The room is closed..." name="wysiswyg-editor" class="btn-group-small"></div>
+                        <div ng-show="freeformEditor" class="form-group">
+                            <textarea ng-model="closedMsg" placeholder="The room is closed..." rows="25"
+                                class="form-control">
+                          </textarea>
+                        </div>
+
+                    </div>
+                    <br />
+                    <div class="form-group">
+                        <button ng-click="closeRoom(closedMsg)" type="button" ripple=""
+                            class="mr mb-sm btn btn-danger">Close Session with above Message</button>
+                        <button ng-click="openRoom()" type="button" ripple="" class="mr mb-sm btn btn-danger">Open
+                            Session</button>
+                        <hr>
+                        <button ng-click="closeRoom(closedMsg,true)" type="button" ripple=""
+                            class="mr mb-sm btn btn-warning">Close Session &amp; revoke access</button>
+                        <label>If you revoke access, users will need to relaunch the room from the site.</label>
+                    </div>
+
+
+                </div>
+            </div>
+
+            <div id="avSettings" class="tab-pane fade">
+                <form class="form-inline cenetered">
+                    <div class="form-group" style="margin-right: 20px;">
+                        <label for="audio-device">Audio device (input):</label>
+                        <select id="audio-device" class="form-control"></select>
+                    </div>
+                    <br><br>
+                    <div class="form-group" style="margin-right: 20px;">
+                        <label for="video-device">Video device (input):</label>
+                        <select id="video-device" class="form-control"></select>
+                    </div>
+                    <div class="form-group">
+                        <div id="change-devices" ng-click="setNewDevices()" class="form-control btn btn-primary">Change devices</div>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+
+    </div>
+
+
+</div>
+
+<div class="modal-footer" ng-show="isPresenter">
+    <div class="pull-left">
+        <button ng-click="closeModal()" class="btn  btn-sm btn-primary ">Done</button>
+    </div>
+
+
+</div>

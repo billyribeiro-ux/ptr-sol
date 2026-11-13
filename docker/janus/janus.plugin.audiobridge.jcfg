@@ -1,0 +1,3 @@
+general: {
+ rtp_port_range = "5200-5298"
+}

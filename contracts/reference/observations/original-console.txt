@@ -1,0 +1,50 @@
+h264:false. __isReg=false
+5[Violation] Permissions policy violation: unload is not allowed in this document.
+app.min.js:10 [3:52:51 PM] appVars service created. vendor: 4/1/2019, 12:34:41 PM. name:vendor. app: 11/10/2026, 5:58:18 PM. name=app
+app.min.js:10 [3:52:51 PM] webRTCService created...v2 ****
+app.min.js:10 [3:52:51 PM] webRTCAudioService created...
+app.min.js:10 [3:52:51 PM] webRTCAudioService janus init CB called..isREady true
+app.min.js:10 [3:52:51 PM] webRTCStreamService created...
+app.min.js:10 [3:52:51 PM] webRTCReady isUsingPlugin:false
+app.min.js:10 [3:52:51 PM] webRTCCamService created...v2 ****
+app.min.js:10 [3:52:51 PM] chatmodel v=2.0
+app.min.js:12 chatModel service created.
+app.min.js:10 [3:52:51 PM] webRTCStreamTestService created...host: https://m5.protradingroom.com:443/janus
+app.min.js:10 [3:52:51 PM] webRTCReady isUsingPlugin:function(a,b){return new n.fn.init(a,b)}
+app.min.js:10 [3:52:51 PM] LoginCtrl created..$state.url=undefined. params={"autoLogin":true}.isReg:false
+app.min.js:10 [3:52:51 PM] ***** My browser is: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/157.0.0.0 Safari/537.36
+app.min.js:10 [3:52:51 PM] LoginCtrl created...
+app.min.js:10 [3:52:51 PM] LoginCtrl roomID:. p:r. api:. tagline:undefined
+app.min.js:10 [3:52:51 PM] chatModel.doHUP()... keepAlive:undefined
+app.min.js:10 [3:52:51 PM] webRTCService doHup:-v
+app.min.js:10 [3:52:51 PM] webRTCAudioService doHup:
+app.min.js:10 [3:52:51 PM] LoginCtrl scope.login.isLoggedIn=false
+app.min.js:10 [3:52:51 PM] LoginCtrl $stateChangeSuccess to:page.welcome. from:. isLoggedin:false
+app.min.js:10 [3:52:51 PM] init emoji.......
+app.min.js:10 [3:52:51 PM] list badge called. args:{"token":"null","cmd":"listBadges","source":"webApp","color":"#FFFFFF","bkcolor":"#ffcc00","text":"New Badge","name":""}
+app.min.js:10 [3:52:51 PM] listApiKeys...
+app.min.js:10 [3:52:51 PM] listAdminUsers...
+app.min.js:10 [3:52:51 PM] checking for auto login...autoLogin=true scope.login.isLoggedIn=false. jump to session=
+app.min.js:10 [3:52:51 PM] checkIfTokenValid Checking token...
+app.min.js:10 [3:52:51 PM] login with token
+app.min.js:10 [3:52:51 PM] getSessions...
+app.min.js:6 login rc={"success":false,"message":"Failed to authenticate token."}
+app.min.js:10 [3:52:51 PM] token based logion failed. loging out...
+ipapi.co/json:1  Failed to load resource: the server responded with a status of 429 ()
+users/v1/users.json:1  Failed to load resource: the server responded with a status of 403 (Forbidden)
+app.min.js:10 [3:52:51 PM] logout err..
+app.min.js:6 sessions rc={"success":false,"message":"Failed to authenticate token."}
+vendor.min.js?v=2.18.100:110 TypeError: sessions.sort is not a function
+    at LoginCtrl.$scope.sortSessions (app.min.js:6:1)
+    at app.min.js:6:1
+    at vendor.min.js?v=2.18.100:88:454
+    at vendor.min.js?v=2.18.100:120:113
+    at n.$eval (vendor.min.js?v=2.18.100:134:15)
+    at n.$digest (vendor.min.js?v=2.18.100:131:106)
+    at n.$apply (vendor.min.js?v=2.18.100:134:293)
+    at l (vendor.min.js?v=2.18.100:89:240)
+    at M (vendor.min.js?v=2.18.100:93:342)
+    at F.onload (vendor.min.js?v=2.18.100:94:367)
+app.min.js:10 [3:52:51 PM] detached chat message for another room. ignore.
+app.min.js:6 login rc={"message":"Login Error","success":false,"failedLoginCount":6}
+app.min.js:10 [3:53:55 PM] detached chat message for another room. ignore.

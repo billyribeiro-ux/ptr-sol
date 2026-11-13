@@ -1,0 +1,7 @@
+public/
+contracts/reference/
+node_modules/
+data/
+secrets/
+playwright-report/
+test-results/

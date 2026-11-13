@@ -1,0 +1,221 @@
+<div class="modal-megamenu" id="filesModal" tabindex="-1">
+  <div class="modal-header">
+    <button
+      type="button"
+      class="close"
+      data-dismiss="modal"
+      aria-label="Close"
+      ng-click="closeModal()"
+    >
+      <span aria-hidden="true">&times;</span>
+    </button>
+    <h4 id="myModalLabel" class="modal-title">Room Files</h4>
+  </div>
+  <div class="modal-body" style="height: 100%; max-height: 500px">
+    <div
+      class="panel panel-default"
+      style="overflow: hidden auto; max-height: 500px"
+    >
+      <div class="panel-heading">
+        <div class="row">
+          <div class="col-md-6">
+            <input
+              type="text"
+              placeholder="Search"
+              class="form-control"
+              ng-model="search"
+            />
+          </div>
+          <div class="col-md-1">
+            <button
+              ng-click="getFiles()"
+              class="btn btn-default icon fa fa-refresh"
+            ></button>
+          </div>
+
+          <div class="col-md-3" ng-show="isP">
+            <button
+              type="button"
+              ngf-select="ngf-select"
+              ngf-change="onFileSelect($files)"
+              class="btn btn-info"
+            >
+              <i class="fa fa-cloud-upload"></i> Upload New
+            </button>
+          </div>
+          <div ng-show="isP" class="row" style="text-align: center">
+            <button type="button" ng-click="setBkgURL()" class="btn btn-link">
+              <i class="fa fa-external-link"></i> Set Background image external
+              link
+            </button>
+            <button type="button" ng-click="clearBkgURL()" class="btn btn-link">
+              <i class="fa fa-trash-o"></i> Clear Background image
+            </button>
+          </div>
+        </div>
+      </div>
+      <!-- START table-responsive-->
+      <div class="panel-body">
+        <ul class="nav nav-tabs" role="tablist">
+          <li
+            ng-click="selectedTab('files')"
+            role="presentation"
+            class="nav-tab-li"
+            ng-class="activeTab=='files' ? 'active':''"
+          >
+            <a aria-controls="files" role="tab" data-toggle="tab">Files</a>
+          </li>
+          <li
+            class="nav-tab-li"
+            ng-click="selectedTab('images')"
+            role="presentation"
+            ng-class="activeTab=='images' ? 'active':''"
+          >
+            <a aria-controls="images" role="tab" data-toggle="tab">Images</a>
+          </li>
+          <li
+            class="nav-tab-li"
+            ng-click="selectedTab('sounds')"
+            role="presentation"
+            ng-class="activeTab=='sounds' ? 'active':''"
+          >
+            <a aria-controls="Sounds" role="tab" data-toggle="tab">Sounds</a>
+          </li>
+        </ul>
+
+        <div
+          class="table-responsive"
+          ng-show="fileList.length>0"
+          style="min-height: 200px; height: 100%; overflow: visible"
+        >
+          <table id="table-ext-1" class="table table-bordered table-hover">
+            <tbody id="filesDrive">
+              <tr
+                ng-show="(activeTab == 'files' && file.contentType.indexOf('image/') == -1 && file.contentType.indexOf('audio/') == -1) || (activeTab == 'images' && file.contentType.indexOf('image/')>=0) || (activeTab == 'sounds' && file.contentType.indexOf('audio/')>=0)"
+                ng-repeat="file in fileList | filter: search"
+              >
+                <td>
+                  <div class="">
+                    <div
+                      ng-if="file.contentType.indexOf('image/')>=0"
+                      
+                    >
+                      <img
+                        ng-src="{{file.vidPath}}"
+                        alt="Image"
+                        class="navLogo"
+                        style="background-color: #000"
+                      />
+                      <br />
+                      <label>
+                        <input
+                          type="checkbox"
+                          value="{{file._id}}"
+                        />&nbsp;&nbsp;{{file.name}}</label
+                      >
+                    </div>
+
+                    <div
+                      ng-if="file.contentType.indexOf('image/')==-1"
+                      
+                    >
+                      <label>
+                        <input
+                          type="checkbox"
+                          value="{{file._id}}"
+                        />&nbsp;&nbsp; {{file.name}}</label
+                      >
+                    </div>
+
+                    <a
+                      ng-if="file.contentType.indexOf('audio/')==-1"
+                      class="btn btn-tiny btn-default icon fa fa-download"
+                      ng-click="downloadName(file.vidPath,file.name)"
+                      type="{{file.contentType}}"
+                      href=""
+                      >Download</a
+                    >
+                    {{Math.round(file.size/1024)}}Kb.<span ng-if="file.contentType.indexOf('audio/')>=0">&nbsp;&nbsp;|&nbsp;&nbsp;
+                      <a href="" ng-click="playForAll(file.vidPath)">
+                        <i class="fa fa-play-circle"></i>&nbsp;&nbsp;Play For All</a></span>
+                  </div>
+                </td>
+                <td ng-show="isP">
+                  <!--                            <button class="btn btn-sm">Select</button>-->
+                  <div dropdown="dropdown" class="btn-group mb-sm">
+                    <button
+                      type="button"
+                      ng-disabled="disabled"
+                      dropdown-toggle=""
+                      class="btn dropdown-toggle btn-primary"
+                    >
+                      Actions&nbsp;
+                      <span class="caret"></span>
+                    </button>
+                    <ul
+                      role="menu"
+                      class="dropdown-menu"
+                      ng-class="{'dropdown-menu-sounds': activeTab == 'sounds'}"
+                    >
+                      <li ng-show="mode=='logos'">
+                        <a href="" ng-click="setAsLogo(file.vidPath)">
+                          <i class="fa fa-check"></i>&nbsp;&nbsp;Set as Logo</a
+                        >
+                      </li>
+                      <li>
+                        <a href="" ng-click="setAsBkg(file.vidPath)">
+                          <i class="fa fa-check"></i>&nbsp;&nbsp;Set as
+                          Background</a
+                        >
+                      </li>
+                      <li ng-if="file.contentType.indexOf('audio/')>=0">
+                        <a href="" ng-click="playForAll(file.vidPath)">
+                          <i class="fa fa-play-circle"></i>&nbsp;&nbsp;Play For
+                          All</a
+                        >
+                      </li>
+                      <li ng-if="file.contentType.indexOf('audio/')>=0">
+                        <a href="" ng-click="stopForAll(file.vidPath)">
+                          <i class="fa fa-square"></i>&nbsp;&nbsp;Stop Play For
+                          All
+                        </a>
+                      </li>
+                      <li class="divider"></li>
+                      <li>
+                        <a
+                          href=""
+                          ng-click="deleteFile(file.name,file._id,$index)"
+                        >
+                          <i class="fa fa-trash"></i>&nbsp;&nbsp;Delete</a
+                        >
+                      </li>
+                      <li>
+                        <a href="" ng-click="deleteChecked()">
+                          <i class="fa fa-trash fa-check"></i>&nbsp;&nbsp;Delete
+                          Selected</a
+                        >
+                      </li>
+                    </ul>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <!-- END table-responsive-->
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button
+      ng-show="isP"
+      ng-click="deleteChecked()"
+      class="btn btn-sm btn-danger icon fa fa-trash"
+    >
+      &nbsp;Delete Selected</button
+    >&nbsp;&nbsp;
+    <button ng-click="closeModal()" class="btn btn-sm btn-primary">
+      Close
+    </button>
+  </div>
+</div>

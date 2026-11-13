@@ -1,0 +1,31 @@
+{
+    "topbar": {
+        "search": {
+            "PLACEHOLDER": "Search.."
+        }
+    },
+    "main": {
+        "CHAT": "Chat",
+        "PARTICIPANTS": "Participants",
+        "SEND": "Send",
+        "TYPEMESSAGE": "Type your message here",
+        "CLOUDDRIVE": "Cloud Drive"
+    },
+
+    "sidebar": {
+        "heading": {
+            "HEADER": "Main Navigation"
+        },
+        "nav": {
+            "LANGUAGE": "Language",
+            "CLOSEPANEL": "Close Panel",
+            "TOTALUSERS": "Users",
+            "PAGELAYOUTS": "Page Layout",
+            "ALLINONE": "  All In One",
+            "PRESSONLY": "  Presentation Only",
+            "CHATONLY": " Chat Only",
+            "SEARCHUSERS": "Search Users"
+
+        }
+    }
+}

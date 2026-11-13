@@ -1,0 +1,141 @@
+<div class="modal-header">
+  <button type="button" class="close" data-dismiss="modal" aria-label="Close" ng-click="closeModal()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+  <h4 id="myModalLabel" class="modal-title"><i class="fa fa-question-circle-o" aria-hidden="true"></i> Multiple Choice Poll</h4>
+</div>
+<div class="modal-body">
+  <!-- question setup -->
+  <div class="row" ng-show="mode=='setup'">
+    <!-- Nav tabs -->
+    <ul class="nav nav-tabs" role="tablist">
+      <li role="presentation" class="active">
+        <a id="sendpolltab" aria-controls="sendpoll" data-target="#sendpoll" role="tab" data-toggle="tab">Create New Poll</a>
+      </li>
+      <li role="presentation">
+        <a aria-controls="savedPolls" role="tab" data-target="#savedPolls" data-toggle="tab">Pre-Canned Polls</a>
+      </li>
+    </ul>
+    <div class="tab-content">
+      <div role="tabpanel" class="tab-pane active" id="sendpoll">
+        <div class="col-xs-12">
+          <h3><span class="label label-warning">1</span> Enter your poll question:</h3>
+          <input
+            type="text"
+            ng-model="pollQuestion"
+            class="form-control"
+            placeholder="Main poll question (i.e. Where do you think the market is going?)"
+          />
+          <hr />
+          <h3><span class="label label-warning">2</span> Add Choices/Answers:</h3>
+
+          <div class="input-group">
+            <input
+              type="text"
+              ng-model="pollChoice"
+              ng-enter="addChoice()"
+              class="form-control"
+              placeholder="Enter a choice (i.e. Up, Down, Sideways)"
+            />
+            <span class="input-group-btn">
+              <button class="btn btn-default" type="button" ng-click="addChoice()">
+                <i class="fa fa-plus-circle" aria-hidden="true"></i>&nbsp;&nbsp;Add Choice
+              </button>
+            </span>
+          </div>
+          <ol>
+            <li ng-repeat="q in pollChoices">
+              {{q}}
+              <button class="btn btn-link pull-right" type="button" ng-click="delChoice($index)">
+                <i class="fa fa-minus-circle" aria-hidden="true"></i>&nbsp;Del</button
+              ><br clear="both" />
+            </li>
+          </ol>
+          <hr />
+          <h3><span class="label label-warning">3</span> When done editing, Send your poll</h3>
+          <div class="checkbox">
+            <label
+              ><input ng-model="anonymousPoll" type="checkbox" value="" />Anonymous Poll (Does not show the voting name/email, just
+              results)</label
+            >
+          </div>
+          <div class="btn-group">
+            <button
+              type="button"
+              class="btn btn-primary dropdown-toggle centered"
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+              style="text-align: center"
+            >
+              Send Poll <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu">
+              <li><a href="" ng-click="sendPoll('everyone')">Everyone (** recomended)</a></li>
+              <li><a href="" ng-click="sendPoll('members')">Members (Just Members, not free trials)</a></li>
+              <li><a href="" ng-click="sendPoll('trials')">Trials (Just Free Trials)</a></li>
+            </ul>
+          </div>
+          <button class="btn btn-success pull-right" type="button" ng-click="savePollToStorage()" style="text-align: center">
+            <i class="fa fa-floppy-o" aria-hidden="true"></i>&nbsp;Save To Canned
+          </button>
+        </div>
+      </div>
+      <div role="tabpanel" class="tab-pane" id="savedPolls">
+        <p>You can store polls you use often here. Just type the poll on the create poll tab and press "save"</p>
+
+        <ul class="list-group">
+          <li class="list-group-item" ng-repeat="p in savedPolls track by $index">
+            {{p.q}}
+            <div class="pull-right">
+              <button class="btn btn-primary btn-sm" ng-click="loadSavedPoll($index)">Load</button>
+              <button class="btn btn-default btn-sm" ng-click="deleteSavedPoll($index)"><i class="fa fa-trash"></i> Delete</button>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!--answer -->
+  <div class="row" ng-show="mode=='answer'">
+    <div class="col-xs-12" style="text-align: center">
+      <h1>{{pollQuestion}}</h1>
+      <hr />
+      <ol>
+        <li ng-repeat="q in pollChoices">
+          {{q}}
+          <button class="btn btn-link pull-right" type="button" ng-click="sendAnswer($index)">&nbsp;Choose</button><br clear="both" />
+        </li>
+      </ol>
+    </div>
+  </div>
+  <!-- results -->
+  <div class="row" ng-show="mode=='results'" style="text-align: center">
+    <div class="col-md-12">
+      <h2>{{pollQuestion}}</h2>
+    </div>
+    <!-- <div class="col-md-4" style="text-align: left;">
+              <ol>
+              <li ng-repeat="q in pollChoices">{{q}}</li>
+              </ol>
+                <hr>
+                <h3>Total: {{total}}</h3>
+
+              </div> -->
+    <div class="col-md-12">
+      <img src="app/img/ajax_loader.gif" ng-show="total==0" />
+      <p ng-show="total==0" style="margin: 10px; text-align: center">Waiting for results to come in...Please Wait...</p>
+      <flot dataset="pieData" options="chartPieFlotChart" ng-show="total>0"></flot>
+    </div>
+    <hr />
+    <h3>Total Responses: {{total}}</h3>
+    <div class="form-group" ng-show="!anonymousPoll">
+      <textarea id="responsesTxt" rows="8" maxlength="500" class="form-control"></textarea>
+    </div>
+    <button class="btn btn-default" type="button" ng-click="savePollResults()">
+      <i class="fa fa-download" aria-hidden="true"></i> Download Results
+    </button>
+    <button class="btn btn-primary" type="button" ng-click="postResults()">Post Results</button>
+  </div>
+</div>

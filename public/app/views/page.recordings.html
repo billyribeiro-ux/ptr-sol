@@ -1,0 +1,26 @@
+<div ui-view="" autoscroll="false" class="ng-fadeOutZoom ng-fluid ng-scope">
+    <div class="container container-sm animated fadeInDown ng-scope" style="width: 70%;">
+        <div ng-controller="LoginCtrl" class="center-block mt-xl">
+            <img src="/public/app/img/protradingroom_icon.png" alt="Image" class="pull-left">
+            <br><br><br>
+<h3>Recordings</h3>
+<div class="panel panel-default">
+  <div class="panel-heading">Recordings:</div>
+  <div class="panel-body">
+      <ul class="list-group">
+          <li ng-hide="recs.length>0">No Recordings...</li>
+          <li class="list-group-item" ng-hide="recs.length==0" ng-repeat="rec in recs">
+              <h4> <i class="fa fa-file-video-o"></i> {{::rec.created | date:'MM/dd/yyyy @ h:mma' }} <i class="fa fa-clock-o"></i> {{(rec.length/60000) | number:2}} Minutes</h4>
+              
+              <video ng-src="{{rec.vidPath}}" controls type="{{rec.contentType}}"
+                            width="640"></video>
+             
+              
+              <br>
+              <a ng-href="{{::rec.vidPath}}" target="_blank" download="{{rec.name}}" class="btn btn-default"><i class="fa fa-cloud-download"></i> Download</a>
+              <a href="" class="btn btn-default"><i class="fa fa-share"></i> Share</a>
+            </li>
+      </ul>
+
+  </div>
+</div>

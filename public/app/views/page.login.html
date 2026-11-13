@@ -1,0 +1,188 @@
+<style>
+  body {
+    overflow: auto;
+  }
+</style>
+<h3 style="text-align: center">{{sess.name}}</h3>
+
+<hr />
+<!--<div class="col-md-8 animated fadeInLeft" ng-bind-html="sess.description" style="height: 100%; overflow-x: hidden;">-->
+<div class="col-xs-6 col-md-8 fadeInLeft" ta-bind ng-model="sess.description" style="height: 100%; overflow-x: hidden"></div>
+<div
+  style="border-left: solid 1px #fafafa; height: 100%"
+  class="col-xs-6 col-md-3 fadeInRight"
+  ng-cloak
+  ng-show="!browserOK &&!browserOKDismissed"
+>
+  <h2 style="color: red" class="animated flash centered">{{unuportedBrowserMsg}}</h2>
+  <h4>You seem to be using a browser that might NOT work properly with this room</h4>
+  <hr />
+  <div style="text-align: center; width: 100%">
+    <img src="/public/images/supported_browsers.jpeg" style="width: 50%; text-align: center" />
+  </div>
+  <h3>
+    For best results, We suggest using <span style="text-decoration: underline">CURRENT VERSIONS of</span>
+    <a href="https://www.google.com/chrome" target="_blank">Google Chrome</a>,
+    <a href="https://www.mozilla.org/firefox/" target="_blank"> Firefox (v52 and up)</a>, or
+    <a href="https://opera.com" target="_blank">Opera</a>
+  </h3>
+  <br />
+
+  <button ng-click="browserOKDismissed=true;" ng-hide="strictBrowserMode" class="btn btn-danger mb">
+    Let me try anyhow (NOT RECOMENDED)
+  </button>
+</div>
+<div
+  style="border-left: solid 1px #fafafa; height: 100%"
+  class="col-xs-6 col-md-3 fadeInRight"
+  ng-cloak
+  ng-show="browserOK || browserOKDismissed"
+>
+  <!-- <div ng-show="isMobile && false">
+    <a href="protradingroom://?t={{al}}&s={{roomID}}" class="btn btn-block btn-inverse">Launch in Mobile App</a>
+    <hr>
+    </div> -->
+  <h2 class="text-warning" style="text-decoration: underline; text-align: center" ng-show="isReg">Registration Form</h2>
+  <div class="text-center" ng-hide="isOpen || isReg || isWebinarRoom">Enter your name and click Enter below</div>
+  <div class="text-center" ng-show="(isOpen || isWebinarRoom) && !simpleLF">
+    Fill in your name / email<span ng-show="isWebinarRoom"> / Webinar password</span> then click Login
+  </div>
+  <div class="text-center" ng-show="simpleLF">Fill in your name &amp; email then click "Enter"</div>
+  <div class="text-center warning" ng-show="isReg">Fill in your name / email then click Register</div>
+  <form role="form" ng-submit="submitSessionLogin()" class="p span6">
+    <div class="form-group has-feedback"></div>
+    <div class="input-group"></div>
+    <div class="form-group has-feedback mb">
+      <input id="loginNickTxt" type="text" placeholder="Your Nick/Name" autocomplete="off" ng-model="nick" class="form-control" />
+      <span class="fa fa-user form-control-feedback text-muted"></span>
+    </div>
+    <!--- auth to session -->
+    <div class="form-group has-feedback mb" ng-show="(authToSession || isWebinarRoom || isReg) ">
+      <input id="exampleInputEmail1" type="email" placeholder="Your Email" name="username" ng-model="email" class="form-control" />
+      <span class="fa fa-envelope form-control-feedback text-muted"></span>
+    </div>
+    <!--phone validator-->
+    <div class="form-group has-feedback mb" ng-show="hasPhoneValidation">
+      <input type="tel" class="form-control" id="phoneTxt" name="phoneTxt" placeholder="Phone Number" />
+    </div>
+
+    <div class="form-group has-feedback" ng-show="(authToSession || isWebinarRoom) ">
+      <input
+        id="exampleInputPassword1"
+        type="password"
+        name="password"
+        autocomplete="on"
+        placeholder="Password"
+        ng-model="pw"
+        class="form-control"
+      />
+      <span class="fa fa-lock form-control-feedback text-muted"></span>
+      <label class="text-muted" ng-show="!isWebinarRoom">(PW ONLY REQUIRED IF YOU HAVE ONE)</label>
+    </div>
+    <hr />
+
+    <!-- sso or open -->
+    <div ng-hide="authToSession || isReg || simpleLF" class="form-group has-feedback mb">
+      <span class="fa fa-envelope"> Email: {{email}} </span>&nbsp;&nbsp;<a
+        href=""
+        ng-click="clearToken()"
+        style="font-size: 12px"
+        class="muted"
+        >Not you? log out</a
+      >
+    </div>
+
+    <div class="center" ng-hide="simpleLF">
+      <a href="https://en.gravatar.com" target="_blank">
+        <img gravatar-src="email" gravatar-size="40" class="thumb40" />
+      </a>
+      <p><a href="https://en.gravatar.com" target="_blank">Gravatar (Click here to setup your avatar).</a></p>
+    </div>
+
+    <div class="form-group has-feedback mb" ng-hide="isReg || simpleLF">
+      <input
+        id="tagLineTxt"
+        type="text"
+        placeholder="Tagline (i.e. John from Chicago)"
+        autocomplete="on"
+        ng-model="tagline"
+        maxlength="30"
+        class="form-control"
+      />
+      <span class="fa fa-info-circle form-control-feedback text-muted"></span>
+    </div>
+
+    <div class="form-group has-feedback" ng-hide="isReg || simpleLF">
+      <div class="input-group">
+        <label style="font-weight: 400">
+          <input type="checkbox" value="remember-me" checked="checked" />&nbsp;&nbsp;Remember me
+        </label>
+      </div>
+      <div class="input-group" ng-show="isSimpler || true  ">
+        <label style="font-weight: 400">
+          <input type="checkbox" value="nonPresenter" ng-model="nonPresenter" />&nbsp;&nbsp;Non Presenter Admin
+        </label>
+      </div>
+    </div>
+
+    <!-- (2026-11-10: reCAPTCHA v2 lives on the OWNER login form —
+         page.welcome.html, served via /ptrApp — not on this room-login
+         view, whose session flow does not post to /users/v1/login.) -->
+
+    <button type="submit" ng-hide="isReg" ng-disabled="loggingIn" class="btn btn-block btn-info mb">Enter</button>
+
+    <button type="submit" ng-show="isReg && !regDone" ng-disabled="loggingIn" class="btn btn-block btn-warning mb">Register</button>
+    <p style="font-style: italic" ng-hide="simpleLF">
+      <img src="/public/images/gdpr.png" style="max-height: 35px; width: auto" />&nbsp;&nbsp;By Clicking Enter you are agreeing with
+      our <a href="/public/html/ppolicy.html" target="_blank"> Privacy Policy</a>
+    </p>
+
+    <!-- <button type="button" class="btn btn-block btn-warning mb">Trouble loggin in?r</button> -->
+    <div class="text-center mt" ng-show="isWebinarRoom">
+      <br />
+      <a class="text-muted" ng-click="doForgotPassword()">Change your password?</a>
+    </div>
+
+    <br />
+    <div style="text-align: center" ng-hide="simpleLF">
+      <!-- <p><a href="" onclick="toggleChatWidget();"><i class="fa fa-comment-o"></i> Need Help? Chat with us </a></p> -->
+      <p>
+        Powered by:
+        <a href="https://protradingroom.com" target="_blank"
+          ><span style="color: #2095f2; text-decoration: underline">ProTradingRoom.com</span></a
+        >
+      </p>
+      <p>Version: {{_ver}}</p>
+    </div>
+    <div ng-show="loggingIn" style="padding: 25px; text-align: center" class="div">
+      <img src="app/img/ajax_loader.gif" />
+      <label>&nbsp;&nbsp;<span>{{isReg ? 'Registering':'Logging In'}}</span>, please wait...</label>
+    </div>
+
+    <div id="testVideoDiv" style="display: none">
+      <button type="button" class="btn btn-block btn-warning mb" ng-click="doSystemCheckDone()">Done with Check</button><br />
+      <p>This test checks your browser's internet connection to our servers &amp; your HTML5 audio codecs.</p>
+      <h3>{{testVideoStatus}}</h3>
+      <audio id="testVideo" style="display: block" autoplay="autoplay" controls></audio>
+      <h3>If you can't hear the test audio please try with a different browser, make sure you are not behind a VPN or firewall.</h3>
+    </div>
+    <div class="input-group" ng-show="(!isReg && !simpleLF) && false" style="border: 1px solid #f0f0f0; text-align: left">
+      <p>Troubleshooting: If you are having trouble with the audio and video try checking these boxes to see if it helps</p>
+      <label style="font-weight: 400">
+        <input type="checkbox" value="" ng-model="useMPGScreenService" />&nbsp;&nbsp;JPG Screens&nbsp;&nbsp;
+      </label>
+      <label style="font-weight: 400">
+        <input type="checkbox" value="" ng-click="doMpegWarning()" ng-model="useMPGAudioService" />&nbsp;&nbsp;MP3 Audio</label
+      >
+    </div>
+  </form>
+  <button
+    type="submit"
+    ng-hide="isReg || !simpleLF || sess.hidePoweredBy"
+    class="btn btn-link"
+    style="margin-top: 150px; text-align: center; color: gray"
+    ng-click="simpleLF=0;"
+  >
+    Are you a presenter? Click here instead...
+  </button>
+</div>

@@ -1,0 +1,203 @@
+<html lang="en">
+    <head>
+        <title>ProTradingRoom - Trading Room Software for professional traders</title>
+
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- SEO -->
+        <meta name="description" content="ProTradingRoom Trading room software for professional traders" />
+        <meta name="keywords" content="Trading room, chat room softare" />
+
+        <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
+        <link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png">
+        <link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png">
+        <link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png">
+        <link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png">
+        <link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png">
+        <link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png">
+        <link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png">
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png">
+      
+        <meta name="msapplication-TileColor" content="#ffffff">
+        <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+        <meta name="theme-color" content="#ffffff">
+
+        <!-- stylesheets -->
+        <link rel="stylesheet" type="text/css" href="/public/css/compiled/theme.css">
+        <link rel="stylesheet" type="text/css" href="/public/css/vendor/animate.css">
+        <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="/public/css/main.css?v1.0">
+        <!--[if lt IE 9]>
+<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+        
+        <script src="/public/runtime-config.js"></script>
+        <script src="/public/ptr-config.js"></script>
+        <script>
+          if (window.PTR_CONFIG.recaptchaSiteKey) {
+            var captcha = document.createElement('script');
+            captcha.src = 'https://www.google.com/recaptcha/api.js?render=explicit&onload=ptrContactCaptcha';
+            captcha.async = true; captcha.defer = true;
+            document.head.appendChild(captcha);
+          }
+          function ptrContactCaptcha() {
+            var el = document.querySelector('.g-recaptcha');
+            if (el && window.PTR_CONFIG.recaptchaSiteKey) grecaptcha.render(el, {sitekey: window.PTR_CONFIG.recaptchaSiteKey});
+            else document.addEventListener('DOMContentLoaded', ptrContactCaptcha, {once: true});
+          }
+        </script>
+        
+
+
+    </head>
+    <body id="home4">
+
+
+        <header class="navbar navbar-inverse normal" role="banner">
+            <div class="container">
+                <div class="navbar-header">
+                    <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a href="/" class="navbar-brand"><img src="/public/images/protradingroom_icon.png" style="height: 45px;"> ProTradingRoom</a>
+                </div>
+                <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
+                    <ul class="nav navbar-nav navbar-right">
+
+
+
+
+
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                Register/Login <b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="/login">Login</a></li>
+                                <li><a href="/register">Register</a></li>
+                            </ul>
+                        </li>
+
+                        <li><a href="/contact"><i class="fa fa-envelope"></i> Contact Us</a></li>
+
+
+
+                    </ul>
+                </nav>
+            </div>
+        </header>
+
+
+
+        <div class="container">
+            <div class="row header">
+                <div class="col-md-12">
+                    <h4>Contact Us for questions about the platform, pricing, and to request a free demo</h4>
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="wrapper clearfix">
+                        <div class="formy">
+                            <div class="row">
+                                <div class="col-md-12">
+
+                                    <form role="form" action="" method="">
+                                        <div class="form-group">
+                                            <label for="fname">Your Name</label>
+                                            <input type="text" class="form-control" id="fname" name="fname"  />
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="email">Email address</label>
+                                            <input type="email" class="form-control" id="email" name="email" autocomplete="on" autocapitalize="off"/>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="msg">Your Message</label>
+                                            <br>
+                                            <textarea rows="7" maxlength="1024" id="msg" name="msg" class="form-control"> </textarea>
+                                        </div>
+
+
+                                        <div class="form-group">
+<!--                                            <label  class="control-label" for="code">Are you a person? Enter the code below</label>-->
+                                            <div class="g-recaptcha"></div>
+                                        </div>
+
+                                        <div class="submit">
+                                            <button type="button" class="btn btn-info btn-large pull-right" onclick="contactPost(event); return false;">Send</button>
+                                        </div>
+                                    </form>
+
+                                </div>
+                            </div>						
+                        </div>
+                    </div>
+                    <br><br>
+
+                </div>
+            </div>
+        </div>
+
+
+
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+        <script src="/public/vendor/bootbox.min.js"></script>
+        
+        <script src="/public/js/theme.js"></script>
+        <script type="text/javascript">
+jQuery.logger = function( text ){   if( (window['console'] !== undefined) ){ console.log( text );}}
+ function contactPost(event){
+     var email=$("#email").val();
+     if (email==null || email.length<3) {
+         bootbox.alert("Please enter a valid email");
+         return;
+     }
+     var msg=$("#msg").val();
+     if (msg==null || msg.length<3) {
+         bootbox.alert("Please enter a message");
+         return;
+     }
+     
+     var fname=$("#fname").val();
+     if (fname==null || fname.length<3) {
+         bootbox.alert("Please enter a valid name");
+         return;
+     }
+     msg+="\n\nBrowser: "+window.navigator.userAgent;
+     
+     var data = {
+         "msg": msg,
+         "fname": fname,
+         "email": email,
+         "recaptcha": $("#g-recaptcha-response").val()
+         
+     };
+     event.preventDefault();
+         $.ajax({
+          type: "POST",
+          url: '/users/v1/p/contact',
+          data: data,
+          success: function(rdata){
+              if (rdata){
+                  bootbox.alert(rdata.msg,function(){
+                     if (rdata.success) {
+                         window.location.href="/";
+                     } 
+                  });
+                  
+              }
+          },
+          error: function(xhr){ bootbox.alert((xhr.responseJSON && (xhr.responseJSON.msg || xhr.responseJSON.message)) || "Contact service is unavailable. Please try again later."); }
+
+         });
+        }
+        </script>
+
+
+    </body>
+</html>

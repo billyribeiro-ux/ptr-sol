@@ -1,0 +1,141 @@
+<div class="modal-header">
+  <button type="button" class="close" data-dismiss="modal" aria-label="Close" ng-click="closeModal()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+  <h4 id="myModalLabel" class="modal-title">User Info</h4>
+</div>
+<div class="modal-body" ng-cloak>
+  <div class="row">
+    <div class="col-xs-2 v-middle">
+      <media class="pb bb center"></media>
+      <!--         <img ng-src="{{::user.avatar}}" alt="Image" class="media-object thumb80" />-->
+      <img gravatar-src="user.email" gravatar-size="80" class="thumb80" />
+    </div>
+    <div class="col-xs-10 v-middle">
+      <div class="media-body">
+        <div class="media-heading">
+          <h3>{{::user.nick}} &nbsp;<button ng-show="isPresenter" class="btn btn-warning btn-sm" ng-click="editUserNick(user.uid)"><i class="fa fa-pencil"></i>&nbsp;Change Nick</button>&nbsp;<a href="" class="btn btn-info btn-sm" ng-click="doMention(user.nick)">@Mention User</a
+            >&nbsp;<a href="" ng-show="isPresenter || userPM" class="btn btn-inverse btn-sm" ng-click="doPrivateChat(user.uid)"
+              >Private Chat</a
+            >
+            <button
+              class="btn btn-danger btn-sm"
+              ng-hide="isPresenter || user.perms=='a' || isMe || isChatMuted"
+              ng-click="doUser2UserChatMute()"
+            >
+              Ignore / Mute
+            </button>
+            <button class="btn btn-warning btn-sm" ng-show="isChatMuted" ng-click="doUser2UserChatUnmute()">Unmute</button>
+          </h3>
+          <h4 ng-show="user.tagline.length">Tagline: {{::user.tagline }}</h4>
+
+          <div ng-show="isPresenter && !hidePersDetails">
+            <button ng-click="makeTempPresenter('p')" class="btn-xs btn-primary">Give Mic/Screenshare</button>
+            <button ng-click="makeTempPresenter('r')" class="btn-xs btn-default">Remove Mic/Screenshare</button>
+
+            <h4 ng-show="!user.customUserInfoURL">Email: {{::user.emailResp}}</h4>
+            <h4 ng-show="user.phone">Phone: {{::user.phone}}</h4>
+            <h4 ng-show="user.mobilePin && user.mobilePin!='N/A'">
+              Mobile Pin <i class="fa fa-mobile"></i>:<span ng-click="showPin=true;" ng-show="!showPin">***click to show**</span>
+              <span ng-show="showPin">{{::user.mobilePin}}</span>
+            </h4>
+            <h4 ng-show="user.inTime">Logged In: {{::user.inTime | date:'MM/dd/yyyy @ h:mma' }}</h4>
+            <h4 ng-show="user.customUserInfoURL">
+              <a ng-href="{{::user.customUserInfoURL}}" target="_blank">
+                <span class="badge badge-warning">Account Info For:</span> {{::user.emailResp}}
+              </a>
+            </h4>
+            <h4>Current Permissions: {{permissions || 'regular user'}}</h4>
+            <h4 ng-show="!user.customUserInfoURL">
+              Memberplan: {{user.memberplan}}. Member Since: {{user.member_start_date || 'n/a'}}
+            </h4>
+            <h4 ng-show="user.ft"><span class="label label-danger">Trial</span></h4>
+            <br />
+            <p>IP: <a href="http://ip-api.com/#{{::user.ipResp}}" target="_blank">{{::user.ipResp}} (lookup)</a> {{uiStr}}</p>
+            <p>Browser: <span ng-show="user.isM">(Mobile App) &nbsp;</span>{{::user.browser}}</p>
+            <p>
+              Stream Server:&nbsp;<a href="/session?id={{::sessUID}}&forcedStreamServer={{::user.streamServer}}" target="_blank"
+                >{{::user.streamServer}} (test it)</a
+              >
+            </p>
+            <p>App Version: {{::user.cver}}</p>
+            <button ng-click="getDebugLog()" class="btn-xs btn-inverse">Get Debug Log</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="panelDemo14" class="panel panel-default" ng-show="isPresenter && false">
+  <div class="panel-heading">User Permissions</div>
+  <div class="panel-body">
+    <tabset>
+      <tab heading="Presenter"
+        >Presenters can talk using the microphone, screen-share, and post alerts
+        <br />
+        <br />
+        <button ng-click="changePerm('a')" class="btn-xs btn-inverse">Make Presenter</button>
+      </tab>
+      <tab heading="Regular Participant"
+        >Regular Participants can type on the chat and see and hear the presentation
+        <br />
+        <br />
+        <button ng-click="changePerm('v')" class="btn-xs btn-inverse">Make Regular</button>
+      </tab>
+      <tab heading="Limited Participant"
+        >Limited Participants are like regular participants, but can't type on the chat
+        <br />
+        <br />
+        <button ng-click="changePerm('l')" class="btn-xs btn-inverse">Make Limited</button>
+      </tab>
+    </tabset>
+  </div>
+</div>
+<div class="modal-footer" ng-show="isPresenter" style="padding: 5px; text-align: center">
+  <button ng-click="kickUserReload()" class="btn btn-sm btn-primary fa fa-refresh">&nbsp;&nbsp;Force Reload</button>
+  <button ng-click="restartUserAudio()" class="btn btn-sm btn-inverse fa fa-volume-up">&nbsp;&nbsp;Restart Audio</button>
+  <button ng-click="kickUser()" class="btn btn-sm btn-primary fa fa-user-times">&nbsp;&nbsp;Kick</button>
+  <button ng-click="kickAndBanUser()" class="btn btn-sm btn-danger fa fa-user-times">&nbsp;&nbsp;Kick &amp; Ban</button>
+  <button ng-click="kickDuplicates()" class="btn btn-sm btn-danger fa fa-user-times">&nbsp;&nbsp;Kick Duplicates</button>
+
+  <!-- Single button -->
+  <br />
+  <div style="text-align: center">
+    <div class="btn-group">
+      <button
+        type="button"
+        class="btn btn-warning dropdown-toggle fa fa-microphone-slash"
+        data-toggle="dropdown"
+        aria-haspopup="true"
+        aria-expanded="false"
+      >
+        <i class="fa fa-comment-o"> </i> Mute Chat <span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu">
+        <li><a href="" ng-click="muteChatUser()">Mute Chat Indefinitely</a></li>
+        <li><a href="" ng-click="muteChatUserHours(24)">Mute Chat for 24Hrs</a></li>
+        <li><a href="" ng-click="muteChatUserHours(12)">Mute Chat for 12Hrs</a></li>
+      </ul>
+    </div>
+
+    <button ng-click="unmuteChatUser()" class="btn btn-sm btn-success fa fa-microphone">
+      <i class="fa fa-comment-o" aria-hidden="true"></i>&nbsp;&nbsp;Unmute Chat
+    </button>
+
+    <!--<button ng-click="muteCamUser()" class="btn btn-sm btn-warning fa fa-camera-slash">&nbsp;&nbsp;Mute Camera</button>-->
+  </div>
+  <div ng-show="user.perms=='a'">
+    <hr />
+    <button ng-click="remoteStopRec()" class="btn btn-sm btn-danger fa fa-stop">&nbsp;&nbsp;Stop Rec</button>
+    <button ng-click="remoteStartRec()" class="btn btn-sm btn-danger fa fa-circle">&nbsp;&nbsp;Start Rec</button>
+    <button ng-click="muteUser()" class="btn btn-sm btn-info fa fa-microphone-slash">&nbsp;&nbsp;Mute Audio</button>
+    <button ng-click="muteCamUser()" class="btn btn-sm btn-info fa fa-video-camera-slash">&nbsp;&nbsp;Mute Camerea</button>
+    <button ng-click="muteScreenUser()" class="btn btn-sm btn-inverse fa fa-desktop-slash">&nbsp;&nbsp;Kill Screens</button>
+    <button ng-click="restartScreenUser()" class="btn btn-sm btn-warning fa fa-desktop-slash center">
+      &nbsp;&nbsp;RESTART Screens
+    </button>
+  </div>
+  <!--<button ng-click="closeModal()" class="btn  btn-sm btn-primary">Close</button>-->
+
+  <input id="userInfoCP" type="text" style="display: none" value="" />
+</div>

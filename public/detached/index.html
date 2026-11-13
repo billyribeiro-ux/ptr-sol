@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+  <title>PtrDetachedChat</title>
+  <base href="/public/detached/">  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"> </script> -->
+
+  <script>
+  function openImageModal(url) {
+    var imageName = url.substring(url.lastIndexOf('/') + 1)
+    var content = document.createElement('div');
+    var img = document.createElement('img');
+    img.src = url;
+    img.alt = imageName;
+    content.appendChild(img);
+    content.appendChild(document.createElement('hr'));
+    var button = document.createElement('button');
+    button.className = 'btn btn-primary btn-sm';
+    button.textContent = 'Download Image';
+    button.addEventListener('click', function () { downloadImage(url, imageName); });
+    content.appendChild(button);
+    return bootbox.dialog({ onEscape: true, message: content, closeButton: true,
+      size: 'large', className: 'imgur-modal' });
+  }
+  function downloadImage(url, imageName) {
+    var xhr = new XMLHttpRequest()
+    xhr.open('GET', url, true)
+    xhr.responseType = 'blob'
+    xhr.onload = function() {
+      var urlCreator = window.URL || window.webkitURL
+      var imageUrl = urlCreator.createObjectURL(this.response)
+      var tag = document.createElement('a')
+      tag.href = imageUrl
+      tag.download = imageName
+      tag.style.display = 'none'
+      document.body.appendChild(tag)
+      tag.click()
+      document.body.removeChild(tag)
+    }
+    xhr.send()
+  }
+  
+  </script>
+<link rel="stylesheet" href="styles.8a97ab3a960f81e7bb84.css"></head>
+<body>
+  <app-root></app-root>
+<script type="text/javascript" src="runtime.26209474bfa8dc87a77c.js"></script><script type="text/javascript" src="es2015-polyfills.c5dd28b362270c767b34.js" nomodule></script><script type="text/javascript" src="polyfills.8bbb231b43165d65d357.js"></script><script type="text/javascript" src="scripts.31e328a2ecc7180fb788.js"></script><script type="text/javascript" src="main.c68afeac33037ad8b374.js"></script></body>
+</html>

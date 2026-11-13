@@ -1,0 +1,36 @@
+<div  class="ng-fadeOutZoom ng-fluid">
+<nav role="navigation" class="navbar topnavbar" style="background-color: black;">
+        <div class="navbar-header">
+            <div class="navbar-brand">
+
+                <a href="" >
+                    <img  ng-hide="hideLogo || !sess.logoURL"  ng-src="{{sess.logoURL}}" height="35px" class="brand-logo" style="max-width: 200px; height: auto; max-height: 40px;"/>
+<!--                    <span class="title">ProTradingRoom.com</span>-->
+                </a>
+            </div>
+
+        </div>
+
+        <!-- START Nav wrapper-->
+        <div collapse="headerMenuCollapsed" class="nav-wrapper collapse navbar-collapse">
+            <!-- START Left navbar-->
+            <ul class="nav navbar-nav navbar-right hidden-material" ng-show="login.isLoggedIn" >
+
+                <li >
+                    <a href="" ui-sref="page.welcome" style="color: #FFFFFF" class="icon fa  fa-cog" tooltip-placement="bottom" tooltip="Account Settings">&nbsp; Account</a>
+                </li>  
+
+
+                <li >
+                    <a href="" ng-click="doLogout()" style="color: #FFFFFF" class="icon fa fa-2x fa-power-off" tooltip-placement="bottom" tooltip="Logout"></a>
+                </li>
+
+            </ul>
+
+
+            <!-- END Left navbar-->
+        </div>
+        <!-- END Nav wrapper-->
+    </nav>
+</div>
+<div ui-view="" autoscroll="false" class="ng-fluid"></div>

@@ -1,0 +1,17 @@
+{
+  "source_evidence": ["contracts/reference/mobile/app-metadata.json", "contracts/reference/mobile/v5_investigation_report.md", "contracts/reference/specs/02_enterprise_portal_session_management.md"],
+  "scope": "Captured desktop web client and separately distributed legacy, Alerts, and V5 mobile apps.",
+  "status": "incomplete",
+  "verified": [
+    "Desktop mobile dialog and captured App Store links are present.",
+    "Desktop UI explicitly reports when a pairing code is unavailable.",
+    "Account management implements some mobile-access flags and device-token administration."
+  ],
+  "not_verified_or_missing": [
+    "The capture contains store metadata and screenshots, not mobile app source code or a complete mobile pairing wire protocol.",
+    "No known setPairCode socket event is emitted by the current room server.",
+    "The published mobile apps may contact the original provider; their ability to connect to this installation is not established.",
+    "Native push notification credentials and delivery require a separately configured provider and compatible device registration.",
+    "V5 multi-room aggregation, PIN delivery, device synchronization, and Alerter application parity are not demonstrated by captured screenshots alone."
+  ]
+}

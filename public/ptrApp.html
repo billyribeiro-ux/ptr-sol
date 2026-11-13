@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<!--[if IE 9]>    <html class="ie9" lang="en" ng-app="naut"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!-->
+<html lang="en" ng-app="app">
+  <head>
+    <script src="/public/vendor/split/1.5.11/split.min.js"></script>
+
+    <title></title>
+
+    <link rel="stylesheet" href="/public/app/css/bootstrap.min.css" />
+
+    <!-- videojs -->
+    <!--WAS <link href="//cdnjs.cloudflare.com/ajax/libs/video.js/5.16.0/alt/video-js-cdn.min.css" rel="stylesheet"> -->
+    <link href="/public/vendor/videojs/7.3.0/video-js.min.css" rel="stylesheet" />
+
+    <!-- color picker -->
+    <link rel="stylesheet" href="/public/vendor/angularjs-color-picker/angularjs-color-picker.min.css" />
+    <link rel="stylesheet" href="/public/vendor/angularjs-color-picker/angularjs-color-picker-bootstrap.min.css" />
+
+    <!--<link rel="stylesheet" href="/public/vendor/emoji/css/emoji-picker.min.css" />-->
+
+    <link rel="stylesheet" href="/public/vendor/angular-xeditable/dist/css/xeditable.min.css" />
+    <link href="/public/vendor/angularjs-toaster/2.2.0/toaster.min.css" rel="stylesheet" />
+
+    <link rel="stylesheet" href="/public/vendor/textAngular/src/textAngular.css" />
+    <link rel="stylesheet" href="/public/app/css/styles.css" />
+    <!--custom style -->
+    
+
+    <!-- hasPhoneValidation:  -->
+    
+  </head>
+
+  <body
+    ng-cloak
+    ng-class="{
+      'layout-fixed': app.layout.isFixed,
+      'layout-boxed': app.layout.isBoxed,
+      'layout-dock': app.layout.isDocked,
+      'layout-material': app.layout.isMaterial,
+      'aside-offscreen': app.sidebar.isOffscreen,
+      'footer-hidden': app.footer.hidden,
+      'in-app': !$state.includes('page')
+    }"
+  >
+    <div data-ui-view="" data-autoscroll="false" ng-controller="CoreController" class="app-container"></div>
+  </body>
+
+  <script src="/public/dist/vendor.min.js?v=2.18.100"></script>
+  <script src="/public/vendor/dompurify/purify.min.js"></script>
+  <!-- adapterjs -->
+
+  <!--<script src="/public/vendor/adapter.js?v=1794469586483"></script>-->
+  <!-- <script src="//cdn.temasys.com.sg/adapterjs/0.13.x/adapter.min.js?v=1794469586483"></script> -->
+  <script>
+    var __h264 = 'false';
+    var __isReg = 'false';
+    if (typeof __h264 === 'boolean') {
+    } else {
+      __h264 = __h264 == 'true' ? true : false;
+    }
+    if (typeof __isReg === 'boolean') {
+    } else {
+      __isReg = __isReg == 'true' ? true : false;
+    }
+
+    console.log('h264:' + __h264 + '. __isReg=' + __isReg);
+    var AdapterJS = {
+      options: {
+        forceSafariPlugin: !__h264,
+      },
+    };
+  </script>
+  <!-- <script src="//cdn.temasys.io/adapterjs/0.15.x/adapter.min.js"></script> -->
+  <script src="/public/vendor/adapter.js"></script>
+  <!-- janus -->
+
+  <!-- was working OK <script src="/public/vendor/janus3.js?v=1794469586483"></script> -->
+  <script src="/public/vendor/janus3.js?v=2.18.100"></script>
+
+  <!--videojs -->
+  <!--WAS  <script src="//vjs.zencdn.net/5.15.1/video.js"></script> -->
+  <script src="/public/vendor/videojs/7.3.0/video.min.js"></script>
+  <script src="/public/vendor/videojs-youtube/2.6.0/Youtube.min.js"></script>
+
+  <!-- <script src="//cdnjs.cloudflare.com/ajax/libs/angularjs-toaster/1.1.0/toaster.min.js"></script> -->
+  <script src="/public/vendor/angularjs-toaster/2.2.0/toaster.min.js"></script>
+
+  <!-- sockjs -->
+  <!-- <script src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script> -->
+  <script src="/public/vendor/sockjs/1.4.0/sockjs.min.js"></script>
+
+  <!--soundcould player-->
+  <script src="https://w.soundcloud.com/player/api.js" type="text/javascript"></script>
+
+  <!-- endbuild -->
+  <!-- app -->
+  <!-- build:js(.) js/app.min.js -->
+  <script src="/public/ptr-config.js"></script>
+  <script src="/public/dist/app.min.js?v=1794469586483"></script>
+  <!-- endbuild -->
+  <style>.g-recaptcha { display: none; }</style>
+  <script>
+    function ptrRecaptchaOnload() {
+      function renderAll() {
+        var els = document.querySelectorAll('.g-recaptcha:not([data-rc-done])');
+        for (var i = 0; i < els.length; i++) {
+          var el = els[i];
+          try {
+            grecaptcha.render(el, {sitekey: window.PTR_CONFIG.recaptchaSiteKey});
+            el.setAttribute('data-rc-done', '1');
+            el.style.display = 'block';
+          } catch (e) { /* A later view update may make the widget renderable. */ }
+        }
+      }
+      renderAll();
+      setInterval(renderAll, 800);
+    }
+    if (window.PTR_CONFIG.recaptchaSiteKey) {
+      var ptrCaptchaScript = document.createElement('script');
+      ptrCaptchaScript.src = 'https://www.google.com/recaptcha/api.js?render=explicit&onload=ptrRecaptchaOnload';
+      ptrCaptchaScript.async = true; ptrCaptchaScript.defer = true;
+      document.head.appendChild(ptrCaptchaScript);
+    }
+  </script>
+  <script type="text/javascript">
+    var __cver = '1794469586483';
+
+    var ua = navigator.userAgent.toLowerCase();
+
+    var is_chrome = ua.indexOf('chrome') > -1;
+    var is_firefox = ua.indexOf('firefox') > -1;
+    var is_msie = ua.indexOf('msie') > -1 || ua.indexOf('trident') > -1;
+    var is_safari = ua.indexOf('safari') > -1;
+    var is_idevice = navigator.userAgent.match(/iPhone/i) || navigator.userAgent.match(/iPod/i) || navigator.userAgent.match(/iPad/i);
+    //var is_idevice = (navigator.userAgent..match(/(ipad|iphone|ipod)/g) ? true : false;
+    var is_msEdge = false;
+    var is_badEdge = (is_msEdge =
+      ua.indexOf('edge/12') > 0 || navigator.userAgent.indexOf('edge/13') > 0 || navigator.userAgent.indexOf('edge/14') > 0); //no webrtc
+    var is_edge = ua.indexOf('edge') > 0 && !is_badEdge;
+    var is_android = /android/i.test(ua);
+
+    //console.log("is android:"+is_android);
+
+    var __gotoPage = '';
+    var __roomID = '';
+    var __al = "";
+    var __forcedStreamServer = "";
+
+    var __msg = "";
+    var __msgPoped = false;
+
+    var __hasPhoneValidation = 'false';
+    var __disableMarketplace = 'true';
+    var sc_widget,
+      sc_currVol = 100;
+    var audioPlayer = null;
+    function setBkgMusicVol(v) {
+      console.log('sc vol: ' + v);
+      //also do sound effects
+      if (!audioPlayer) {
+        audioPlayer = $('#audioPlayer');
+      }
+      audioPlayer.prop('volume', v / 100);
+      if (sc_widget) {
+        sc_widget.setVolume(v);
+        sc_currVol = v;
+        $('#scMusicVolumeVal').text(v);
+      }
+    }
+    function wireUpSoundCloud(newSoundUrl) {
+      lg('** wiring up soundcloud...url:' + newSoundUrl);
+      try {
+        if (!sc_widget) {
+          var widgetIframe = document.getElementById('soundCloudIFrame');
+          sc_widget = SC.Widget(widgetIframe);
+        }
+        sc_widget.bind(SC.Widget.Events.READY, function () {
+          lg('** sc ready....');
+          sc_widget.setVolume(sc_currVol);
+          lg('** set sc vol to:' + sc_currVol);
+          sc_widget.load(newSoundUrl, {
+            auto_play: true,
+            show_artwork: false,
+          });
+          sc_widget.bind(SC.Widget.Events.PLAY, function () {
+            // get information about currently playing sound
+            sc_widget.setVolume(sc_currVol);
+            lg('** set sc vol from playing event to:' + sc_currVol);
+          });
+        });
+      } catch (eee) {
+        console.error(eee);
+      }
+    }
+  </script>
+
+  
+</html>

@@ -1,0 +1,29 @@
+{
+    "topbar": {
+        "search": {
+            "PLACEHOLDER": "搜索.."
+        }
+    },
+    "main": {
+        "CHAT": "聊",
+        "PARTICIPANTS": "参与者",
+        "SEND": "发送",
+        "TYPEMESSAGE": "键入消息，然后按回车"
+    },
+    "sidebar": {
+        "heading": {
+            "HEADER": "主导航"
+        },
+
+        "nav": {
+            "LANGUAGE": "语言",
+            "CLOSEPANEL": "关闭面板",
+            "TOTALUSERS": "用户",
+            "PAGELAYOUTS": "页面布局",
+            "ALLINONE": "一体",
+            "PRESSONLY": "演示仅",
+            "CHATONLY": "聊天记录时",
+            "SEARCHUSERS": "搜索用户"
+        }
+    }
+}

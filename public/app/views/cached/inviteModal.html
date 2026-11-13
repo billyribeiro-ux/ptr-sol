@@ -1,0 +1,89 @@
+<div class="modal-header">
+  <h4 class="modal-title">Invite Participants</h4>
+</div>
+<div class="modal-body">
+  <form class="form-horizontal">
+    <!-- Appended Input-->
+    <div class="form-group">
+      <label class="col-md-4 control-label" for="appendedtext">Name</label>
+      <div class="col-md-7">
+        <input ng-model="invite.name" class="form-control" name="name" placeholder="Name" type="text" />
+      </div>
+    </div>
+
+    <!-- Appended Input-->
+    <div class="form-group">
+      <label class="col-md-4 control-label" for="appendedtext">Email</label>
+      <div class="col-md-7">
+        <input ng-model="invite.email" class="form-control" placeholder="Email" type="email" />
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-md-4 control-label" for="appendedtext">Password</label>
+      <div class="col-md-7">
+        <input ng-model="invite.pw" class="form-control" name="Password" id="invitePW" placeholder="Password (optional)" type="text" />
+      </div>
+    </div>
+
+    <!-- <div class="form-group">
+                    <label class="col-md-4 control-label" for="appendedtext">Expires in Days:</label>
+                    <div class="col-md-2">
+                        <div class="input-group">
+                        <input ng-model="invite.expiresInDays" type="number" class="form-control" min="0" >
+                        </div>
+                    </div>
+                    <p>The user will have this many days in the room</p>
+            </div> -->
+    <div class="form-group">
+      <label class="col-md-4 control-label" for="appendedtext">Role</label>
+      <div class="col-md-7">
+        <select name="singleSelect" id="singleSelect" ng-model="invite.role" style="margin-top: 10px">
+          <option value="2" selected>Participant</option>
+          <option value="1">* Presenter *</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-md-4 control-label" for="appendedtext">Email credentials?</label>
+      <div class="col-md-7">
+        <div class="checkbox">
+          <label>
+            <input type="checkbox" ng-model="invite.sendEmail" />
+          </label>
+          <p>If checked, the system will email the user this credentials</p>
+        </div>
+      </div>
+    </div>
+    <!-- Button -->
+    <!-- <div class="form-group">
+                <label class="col-md-4 control-label" for="button1id"></label>
+                <div class="col-md-7">
+                    <button  class="btn btn-primary btn-sm pull-right" ng-click="addPerson()" ng-disabled="!(invite.name && invite.email && invite.role)">
+                        <i class="fa fa-user-plus"></i> Add More </button>
+
+                </div>
+            </div> -->
+
+    <div class="row">
+      <ul class="list-group col-md-12">
+        <li class="list-group-item" ng-repeat="person in invite.persons">
+          <i class="fa fa-user"></i>&nbsp; <span>{{person.name}}</span>&nbsp;&nbsp;<span
+            >&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-envelope"></i>&nbsp;<strong>{{person.email}}</strong></span
+          ><span> ( {{person.role==2 ? 'Participant':'Presenter'}} )</span>
+          <a href="" ng-click="removePerson($index)" class="pull-right"><i class="fa fa-minus-circle"></i></a>
+        </li>
+      </ul>
+    </div>
+  </form>
+</div>
+<div class="modal-footer">
+  <button class="btn btn-warning" type="button" ng-click="closeInvite()">Cancel</button>
+  <button
+    class="btn btn-primary"
+    type="button"
+    ng-click="sendInvites()"
+    ng-disabled="!(invite.name && invite.email && invite.role) && invite.persons.length==0"
+  >
+    <i class="fa fa-plus"></i> Add
+  </button>
+</div>

@@ -1,0 +1,183 @@
+<div ng-controller="ChatCtrl" class="container-fh">
+   <div class="l-table-fixed">
+      <div ng-class="chatWidthClass" id="chatAlertsDiv" class="l-cell br">
+         <div ng-class="alertsHeight" ng-show="alertsHeight !='ch0'" class="l-table bg-white">
+            <div style="box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);" class="p chatHeader">Alerts
+               <div class="pull-right"><a href="" ng-click="openAlertModal()" class="icon fa fa-plus-circle">Post Alert &nbsp;&nbsp;&nbsp;</a>
+                  <a href="" ng-click="alertsToolbarVisible=!alertsToolbarVisible" class="icon icon-cog"></a>
+               </div>
+               <div ng-show="alertsToolbarVisible" class="input-group chatToolbar">
+                  <input type="text" placeholder="Search" ng-model="chatSearch" class="form-control" />
+                  <div dropdown="dropdown" class="input-group-btn">
+                     <button type="button" tabindex="-1" class="btn btn-default toolbarBtn">
+                        <div class="icon fa fa-bell"></div>
+                     </button>
+                     <button type="button" tabindex="-1" ng-click="clearAlertLog()" class="btn btn-default toolbarBtn">
+                        <div class="icon fa fa-trash-o"></div>
+                     </button>
+                     <button type="button" dropdown-toggle="" class="btn btn-default toolbarBtn dropdown-toggle">
+                        <span class="fa fa-font"></span>
+                        <span class="fa fa-columns"></span>
+                     </button>
+                     <ul class="dropdown-menu pull-right">
+                        <li>
+                           <label class="center">Font Size</label>
+                        </li>
+                        <li><a href="" ng-click="setOption('chatFontSize','chatLg')" class="icon fa fa-font">- Large</a>
+                        </li>
+                        <li><a href="" ng-click="setOption('chatFontSize','chatMd')" class="icon fa fa-font">- Medium</a>
+                        </li>
+                        <li><a href="" ng-click="setOption('chatFontSize','chatSm')" class="icon fa fa-font">- Small</a>
+                        </li>
+                        <li><a href="" ng-click="setOption('chatFontSize','chatTiny')" class="icon fa fa-font">- Tiny</a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                           <label class="center">Column Width</label>
+                        </li>
+                        <li><a href="" ng-click="setOption('chatWidthClass','wd-lg')" class="icon fa fa-columns"> - Small Column</a>
+                        </li>
+                        <li><a href="" ng-click="setOption('chatWidthClass','wd-xl')" class="icon fa fa-columns"> - Regular Column    </a>
+                        </li>
+                        <li><a href="" ng-click="setOption('chatWidthClass','wd-xxl')" class="icon fa fa-columns">- Large Column </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                           <label class="center">Chat/Alert Size</label>
+                        </li>
+                        <li><a href="" ng-click="setOption('chatHeigth','100')" class="icon fa fa-columns"> - Chat Only</a>
+                        </li>
+                        <li><a href="" ng-click="setOption('chatHeigth','70')" class="icon fa fa-columns"> - Split   </a>
+                        </li>
+                        <li><a href="" ng-click="setOption('chatHeigth','0')" class="icon fa fa-columns">- Alerts Only</a>
+                        </li>
+                     </ul>
+                  </div>
+               </div>
+            </div>
+            <div class="l-row">
+               <div id="alertsPanel" class="l-cell-wrapper">
+                  <div style="padding-left: 5px;" class="l-cell-inner">
+                     <ul id="alertContent" ng-class="chatFontSize" class="chat">
+                        <li ng-show="alertMsgs.length==0" style="padding: 10px;">
+                           <span>No Alerts Yet...</span>
+                        </li>
+                        <li ng-repeat="msg in alertMsgs | filter: alertSearch" ng-class="msg.position" class="clearfix">
+                           <span ng-class="msg.position === 'right' ? 'pull-right' : 'pull-left'" class="chat-img">
+                              <img ng-src="{{::msg.avatar || 'app/img/user/user.png' }}" style="margin-right:5px" class="thumb24" />
+                           </span>
+                           <div class="chat-body clearfix">
+                              <div class="chat-header">
+                                 <a href="" class="text-inverse">
+                                    <strong ng-class="{'pull-right': (msg.position === 'right')}">{{::msg.user}}</strong>
+                                 </a>
+                                 <small ng-class="{'pull-right': (msg.position !== 'right')}" class="text-muted">
+                                    <span class="fa fa-time"></span>{{::msg.time | date:'MM/dd/yyyy @ h:mma'}}</small>
+                              </div>
+                              <div ng-class="{'chatQuestion': (msg.text.indexOf('?') &gt; 0) }" ng-bind-html="msg.text | linky:'_blank'" class="chat-msg"></div>
+                           </div>
+                        </li>
+                     </ul>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div ng-class="chatHeight" ng-show="chatHeight !='ch0'" class="l-table bg-white">
+            <div style="box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);" class="p chatHeader">Group Chat
+               <div class="pull-right">
+                  <a href="" ng-click="toggleChatToolBar()" class="icon icon-cog pull-right"></a>
+               </div>
+               <div ng-show="chatToolbarVisible" class="input-group chatToolbar">
+                  <input type="text" placeholder="Search" ng-model="chatSearch" class="form-control" />
+                  <div dropdown="dropdown" class="input-group-btn">
+                     <button type="button" tabindex="-1" class="btn btn-default toolbarBtn">
+                        <div class="icon fa fa-bell"></div>
+                     </button>
+                     <button type="button" tabindex="-1" ng-click="clearChatLog()" class="btn btn-default toolbarBtn">
+                        <div class="icon fa fa-trash-o"></div>
+                     </button>
+                     <button type="button" dropdown-toggle="" class="btn btn-default toolbarBtn dropdown-toggle">
+                        <span class="fa fa-font"></span>
+                        <span class="fa fa-columns"></span>
+                     </button>
+                     <ul class="dropdown-menu">
+                        <li>
+                           <label class="center">Font Size</label>
+                        </li>
+                        <li><a href="" ng-click="setOption('chatFontSize','chatLg')" class="icon fa fa-font">- Large</a>
+                        </li>
+                        <li><a href="" ng-click="setOption('chatFontSize','chatMd')" class="icon fa fa-font">- Medium</a>
+                        </li>
+                        <li><a href="" ng-click="setOption('chatFontSize','chatSm')" class="icon fa fa-font">- Small</a>
+                        </li>
+                        <li><a href="" ng-click="setOption('chatFontSize','chatTiny')" class="icon fa fa-font">- Tiny</a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                           <label class="center">Column Width</label>
+                        </li>
+                        <li><a href="" ng-click="setOption('chatWidthClass','wd-lg')" class="icon fa fa-columns"> - Small Column</a>
+                        </li>
+                        <li><a href="" ng-click="setOption('chatWidthClass','wd-xl')" class="icon fa fa-columns"> - Regular Column    </a>
+                        </li>
+                        <li><a href="" ng-click="setOption('chatWidthClass','wd-xxl')" class="icon fa fa-columns">- Large Column </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                           <label class="center">Chat/Alert Size</label>
+                        </li>
+                        <li><a href="" ng-click="setOption('chatHeigth','100')" class="icon fa fa-columns"> - Chat Only</a>
+                        </li>
+                        <li><a href="" ng-click="setOption('chatHeigth','70')" class="icon fa fa-columns"> - Split   </a>
+                        </li>
+                        <li><a href="" ng-click="setOption('chatHeigth','0')" class="icon fa fa-columns">- Alerts Only</a>
+                        </li>
+                     </ul>
+                  </div>
+               </div>
+            </div>
+            <div class="l-row">
+               <div id="chatPanel" class="l-cell-wrapper">
+                  <div style="padding-left: 5px;" class="l-cell-inner">
+                     <div ng-show="chatLogLoading" style="padding: 25px; text-align: center;" class="div">
+                        <img src="app/img/ajax_loader.gif" />
+                        <label>&nbsp;&nbsp;Loading...</label>
+                     </div>
+                     <ul id="chatContent" ng-class="chatFontSize" class="chat">
+                        <li ng-repeat="msg in msgs | limitTo: -1000 | filter: chatSearch" ng-class="msg.position" class="clearfix">
+                           <span ng-class="msg.position === 'right' ? 'pull-right' : 'pull-left'" class="chat-img">
+                              <img ng-src="{{::msg.avatar || 'app/img/user/user.png' }}" style="margin-right:5px" class="thumb24" />
+                           </span>
+                           <div class="chat-body clearfix">
+                              <div class="chat-header">
+                                 <a href="" class="text-inverse">
+                                    <strong ng-class="{'pull-right': (msg.position === 'right')}">{{::msg.user}}</strong>
+                                 </a>
+                                 <small ng-class="{'pull-right': (msg.position !== 'right')}" class="text-muted">
+                                    <span class="fa fa-time"></span>{{::msg.time | date:'MM/dd/yyyy @ h:mma'}}</small>
+                              </div>
+                              <div ng-class="{'chatQuestion': (msg.text.indexOf('?') &gt; 0) }" ng-bind-html="msg.text | linky:'_blank'" class="chat-msg"></div>
+                           </div>
+                        </li>
+                     </ul>
+                  </div>
+               </div>
+            </div>
+            <div class="p bt">
+               <form ng-submit="sendMsg()" style="width: 100%;">
+                  <div style="width: 100%;" class="input-group">
+                     <input type="text" maxlength="280" placeholder="Type your message, press enter" ng-model="inputText" class="form-control" />
+                     <span class="input-group-btn">
+                        <button type="submit" class="btn btn-default">Send</button>
+                     </span>
+                  </div>
+               </form>
+            </div>
+         </div>
+      </div>
+   </div>
+   <!--modal inline-->
+   <script type="text/ng-template" id="/myModalContent.html">
+      <div class="modal-header"><h4 id="myModalLabel" class="modal-title">Create Alert</h4></div><div class="modal-body"><div class="form-group"><textarea ng-trim="true" ng-model="theTask.txt" placeholder="Alert Text.." rows="8" maxlength="500" class="form-control"></textarea></div></div><div class="modal-footer"><button ng-click="modalCancel()" class="btn btn-warning">Cancel</button><button ng-click="sendAlertModal(theTask)" class="btn btn-primary"> Send</button><button ng-click="sendAlertModalLater(theTask)" class="btn btn-warning"> Send Later</button></div>
+   </script>
+</div>

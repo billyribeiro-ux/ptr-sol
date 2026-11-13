@@ -1,0 +1,133 @@
+{
+  "source": "Original publicly accessible marketplace SPA and explicitly linked Font Awesome CDN assets",
+  "captured_at": "2026-11-12",
+  "assets": [
+    {
+      "url": "https://protradingroom.com/mp/favicon.ico",
+      "path": "public/mp/favicon.ico",
+      "original_sha256": "80153f0b5317fac73371fd9a0e0938be093ac77d56b3eca0a9ed492a6e90efc7",
+      "bytes": 1150
+    },
+    {
+      "url": "https://protradingroom.com/mp/images/ptr_logo.png",
+      "path": "public/mp/images/ptr_logo.png",
+      "original_sha256": "3bb962577a82302b8e26354cc34b9e8473eadfac91749bf7387a7257f59e4408",
+      "bytes": 7197
+    },
+    {
+      "url": "https://protradingroom.com/mp/",
+      "path": "public/mp/index.html",
+      "original_sha256": "f18f24166164d1abdcd75496f4505b6adc4f59fe9f60e6fff5ad112cbee57e8e",
+      "bytes": 5537
+    },
+    {
+      "url": "https://protradingroom.com/mp/main-A7T3JUH5.js",
+      "path": "public/mp/main-A7T3JUH5.js",
+      "original_sha256": "9f8049d1dcaaccb839996909c3038ef7c83f0380439958b1243a95e91e41d2c9",
+      "bytes": 1151904
+    },
+    {
+      "url": "https://protradingroom.com/mp/media/summernote-7AXMNX5I.ttf",
+      "path": "public/mp/media/summernote-7AXMNX5I.ttf",
+      "original_sha256": "2a5c8f9c5ca7e3cddab470f72303a21479df6a82be227a56e0b4729843481204",
+      "bytes": 13892
+    },
+    {
+      "url": "https://protradingroom.com/mp/media/summernote-AVBMA4UK.eot",
+      "path": "public/mp/media/summernote-AVBMA4UK.eot",
+      "original_sha256": "05ce99db15005bf3d4df987eb4cb6b25d49d30bd21e625fd0e8938effa340f62",
+      "bytes": 14068
+    },
+    {
+      "url": "https://protradingroom.com/mp/media/summernote-NDDJ6R4L.woff",
+      "path": "public/mp/media/summernote-NDDJ6R4L.woff",
+      "original_sha256": "9ea36fc911d472a2c161c767b5853eeea1b965f7245c0f9c6faf39ec200745e9",
+      "bytes": 8376
+    },
+    {
+      "url": "https://protradingroom.com/mp/media/summernote-VA4HKLTE.woff2",
+      "path": "public/mp/media/summernote-VA4HKLTE.woff2",
+      "original_sha256": "17aff42970b1dbe2386c2251f0742f468bf55cf7c6c636231973549c4b5a9b98",
+      "bytes": 6948
+    },
+    {
+      "url": "https://protradingroom.com/mp/polyfills-FFHMD2TL.js",
+      "path": "public/mp/polyfills-FFHMD2TL.js",
+      "original_sha256": "69dcea045643dd0de998a3cd0ccbbb46b46bff2651a87a56c73c28eb208e8f98",
+      "bytes": 34519
+    },
+    {
+      "url": "https://protradingroom.com/mp/scripts-TFNFNT5Q.js",
+      "path": "public/mp/scripts-TFNFNT5Q.js",
+      "original_sha256": "09a0e78c4631bb38e85fa715030adee0681857e1afdb52a5d5b3fc159d64d8b1",
+      "bytes": 398541
+    },
+    {
+      "url": "https://protradingroom.com/mp/styles-7QHUN6MP.css",
+      "path": "public/mp/styles-7QHUN6MP.css",
+      "original_sha256": "d336efccc439b2294742e0dba84a92ba5cd06585f0270d639eed4641b5012669",
+      "bytes": 327588
+    },
+    {
+      "url": "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css",
+      "path": "public/mp/vendor/fontawesome/css/all.min.css",
+      "original_sha256": "e5e202e3c899507992952533f57b634722b69b34241d271963559d31aa33ef81",
+      "bytes": 96518
+    },
+    {
+      "url": "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/webfonts/fa-brands-400.ttf",
+      "path": "public/mp/vendor/fontawesome/webfonts/fa-brands-400.ttf",
+      "original_sha256": "bc844b5b02d3f3adabb514de4e0c0208252d3123413bd03f6287fa446acee859",
+      "bytes": 209376
+    },
+    {
+      "url": "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/webfonts/fa-brands-400.woff2",
+      "path": "public/mp/vendor/fontawesome/webfonts/fa-brands-400.woff2",
+      "original_sha256": "c411f11975d26eb04cd2aa3c071181d4b18e489f1fb97060d4176a3531dfb36e",
+      "bytes": 118072
+    },
+    {
+      "url": "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/webfonts/fa-regular-400.ttf",
+      "path": "public/mp/vendor/fontawesome/webfonts/fa-regular-400.ttf",
+      "original_sha256": "64f9fb623681f112261e9a2f97826782439f3925dea8f44a57d1e4db95ba6cfd",
+      "bytes": 67976
+    },
+    {
+      "url": "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/webfonts/fa-regular-400.woff2",
+      "path": "public/mp/vendor/fontawesome/webfonts/fa-regular-400.woff2",
+      "original_sha256": "c732f106e91bc618767fbac8e2c7b27e5c736d477b2bb4fb83f597a43198c33c",
+      "bytes": 25464
+    },
+    {
+      "url": "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/webfonts/fa-solid-900.ttf",
+      "path": "public/mp/vendor/fontawesome/webfonts/fa-solid-900.ttf",
+      "original_sha256": "31f099c13f6e4ba05f1b471bf170cb5493249474222917372de3ca5cf29e6a1a",
+      "bytes": 423676
+    },
+    {
+      "url": "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/webfonts/fa-solid-900.woff2",
+      "path": "public/mp/vendor/fontawesome/webfonts/fa-solid-900.woff2",
+      "original_sha256": "1f0189e087fcefbf654fad74a3a06668b782c01353a61d5c0b7f0bf23e33c020",
+      "bytes": 157192
+    },
+    {
+      "url": "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/webfonts/fa-v4compatibility.ttf",
+      "path": "public/mp/vendor/fontawesome/webfonts/fa-v4compatibility.ttf",
+      "original_sha256": "a6274a12fd3f5f1ea05fc9b4677959b31fd101fdac4f0d09c17159c414d36d23",
+      "bytes": 10836
+    },
+    {
+      "url": "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/webfonts/fa-v4compatibility.woff2",
+      "path": "public/mp/vendor/fontawesome/webfonts/fa-v4compatibility.woff2",
+      "original_sha256": "2aca24b35bd41474dcc5e7fb5f11ec43fa06e3ac1d0035ad41108fa6b30b0871",
+      "bytes": 4800
+    },
+    {
+      "url": "https://protradingroom.com/mp/git-version.json",
+      "path": "public/mp/git-version.json",
+      "original_sha256": "a9db72befdcf1aca9972409be22555cc680934e6e164437e96885e3e950359e6",
+      "bytes": 161
+    }
+  ],
+  "note": "The original main bundle contained third-party service endpoints and credential values. The deployed copy is patched to use same-origin APIs and remove credentials; original SHA-256 is recorded without committing unredacted bytes."
+}

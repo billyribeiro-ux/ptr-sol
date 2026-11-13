@@ -1,0 +1,27 @@
+{
+  "purpose": "Separate captured product contracts from provider adapters reconstructed using official provider protocols.",
+  "notifications": {
+    "capture": [
+      "contracts/reference/specs/02_enterprise_portal_session_management.md:118",
+      "contracts/reference/specs/02_enterprise_portal_session_management.md:452",
+      "contracts/reference/specs/02_enterprise_portal_session_management.md:701",
+      "contracts/reference/specs/03_controllers_wire_protocol_rest.md:309"
+    ],
+    "twilio": {
+      "official_protocol": "https://www.twilio.com/docs/messaging/api/message-resource",
+      "fields": ["twillioApiSID", "twillioApiToken", "twilioPhone", "textList"],
+      "implementation": "src/services/notifications.js",
+      "verification": "test/notifications.test.js uses mocked fixed Twilio HTTPS endpoint; no real SMS was sent",
+      "status": "adapter_implemented_not_provider_verified"
+    },
+    "fcm": {
+      "official_protocol": "https://firebase.google.com/docs/cloud-messaging/send/v1-api",
+      "fields": ["fcmTokens", "alerterAppTokens", "alerterAppFCMUserOff", "hasMobileApp", "ptrMobileAppCaseByCaseEnabled", "diasableFCMAlerts"],
+      "implementation": "src/services/notifications.js",
+      "verification": "test/notifications.test.js verifies RS256 OAuth assertion, token exchange, HTTPv1 body and recipient policies using mocks; REST integration tests use stub delivery",
+      "status": "adapter_implemented_not_provider_verified",
+      "limitation": "The original mobile app's custom FCM payload was not captured. Standard notification title/body and roomID/alertID custom fields are reconstructed, not asserted identical."
+    },
+    "delivery_semantics": "Provider acceptance is recorded separately from actual device delivery. Recipient hashes and provider IDs are persisted, not credentials, phone numbers or FCM tokens. Pending/unknown attempts are not blindly retried because a timeout could follow successful acceptance."
+  }
+}

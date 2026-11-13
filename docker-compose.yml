@@ -1,0 +1,143 @@
+name: ptr-parity
+services:
+  data-init:
+    image: node:24-bookworm-slim
+    user: root
+    command: ["sh", "-c", "mkdir -p /app/data/uploads /app/data/recordings && chown 1000:1000 /app/data /app/data/uploads /app/data/recordings"]
+    volumes:
+      - app-data:/app/data
+  app:
+    build: .
+    init: true
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:${APP_PORT:-3031}:3000"
+    environment:
+      NODE_ENV: production
+      PORT: 3000
+      DATA_DIR: /app/data
+      PUBLIC_ORIGIN: ${PUBLIC_ORIGIN:-http://localhost:3031}
+      JWT_SECRET: ${JWT_SECRET:?Run node scripts/setup-local.mjs}
+      JANUS_URL: http://janus:8088/janus
+      JANUS_ADMIN_URL: http://janus:7088/admin
+      JANUS_PUBLIC_URL: /janus
+      JANUS_API_SECRET: ${JANUS_API_SECRET:?Run node scripts/setup-local.mjs}
+      JANUS_ADMIN_SECRET: ${JANUS_ADMIN_SECRET:?Run node scripts/setup-local.mjs}
+      JANUS_RECORDINGS_DIR: /app/data/recordings
+      MEDIA_PROCESSOR_URL: http://media-processor:8090
+      MEDIA_PROCESSOR_TOKEN: ${MEDIA_PROCESSOR_TOKEN:?Run node scripts/setup-local.mjs}
+      SMTP_HOST: mailpit
+      SMTP_PORT: 1025
+      SMTP_FROM: noreply@ptr.local
+      MAIL_FROM: ProTradingRoom <noreply@ptr.local>
+      LOCAL_CONTACT_EMAIL: ${LOCAL_CONTACT_EMAIL:-contact@example.test}
+      ENABLE_LOCAL_QA: ${ENABLE_LOCAL_QA:-0}
+      MARKETPLACE_ENABLED: ${MARKETPLACE_ENABLED:-true}
+      STRIPE_ENABLED: ${STRIPE_ENABLED:-false}
+      STRIPE_SECRET_KEY: ${STRIPE_SECRET_KEY:-}
+      STRIPE_WEBHOOK_SECRET: ${STRIPE_WEBHOOK_SECRET:-}
+      ROOM_TIMEZONE: ${ROOM_TIMEZONE:-America/New_York}
+      WEBHOOK_SECRET: ${WEBHOOK_SECRET:-}
+      LOCAL_WEBHOOK_ALLOWLIST: ${LOCAL_WEBHOOK_ALLOWLIST:-}
+      GIPHY_API_KEY: ${GIPHY_API_KEY:-}
+      RECAPTCHA_SECRET: ${RECAPTCHA_SECRET:-}
+      RECAPTCHA_SITE_KEY: ${RECAPTCHA_SITE_KEY:-}
+      TURN_URL: ${TURN_URL:-}
+      TURN_USERNAME: ${TURN_USERNAME:-}
+      TURN_PASSWORD: ${TURN_PASSWORD:-}
+      RELAY_RTP_HOST: media-processor
+      OBS_INGEST_ENABLED: ${OBS_INGEST_ENABLED:-true}
+      OBS_PUBLIC_BASE: ${OBS_PUBLIC_BASE:-rtmp://localhost:1936}
+      YOUTUBE_RTMP_ENABLED: ${YOUTUBE_RTMP_ENABLED:-false}
+      FACEBOOK_RTMP_ENABLED: ${FACEBOOK_RTMP_ENABLED:-false}
+      STREAM_TEST_MODE: ${STREAM_TEST_MODE:-false}
+      STREAM_LOCAL_TEST_BASE: ${STREAM_LOCAL_TEST_BASE:-}
+      STREAM_LOCAL_ALLOWLIST: ${STREAM_LOCAL_ALLOWLIST:-}
+      FCM_ENABLED: ${FCM_ENABLED:-false}
+      FCM_SERVICE_ACCOUNT_JSON: ${FCM_SERVICE_ACCOUNT_JSON:-}
+      TWILIO_SMS_ENABLED: ${TWILIO_SMS_ENABLED:-false}
+      TWILIO_ACCOUNT_SID: ${TWILIO_ACCOUNT_SID:-}
+      TWILIO_AUTH_TOKEN: ${TWILIO_AUTH_TOKEN:-}
+      TWILIO_PHONE: ${TWILIO_PHONE:-}
+      TWILIO_VOICE_ENABLED: ${TWILIO_VOICE_ENABLED:-false}
+      PHONE_PUBLIC_WSS_BASE: ${PHONE_PUBLIC_WSS_BASE:-}
+      PHONE_RTP_HOST: app
+      X_POSTING_ENABLED: ${X_POSTING_ENABLED:-false}
+      X_CONSUMER_KEY: ${X_CONSUMER_KEY:-}
+      X_CONSUMER_SECRET: ${X_CONSUMER_SECRET:-}
+      X_USER_ACCESS_TOKEN: ${X_USER_ACCESS_TOKEN:-}
+      X_POSTING_ROOM_ID: ${X_POSTING_ROOM_ID:-}
+      RECORDING_EXPORTS_ENABLED: ${RECORDING_EXPORTS_ENABLED:-false}
+      RECORDING_EXPORT_S3_REGION: ${RECORDING_EXPORT_S3_REGION:-}
+    volumes:
+      - app-data:/app/data
+      - ./test/browser-media.html:/app/qa/browser-media.html:ro
+      - ./test/browser-obs.html:/app/qa/browser-obs.html:ro
+    depends_on:
+      data-init:
+        condition: service_completed_successfully
+      janus:
+        condition: service_started
+      mailpit:
+        condition: service_started
+      media-processor:
+        condition: service_started
+  janus:
+    image: canyan/janus-gateway:latest
+    platform: linux/amd64
+    init: true
+    restart: unless-stopped
+    command: ["sh", "/etc/ptr-janus/start.sh"]
+    environment:
+      JANUS_API_SECRET: ${JANUS_API_SECRET:?Run node scripts/setup-local.mjs}
+      JANUS_ADMIN_SECRET: ${JANUS_ADMIN_SECRET:?Run node scripts/setup-local.mjs}
+      JANUS_PUBLIC_IP: ${JANUS_PUBLIC_IP:-127.0.0.1}
+      JANUS_UDP_MIN: ${JANUS_UDP_MIN:-20100}
+      JANUS_UDP_MAX: ${JANUS_UDP_MAX:-20199}
+    ports:
+      - "127.0.0.1:${JANUS_UDP_MIN:-20100}-${JANUS_UDP_MAX:-20199}:${JANUS_UDP_MIN:-20100}-${JANUS_UDP_MAX:-20199}/udp"
+    volumes:
+      - ./docker/janus:/etc/ptr-janus:ro
+      - app-data:/app/data
+    depends_on:
+      data-init:
+        condition: service_completed_successfully
+  media-processor:
+    build:
+      context: .
+      dockerfile: docker/media-processor.Dockerfile
+    platform: linux/amd64
+    init: true
+    restart: unless-stopped
+    environment:
+      RECORDINGS_DIR: /app/data/recordings
+      MEDIA_PROCESSOR_TOKEN: ${MEDIA_PROCESSOR_TOKEN:?Run node scripts/setup-local.mjs}
+      STREAM_LOCAL_ALLOWLIST: ${STREAM_LOCAL_ALLOWLIST:-}
+      OBS_RTMP_HOST: rtmp
+      JANUS_RTP_HOST: janus
+    volumes:
+      - app-data:/app/data
+  rtmp:
+    image: bluenviron/mediamtx:1.21.3
+    init: true
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:${OBS_RTMP_PORT:-1936}:1935"
+    volumes:
+      - ./docker/mediamtx.yml:/mediamtx.yml:ro
+    depends_on:
+      media-processor:
+        condition: service_started
+  mailpit:
+    image: axllent/mailpit:v1.27
+    init: true
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:${MAIL_UI_PORT:-8026}:8025"
+    environment:
+      MP_DATABASE: /data/mailpit.db
+    volumes:
+      - mail-data:/data
+volumes:
+  app-data:
+  mail-data:

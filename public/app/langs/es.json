@@ -1,0 +1,31 @@
+{
+    "topbar": {
+        "search": {
+            "PLACEHOLDER": "Buscar.."
+        }
+    },
+    "main": {
+        "CHAT": "Charla",
+        "PARTICIPANTS": "Participantes",
+        "SEND": "Enviar",
+        "TYPEMESSAGE": "Escriba su mensaje, pulse enter",
+        "CLOUDDRIVE": "Cloud Drive"
+    },
+
+    "sidebar": {
+        "heading": {
+            "HEADER": "Navegacion principal"
+        },
+        "nav": {
+            "LANGUAGE": "Idioma",
+            "CLOSEPANEL": "Cerrar Panel",
+            "TOTALUSERS": "Usuarios",
+            "PAGELAYOUTS": "Formatos de Páginas",
+            "ALLINONE": "  Todo en Uno",
+            "PRESSONLY": "  Sólo Presentación",
+            "CHATONLY": "Sólo Charla",
+            "SEARCHUSERS": "Buscar Usuario"
+
+        }
+    }
+}

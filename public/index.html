@@ -1,0 +1,409 @@
+<html lang="en">
+  <head>
+    <title>ProTradingRoom - Trading Room Software for professional traders</title>
+
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- SEO -->
+    <meta name="description" content="ProTradingRoom Trading room software for professional traders" />
+    <meta name="keywords" content="Trading room, chat room software, webinato replacement, omnovia replacement" />
+
+    <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png" />
+    <link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png" />
+    <link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png" />
+    <link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png" />
+    <link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png" />
+    <link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png" />
+    <link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png" />
+    <link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png" />
+
+    <meta name="msapplication-TileColor" content="#ffffff" />
+    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png" />
+    <meta name="theme-color" content="#ffffff" />
+
+    <!-- stylesheets -->
+    <link rel="stylesheet" type="text/css" href="/public/css/compiled/theme.css" />
+    <link rel="stylesheet" type="text/css" href="/public/css/vendor/animate.css" />
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="/public/css/main.css?v1.0" />
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <style>
+      .marketplace-container {
+        padding: 50px 7.5%;
+        background-color: #f8f9fa;
+      }
+
+      .marketplace-card {
+        cursor: pointer;
+        transition: transform 0.3s ease;
+        border-radius: 8px;
+        overflow: hidden;
+        background: white;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        margin: 0 15px;
+        min-height: 350px;
+      }
+
+      .marketplace-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+      }
+
+      .marketplace-card-image {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+        position: relative;
+      }
+
+      .marketplace-card-image-placeholder {
+        width: 100%;
+        height: 200px;
+        background-color: #e9ecef;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #6c757d;
+      }
+
+      .marketplace-card-image-placeholder i {
+        font-size: 60px;
+      }
+
+      .marketplace-card-price {
+        position: absolute;
+        bottom: 10px;
+        right: 10px;
+        background: rgba(0, 0, 0, 0.7);
+        color: white;
+        padding: 5px 10px;
+        border-radius: 4px;
+        font-size: 14px;
+        font-weight: bold;
+      }
+
+      .marketplace-card-content {
+        padding: 15px;
+      }
+
+      .marketplace-card-header {
+        display: flex;
+        align-items: center;
+        margin-bottom: 10px;
+        flex-wrap: wrap;
+      }
+
+      .marketplace-card-logo {
+        max-width: 250px;
+        max-height: 50px;
+        border-radius: 4px;
+        object-fit: contain;
+        margin-right: 15px;
+        background-color: #0e0e0e;
+      }
+
+      .marketplace-card-title {
+        font-size: 18px;
+        font-weight: bold;
+        color: #333;
+        margin: 5px;
+      }
+
+      .marketplace-card-tagline {
+        color: #666;
+        font-size: 14px;
+        margin-top: 10px;
+        line-height: 1.4;
+      }
+
+      .carousel-inner > .item {
+        padding: 20px 0;
+      }
+
+      .carousel-control {
+        background: none;
+        width: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .carousel-control .fa-chevron-left {
+        margin-left: 20px;
+      }
+
+      .carousel-control .fa-chevron-right {
+        margin-right: 20px;
+      }
+
+      .marketplace-centered-1 .row {
+        display: flex;
+        justify-content: center;
+      }
+
+      .marketplace-centered-1 .col-md-4 {
+        max-width: 33.33%;
+        flex: 0 0 33.33%;
+      }
+
+      .marketplace-centered-2 .row {
+        display: flex;
+        justify-content: center;
+      }
+
+      .marketplace-centered-2 .col-md-4 {
+        max-width: 33.33%;
+        flex: 0 0 33.33%;
+      }
+
+      #marketplace-empty-section h2 {
+        font-size: 32px;
+        color: #333;
+      }
+
+      #marketplace-btn {
+        font-size: 20px;
+        padding: 15px 40px;
+        text-transform: uppercase;
+        font-weight: bold;
+      }
+
+      #marketplace-btn i {
+        margin-right: 10px;
+      }
+    </style>
+
+  </head>
+  <body id="home4">
+    <div
+      id="gdpr-banner"
+      style="
+        display: none;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: rgba(0, 0, 0, 0.9);
+        color: white;
+        padding: 20px;
+        z-index: 9999;
+      "
+    >
+      <div class="container">
+        <div class="row">
+          <div class="col-md-9">
+            <p style="margin: 0">
+              We use cookies to enhance your experience. For more
+              information, including how to manage your cookie settings, see our
+              <a href="/public/html/ppolicy.html" target="_blank" style="color: #2095f2">Privacy Policy</a>.
+            </p>
+          </div>
+          <div class="col-md-3" style="text-align: right">
+            <button onclick="acceptCookies()" class="button button-small" style="width: 100%; min-width: 140px">Accept All</button>
+            <button onclick="rejectCookies()" class="button button-small" style="width: 100%; background: #666; min-width: 140px">
+              Reject Non-Essential
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script type="text/javascript">
+      (function () {
+        // Show banner if consent hasn't been given
+        if (!localStorage.getItem('gdprConsent')) {
+          document.getElementById('gdpr-banner').style.display = 'block';
+        }
+      })();
+
+      function acceptCookies() {
+        localStorage.setItem('gdprConsent', 'accepted');
+        document.getElementById('gdpr-banner').style.display = 'none';
+
+        // Enable all tracking scripts
+        enableTracking();
+      }
+
+      function rejectCookies() {
+        localStorage.setItem('gdprConsent', 'rejected');
+        document.getElementById('gdpr-banner').style.display = 'none';
+
+        // Disable non-essential tracking scripts
+        disableTracking();
+      }
+
+      // No tracking providers are configured for this installation.
+      function enableTracking() {}
+      function disableTracking() {}
+    </script>
+    <header class="navbar navbar-inverse normal" role="banner">
+      <div class="container">
+        <div class="navbar-header">
+          <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a href="/" class="navbar-brand"><img src="/public/images/protradingroom_icon.png" style="height: 45px" /> ProTradingRoom</a>
+        </div>
+        <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
+          <ul class="nav navbar-nav navbar-right">
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown"> Register/Login <b class="caret"></b> </a>
+              <ul class="dropdown-menu">
+                <li><a href="/login">Login</a></li>
+                <li><a href="/register">Register</a></li>
+              </ul>
+            </li>
+
+            <li>
+              <a href="/contact"><i class="fa fa-envelope"></i> Contact Us</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <div id="hero" style="padding-top: 60px; background: #0e0e0e">
+      <div class="container-fluid">
+        <h1 class="hero-text" style="text-align: center">Web-based Trading Room for Professionals</h1>
+        <div class="row">
+          <div class="col-md-8" style="text-align: center">
+            <img src="/public/images/ptr_descrived_perspective.png" style="height: 95%" />
+          </div>
+          <div class="col-md-4">
+            <div class="animated fadeInUp" style="text-align: center">
+              <br />
+              <a href="/contact" class="button button-large button-primary">Learn More</a>
+            </div>
+            <ul style="color: #f0f0f0; padding-bottom: 0px; font-size: 20px; padding-top: 40px">
+              <li>White Label!</li>
+              <li>HD Screen-Sharing with no lag!</li>
+              <li>Desktop or Mobile</li>
+              <li>Mobile trade alerts</li>
+              <li>Web based HTML5, No Flash, No Downloads</li>
+              <li>Custom integrations on your site</li>
+              <li>Branding, Recording, Webinars, Stats, and more...</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+
+    <div id="second-option">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-4 feature">
+            <div style="text-align: center"><img src="/public/images/circle-icons/one-color/locked.png" alt="locked" /></div>
+            <strong>Rooms are encrypted &amp; secured</strong>
+            <p>All communications use encryption.</p>
+            <p>Encrypted video, audio, and text</p>
+          </div>
+          <div class="col-md-4 feature">
+            <div style="text-align: center"><img src="/public/images/circle-icons/one-color/cloud.png" alt="dev" /></div>
+            <strong style="text-align: center">Cloud Based</strong>
+            <p>No software to install, update, or maintain.</p>
+            <p>Presenters and Users log in from their web enabled devices</p>
+          </div>
+          <div class="col-md-4 feature">
+            <div style="text-align: center"><img src="/public/images/circle-icons/one-color/browser.png" alt="globe" /></div>
+            <strong style="text-align: center">Runs from the web browser. No Flash! No Java!. Pure HTML5 solution.</strong>
+            <p>There is no expensive hardware or software to buy.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <hr />
+
+    <div class="row" style="text-align: center">
+      <div class="col-sm-6 col-xs-12" style="padding-left: 60px">
+        <img src="/public/images/user_comments.png" style="width: 100%; padding: 10px; border: 4px solid gray" />
+      </div>
+      <div class="col-sm-6 col-xs-12" style="padding-left: 60px">
+        <div class="info" style="font-size: 16px; margin-top: 30px; text-align: left">
+          <h2 style="text-align: center">Real user comments after switching to ProTradingRoom:</h2>
+          <br />
+          <h3><i class="fa fa-check-circle"></i> Looks way cleaner and sounds great!</h3>
+
+          <h3><i class="fa fa-check-circle"></i> WOW absolutely no Lag!</h3>
+          <h3><i class="fa fa-check-circle"></i> Crisper charts!</h3>
+          <h3><i class="fa fa-check-circle"></i> The audio quality is so much better!</h3>
+          <h3><i class="fa fa-check-circle"></i> Yes! Way better than Omnovia</h3>
+          <h3><i class="fa fa-check-circle"></i> PC resources much healthier. Webinato slowed me right down!</h3>
+          <h3><i class="fa fa-check-circle"></i> I like it a lot more!</h3>
+          <br />
+          <h3 style="text-align: center">
+            <a href="/contact" class="button button-small">Get a free demo room</a>
+          </h3>
+        </div>
+      </div>
+    </div>
+
+    <div id="mobile">
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-6 hidden-xs">
+            <img src="/public/images/ss3.png" class="device img-responsive" alt="mobile" />
+          </div>
+          <div class="col-sm-6 col-xs-12">
+            <div class="info">
+              <h3>Connect to the trading room from mobile devices</h3>
+              <p>ProTradingRoom works from the mobile browser on Android, iOS, and other devices.</p>
+              <!--						<a class="button button-small" href="#">Get it free</a>-->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+	<div id="cta">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="form-wrapper" style="text-align: center;">
+						<h4>Need to talk to somebody to get more information about pricing and custom integrations?</h4>
+						
+                        <a href="/contact" class="button button-small">Contact Us</a>
+						
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+<div id="footer">
+		<div class="container">
+			<div class="row">
+				 <div class="col-md-12 menu" style="text-align: center; color: #FAFAFA;">
+					<ul>
+	      				<li>
+	        				<a href="/public/html/ppolicy.html" target="_blank">Privacy Policy</a> 
+	        			</li>
+						<li>
+	        				<a href="/public/html/tos.html" target="_blank">Terms of Service</a>
+	        			</li>
+	        			<li>
+	        				<a href="/contact">Contact Us</a>
+	        			</li>
+	        			
+	      			</ul>
+
+					&copy; 2026 ProTradingRoom&trade;
+				</div>
+			</div>
+
+			</div>
+</div>
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+    <script src="/public/js/theme.js"></script>
+
+    
+
+  </body>
+</html>

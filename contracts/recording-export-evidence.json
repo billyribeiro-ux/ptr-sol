@@ -1,0 +1,24 @@
+{
+  "captured_evidence": {
+    "source": "contracts/reference/specs/02_enterprise_portal_session_management.md",
+    "settings": ["saveRecsToS3", "s3KeyID", "s3KeySecret", "s3Bucket", "s3BucketFolderPath", "saveRecsToVimeo", "vimeoClientID", "vimeoClientSecret", "vimeoToken", "vimeoFolderPath"],
+    "limitation": "The captured UI names settings but does not establish provider protocol, privacy, retry, object naming, or exact original server behavior. This adapter is a reconstruction, not verified provider parity."
+  },
+  "implementation": "src/services/recording-exports.js",
+  "test": "test/recording-exports.test.js",
+  "provider_docs": [
+    {"provider":"Amazon S3", "url":"https://docs.aws.amazon.com/AmazonS3/latest/developerguide/sig-v4-header-based-auth.html", "use":"Signature Version 4 signed single PUT"},
+    {"provider":"Vimeo", "url":"https://developer.vimeo.com/api/upload/videos", "use":"Authenticated tus video creation and upload"},
+    {"provider":"Vimeo", "url":"https://developer.vimeo.com/api/reference/folders", "use":"Optional folder assignment"},
+    {"provider":"tus", "url":"https://tus.io/protocols/resumable-upload.html", "use":"PATCH offset and completion headers"}
+  ],
+  "limitations": [
+    "Opt-in at installation and room level; no external calls are made in tests.",
+    "S3 needs RECORDING_EXPORT_S3_REGION and uses a single PUT, limited to 5 GiB; no multipart upload or temporary session credentials.",
+    "Vimeo requires an already-authorized access token; client ID and secret alone do not mint an access token.",
+    "Vimeo upload hosts are restricted to HTTPS vimeo.com subdomains; other legitimate provider upload domains would need explicit validation before support.",
+    "Vimeo upload is one tus PATCH with offset verification; resumable retry, cleanup after partial failure, and idempotent export state are not implemented.",
+    "Vimeo private-view setting and numeric folder IDs depend on provider account permissions; unverified against live provider.",
+    "A failed or unavailable export never deletes or changes the ready local recording."
+  ]
+}

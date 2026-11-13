@@ -1,0 +1,2380 @@
+{
+  "source": "contracts/client-inventory.json and contracts/reference/app.min.js; cmd calls decoded in context",
+  "notes": [
+    "Statuses describe observed local handlers and do not assert untested parity.",
+    "Provider-backed and missing workflows return explicit errors.",
+    "Request and response fields are captured client references and may omit dynamically assigned fields.",
+    "Rooms carry a 24-hex internal _id and a six-digit public uuid; legacy rooms fall back to uuid for _id. Related data uses public uuid.",
+    "Local trial plan/room limits are reconstructed; the captured client does not establish the original billing or participant-capacity rules."
+  ],
+  "paths": [
+    {
+      "capturedPath": "/users/v1/adminusers",
+      "handler": "src/routes/users.js",
+      "test": {
+        "status": "partially_covered",
+        "evidence": "test/rest.test.js"
+      },
+      "method": "POST",
+      "requestFields": [
+        "cmd",
+        "token"
+      ],
+      "responseFields": [
+        "success",
+        "command-specific"
+      ],
+      "status": "implemented"
+    },
+    {
+      "capturedPath": "/users/v1/apikeys",
+      "handler": "src/routes/users.js",
+      "test": {
+        "status": "partially_covered",
+        "evidence": "test/rest.test.js"
+      },
+      "method": "POST",
+      "requestFields": [
+        "cmd",
+        "token"
+      ],
+      "responseFields": [
+        "success",
+        "command-specific"
+      ],
+      "status": "implemented"
+    },
+    {
+      "capturedPath": "/users/v1/archives/",
+      "handler": "src/routes/users.js",
+      "test": {
+        "status": "partially_covered",
+        "evidence": "test/rest.test.js"
+      },
+      "method": "GET",
+      "requestFields": [
+        "type",
+        "sessId",
+        "token"
+      ],
+      "responseFields": [
+        "roomID",
+        "messages or alerts"
+      ],
+      "status": "implemented"
+    },
+    {
+      "capturedPath": "/users/v1/archives/recordings/",
+      "handler": "src/routes/users.js",
+      "test": {
+        "status": "partially_covered",
+        "evidence": "test/rest.test.js"
+      },
+      "method": "GET",
+      "requestFields": [
+        "sessId",
+        "token"
+      ],
+      "responseFields": [
+        "roomID",
+        "recordings"
+      ],
+      "status": "implemented"
+    },
+    {
+      "capturedPath": "/users/v1/change-password",
+      "handler": "src/routes/users.js",
+      "test": {
+        "status": "partially_covered",
+        "evidence": "test/rest.test.js"
+      },
+      "method": "POST",
+      "requestFields": [
+        "userUUID",
+        "passNew",
+        "recaptcha",
+        "source"
+      ],
+      "responseFields": [
+        "success",
+        "msg"
+      ],
+      "status": "implemented"
+    },
+    {
+      "capturedPath": "/users/v1/demoSignup",
+      "handler": "src/routes/users.js",
+      "test": {
+        "status": "covered",
+        "evidence": "test/rest.test.js"
+      },
+      "method": "POST",
+      "requestFields": [
+        "name",
+        "email",
+        "pw",
+        "recaptcha",
+        "source",
+        "demo"
+      ],
+      "responseFields": [
+        "success",
+        "token",
+        "name",
+        "roomUUID",
+        "demo"
+      ],
+      "status": "implemented"
+    },
+    {
+      "capturedPath": "/users/v1/forgot-password",
+      "handler": "src/routes/users.js",
+      "test": {
+        "status": "partially_covered",
+        "evidence": "test/mailpit.integration.test.js"
+      },
+      "method": "POST",
+      "requestFields": [
+        "email",
+        "recaptcha",
+        "source"
+      ],
+      "responseFields": [
+        "success",
+        "msg"
+      ],
+      "status": "implemented",
+      "provider": "local SMTP"
+    },
+    {
+      "capturedPath": "/users/v1/login",
+      "handler": "src/routes/users.js",
+      "test": {
+        "status": "partially_covered",
+        "evidence": "test/rest.test.js"
+      },
+      "method": "POST",
+      "requestFields": [
+        "email",
+        "pw",
+        "recaptcha",
+        "source"
+      ],
+      "responseFields": [
+        "success",
+        "token",
+        "name",
+        "message",
+        "failedLoginCount"
+      ],
+      "status": "implemented"
+    },
+    {
+      "capturedPath": "/users/v1/login_tok",
+      "handler": "src/routes/users.js",
+      "test": {
+        "status": "partially_covered",
+        "evidence": "test/rest.test.js"
+      },
+      "method": "POST",
+      "requestFields": [
+        "email",
+        "token",
+        "source"
+      ],
+      "responseFields": [
+        "success",
+        "token",
+        "name",
+        "message"
+      ],
+      "status": "implemented"
+    },
+    {
+      "capturedPath": "/users/v1/recordings",
+      "handler": "src/routes/users.js",
+      "test": {
+        "status": "partially_covered",
+        "evidence": "test/rest.test.js"
+      },
+      "method": "POST",
+      "requestFields": [
+        "roomID",
+        "token"
+      ],
+      "responseFields": [
+        "array of recordings"
+      ],
+      "status": "implemented"
+    },
+    {
+      "capturedPath": "/users/v1/serveFile",
+      "handler": "src/routes/users.js",
+      "test": {
+        "status": "partially_covered",
+        "evidence": "test/rest.test.js"
+      },
+      "method": "GET",
+      "requestFields": [
+        "id",
+        "token or room cookie"
+      ],
+      "responseFields": [
+        "file bytes"
+      ],
+      "status": "implemented"
+    },
+    {
+      "capturedPath": "/users/v1/session/upload/",
+      "handler": "src/routes/users.js",
+      "test": {
+        "status": "covered",
+        "evidence": "test/rest.test.js"
+      },
+      "method": "POST",
+      "requestFields": [
+        "sessionID",
+        "token",
+        "visibility",
+        "type",
+        "multipart file"
+      ],
+      "responseFields": [
+        "success",
+        "vidPath"
+      ],
+      "status": "implemented"
+    },
+    {
+      "capturedPath": "/users/v1/sessions",
+      "handler": "src/routes/users.js",
+      "test": {
+        "status": "partially_covered",
+        "evidence": "test/rest.test.js"
+      },
+      "method": "POST",
+      "requestFields": [
+        "cmd",
+        "sessionID",
+        "token"
+      ],
+      "responseFields": [
+        "command-specific"
+      ],
+      "status": "implemented"
+    },
+    {
+      "capturedPath": "/users/v1/signup",
+      "handler": "src/routes/users.js",
+      "test": {
+        "status": "covered",
+        "evidence": "test/rest.test.js"
+      },
+      "method": "POST",
+      "requestFields": [
+        "name",
+        "email",
+        "pw",
+        "recaptcha",
+        "source",
+        "demo"
+      ],
+      "responseFields": [
+        "success",
+        "token",
+        "name",
+        "roomUUID",
+        "demo"
+      ],
+      "status": "implemented"
+    },
+    {
+      "capturedPath": "/users/v1/ssoJWT?sessID=",
+      "handler": "src/routes/users.js",
+      "test": {
+        "status": "covered",
+        "evidence": "test/sso.test.js; test/rest.test.js"
+      },
+      "method": "GET",
+      "requestFields": [
+        "sessID",
+        "jwt (verified room SSO token)",
+        "sl",
+        "account token or cookie"
+      ],
+      "responseFields": [
+        "302 with scoped room cookie for sl=1",
+        "success/jwt/sessID for JSON"
+      ],
+      "status": "partial",
+      "limitation": "Verified HS256 room JWT handoff works in JWT and SSO room modes. Opaque legacy SSO protocol and original WordPress plugin implementation were not captured."
+    },
+    {
+      "capturedPath": "/users/v1/upload",
+      "handler": "src/routes/users.js",
+      "test": {
+        "status": "covered",
+        "evidence": "test/rest.test.js"
+      },
+      "method": "POST",
+      "requestFields": [
+        "multipart file",
+        "roomID",
+        "token"
+      ],
+      "responseFields": [
+        "success",
+        "vidPath"
+      ],
+      "status": "implemented"
+    },
+    {
+      "capturedPath": "/users/v1/user-change-password",
+      "handler": "src/routes/users.js",
+      "test": {
+        "status": "partially_covered",
+        "evidence": "test/mailpit.integration.test.js"
+      },
+      "method": "POST",
+      "requestFields": [
+        "userUUID",
+        "passNew",
+        "recaptcha",
+        "source"
+      ],
+      "responseFields": [
+        "success",
+        "msg"
+      ],
+      "status": "implemented"
+    },
+    {
+      "capturedPath": "/users/v1/user-forgot-password",
+      "handler": "src/routes/users.js",
+      "test": {
+        "status": "partially_covered",
+        "evidence": "test/mailpit.integration.test.js"
+      },
+      "method": "POST",
+      "requestFields": [
+        "email",
+        "recaptcha",
+        "source"
+      ],
+      "responseFields": [
+        "success",
+        "msg"
+      ],
+      "status": "implemented",
+      "provider": "local SMTP"
+    },
+    {
+      "capturedPath": "/users/v1/users.json",
+      "handler": "src/routes/users.js",
+      "test": {
+        "status": "partially_covered",
+        "evidence": "test/rest.test.js"
+      },
+      "method": "POST",
+      "requestFields": [
+        "cmd",
+        "token",
+        "roomID"
+      ],
+      "responseFields": [
+        "command-specific"
+      ],
+      "status": "implemented"
+    },
+    {
+      "capturedPath": "/ptr_app/mp/v2/resend-welcome-email",
+      "handler": "src/routes/marketplace.js",
+      "method": "POST",
+      "requestFields": [
+        "xrefId",
+        "sessionId"
+      ],
+      "responseFields": [
+        "success",
+        "message"
+      ],
+      "status": "implemented",
+      "provider": "local SMTP",
+      "test": {
+        "status": "partially_covered",
+        "evidence": "test/mailpit.integration.test.js"
+      }
+    },
+    {
+      "capturedPath": "/users/v1/p/contact",
+      "handler": "src/routes/users.js",
+      "method": "POST",
+      "requestFields": [
+        "fname",
+        "email",
+        "msg",
+        "recaptcha"
+      ],
+      "responseFields": [
+        "success",
+        "msg"
+      ],
+      "status": "implemented",
+      "provider": "local SMTP and LOCAL_CONTACT_EMAIL",
+      "test": {
+        "status": "covered",
+        "evidence": "test/mailpit.integration.test.js"
+      }
+    },
+    {
+      "capturedPath": "/users/v1/images/upload",
+      "handler": "src/routes/images.js",
+      "method": "POST",
+      "requestFields": [
+        "roomID",
+        "multipart file",
+        "room/site cookie or bearer token"
+      ],
+      "responseFields": [
+        "success",
+        "data.id",
+        "data.name",
+        "data.link"
+      ],
+      "status": "implemented",
+      "test": {
+        "status": "covered",
+        "evidence": "test/images.test.js"
+      },
+      "sourceEvidence": [
+        "Same-origin replacement for image picker in contracts/reference/app.min.js"
+      ]
+    },
+    {
+      "capturedPath": "/users/v1/images/giphy",
+      "handler": "src/routes/images.js",
+      "method": "GET",
+      "requestFields": [
+        "roomID",
+        "q"
+      ],
+      "responseFields": [
+        "data[].images.fixed_width.url",
+        "data[].images.downsized_medium.url"
+      ],
+      "status": "partial",
+      "provider": "GIPHY_API_KEY; live external delivery not tested",
+      "test": {
+        "status": "covered",
+        "evidence": "test/images.test.js"
+      },
+      "sourceEvidence": [
+        "Same-origin replacement for Giphy picker in contracts/reference/app.min.js"
+      ]
+    },
+    {
+      "capturedPath": "/users/v1/images/:id",
+      "handler": "src/routes/images.js",
+      "method": "GET",
+      "requestFields": [
+        "id",
+        "same-room cookie or bearer token"
+      ],
+      "responseFields": [
+        "validated inline raster image"
+      ],
+      "status": "implemented",
+      "test": {
+        "status": "covered",
+        "evidence": "test/images.test.js"
+      },
+      "sourceEvidence": [
+        "Same-origin replacement for image picker in contracts/reference/app.min.js"
+      ]
+    }
+  ],
+  "commands": [
+    {
+      "path": "/ptr_app/mp/v2/resend-welcome-email",
+      "cmd": "sendWelcomeEmail",
+      "requestFields": [
+        "sessionId",
+        "xrefId"
+      ],
+      "responseFields": [
+        "success"
+      ],
+      "status": "implemented",
+      "test": {
+        "status": "covered",
+        "evidence": "test/mailpit.integration.test.js (local Mailpit)"
+      },
+      "sourceEvidence": [
+        "contracts/reference/specs/03_controllers_wire_protocol_rest.md \u00a72",
+        "contracts/reference/specs/02_enterprise_portal_session_management.md \u00a75\u2013\u00a78"
+      ],
+      "provider": "SMTP delivery; local Mailpit tested, external opt-in only"
+    },
+    {
+      "path": "/users/v1/adminusers",
+      "cmd": "add",
+      "requestFields": [
+        "cmd",
+        "email",
+        "name",
+        "password",
+        "perms"
+      ],
+      "responseFields": [
+        "message",
+        "success"
+      ],
+      "status": "implemented",
+      "test": {
+        "status": "covered",
+        "evidence": "test/rest.test.js"
+      },
+      "sourceEvidence": [
+        "contracts/reference/specs/03_controllers_wire_protocol_rest.md \u00a72",
+        "contracts/reference/specs/02_enterprise_portal_session_management.md \u00a75\u2013\u00a78"
+      ]
+    },
+    {
+      "path": "/users/v1/adminusers",
+      "cmd": "list",
+      "requestFields": [
+        "cmd"
+      ],
+      "responseFields": [
+        "adminUsers",
+        "success"
+      ],
+      "status": "implemented",
+      "test": {
+        "status": "covered",
+        "evidence": "test/rest.test.js"
+      },
+      "sourceEvidence": [
+        "contracts/reference/specs/03_controllers_wire_protocol_rest.md \u00a72",
+        "contracts/reference/specs/02_enterprise_portal_session_management.md \u00a75\u2013\u00a78"
+      ]
+    },
+    {
+      "path": "/users/v1/adminusers",
+      "cmd": "remove",
+      "requestFields": [
+        "adminUserId",
+        "cmd"
+      ],
+      "responseFields": [
+        "message",
+        "success"
+      ],
+      "status": "implemented",
+      "test": {
+        "status": "covered",
+        "evidence": "test/rest.test.js"
+      },
+      "sourceEvidence": [
+        "contracts/reference/specs/03_controllers_wire_protocol_rest.md \u00a72",
+        "contracts/reference/specs/02_enterprise_portal_session_management.md \u00a75\u2013\u00a78"
+      ]
+    },
+    {
+      "path": "/users/v1/apikeys",
+      "cmd": "create",
+      "requestFields": [
+        "cmd"
+      ],
+      "responseFields": [
+        "message",
+        "success"
+      ],
+      "status": "implemented",
+      "test": {
+        "status": "covered",
+        "evidence": "test/rest.test.js"
+      },
+      "sourceEvidence": [
+        "contracts/reference/specs/03_controllers_wire_protocol_rest.md \u00a72",
+        "contracts/reference/specs/02_enterprise_portal_session_management.md \u00a75\u2013\u00a78"
+      ]
+    },
+    {
+      "path": "/users/v1/apikeys",
+      "cmd": "delete",
+      "requestFields": [
+        "apiId",
+        "cmd"
+      ],
+      "responseFields": [
+        "adminUsers",
+        "message",
+        "success"
+      ],
+      "status": "implemented",
+      "test": {
+        "status": "covered",
+        "evidence": "test/rest.test.js"
+      },
+      "sourceEvidence": [
+        "contracts/reference/specs/03_controllers_wire_protocol_rest.md \u00a72",
+        "contracts/reference/specs/02_enterprise_portal_session_management.md \u00a75\u2013\u00a78"
+      ]
+    },
+    {
+      "path": "/users/v1/apikeys",
+      "cmd": "list",
+      "requestFields": [
+        "cmd"
+      ],
+      "responseFields": [
+        "keys",
+        "message",
+        "success"
+      ],
+      "status": "implemented",
+      "test": {
+        "status": "covered",
+        "evidence": "test/rest.test.js"
+      },
+      "sourceEvidence": [
+        "contracts/reference/specs/03_controllers_wire_protocol_rest.md \u00a72",
+        "contracts/reference/specs/02_enterprise_portal_session_management.md \u00a75\u2013\u00a78"
+      ]
+    },
+    {
+      "path": "/users/v1/apikeys",
+      "cmd": "listAllApiEndpoints",
+      "requestFields": [
+        "cmd"
+      ],
+      "responseFields": [
+        "endpoints",
+        "success"
+      ],
+      "status": "implemented",
+      "test": {
+        "status": "covered",
+        "evidence": "test/rest.test.js"
+      },
+      "sourceEvidence": [
+        "contracts/reference/specs/03_controllers_wire_protocol_rest.md \u00a72",
+        "contracts/reference/specs/02_enterprise_portal_session_management.md \u00a75\u2013\u00a78"
+      ]
+    },
+    {
+      "path": "/users/v1/apikeys",
+      "cmd": "restrictApiEndpoints",
+      "requestFields": [
+        "apiId",
+        "cmd",
+        "endpoints"
+      ],
+      "responseFields": [
+        "forEach"
+      ],
+      "status": "implemented",
+      "test": {
+        "status": "covered",
+        "evidence": "test/rest.test.js"
+      },
+      "sourceEvidence": [
+        "contracts/reference/specs/03_controllers_wire_protocol_rest.md \u00a72",
+        "contracts/reference/specs/02_enterprise_portal_session_management.md \u00a75\u2013\u00a78"
+      ]
+    },
+    {
+      "path": "/users/v1/apikeys",
+      "cmd": "restrictApiSessions",
+      "requestFields": [
+        "apiId",
+        "cmd",
+        "sessions"
+      ],
+      "responseFields": [],
+      "status": "implemented",
+      "test": {
+        "status": "covered",
+        "evidence": "test/rest.test.js"
+      },
+      "sourceEvidence": [
+        "contracts/reference/specs/03_controllers_wire_protocol_rest.md \u00a72",
+        "contracts/reference/specs/02_enterprise_portal_session_management.md \u00a75\u2013\u00a78"
+      ]
+    },
+    {
+      "path": "/users/v1/apikeys",
+      "cmd": "rotate",
+      "requestFields": [
+        "apiId",
+        "cmd"
+      ],
+      "responseFields": [
+        "message",
+        "success"
+      ],
+      "status": "implemented",
+      "test": {
+        "status": "covered",
+        "evidence": "test/rest.test.js; test/stats.test.js"
+      },
+      "sourceEvidence": [
+        "contracts/reference/specs/03_controllers_wire_protocol_rest.md \u00a72",
+        "contracts/reference/specs/02_enterprise_portal_session_management.md \u00a75\u2013\u00a78"
+      ]
+    },
+    {
+      "path": "/users/v1/sessions",
+      "cmd": "addBadge",
+      "requestFields": [
+        "badgeID",
+        "bkcolor",
+        "cmd",
+        "color",
+        "imgURL",
+        "isEdit",
+        "name",
+        "roles",
+        "text"
+      ],
+      "responseFields": [
+        "badges",
+        "success"
+      ],
+      "status": "partial",
+      "test": {
+        "status": "covered",
+        "evidence": "test/rest.test.js"
+      },
+      "limitation": "Badge definitions are shared within an account; original implementation is unavailable for direct comparison.",
+      "sourceEvidence": [
+        "contracts/reference/specs/03_controllers_wire_protocol_rest.md \u00a72",
+        "contracts/reference/specs/02_enterprise_portal_session_management.md \u00a75\u2013\u00a78"
+      ]
+    },
+    {
+      "path": "/users/v1/sessions",
+      "cmd": "addBadgeDarkTheme",
+      "requestFields": [
+        "badgeID",
+        "cmd",
+        "darkTheme"
+      ],
+      "responseFields": [
+        "badges",
+        "success"
+      ],
+      "status": "partial",
+      "test": {
+        "status": "covered",
+        "evidence": "test/rest.test.js"
+      },
+      "limitation": "Badge definitions are shared within an account; original implementation is unavailable for direct comparison.",
+      "sourceEvidence": [
+        "contracts/reference/specs/03_controllers_wire_protocol_rest.md \u00a72",
+        "contracts/reference/specs/02_enterprise_portal_session_management.md \u00a75\u2013\u00a78"
+      ]
+    },
+    {
+      "path": "/users/v1/sessions",
+      "cmd": "addBadgeForUser",
+      "requestFields": [
+        "cmd",
+        "sessionID",
+        "xrefID"
+      ],
+      "responseFields": [],
+      "status": "client_does_not_send",
+      "limitation": "Captured function constructs payload but does not issue HTTP request.",
+      "test": {
+        "status": "not_covered",
+        "evidence": null
+      },
+      "sourceEvidence": [
+        "contracts/reference/specs/03_controllers_wire_protocol_rest.md \u00a72",
+        "contracts/reference/specs/02_enterprise_portal_session_management.md \u00a75\u2013\u00a78"
+      ]
+    },
+    {
+      "path": "/users/v1/sessions",
+      "cmd": "applyRepeaterToAccount",
+      "requestFields": [
+        "cmd",
+        "sessionID"
+      ],
+      "responseFields": [],
+      "status": "provider_unavailable",
+      "limitation": "external media repeater is not configured or implemented.",
+      "test": {
+        "status": "not_covered",
+        "evidence": null
+      },
+      "sourceEvidence": [
+        "contracts/reference/specs/03_controllers_wire_protocol_rest.md \u00a72",
+        "contracts/reference/specs/02_enterprise_portal_session_management.md \u00a75\u2013\u00a78"
+      ]
+    },
+    {
+      "path": "/users/v1/sessions",
+      "cmd": "changeBkgImg",
+      "requestFields": [
+        "cmd",
+        "fpath",
+        "sessionID"
+      ],
+      "responseFields": [],
+      "status": "implemented",
+      "test": {
+        "status": "covered",
+        "evidence": "test/rest.test.js"
+      },
+      "sourceEvidence": [
+        "contracts/reference/specs/03_controllers_wire_protocol_rest.md \u00a72",
+        "contracts/reference/specs/02_enterprise_portal_session_management.md \u00a75\u2013\u00a78"
+      ]
+    },
+    {
+      "path": "/users/v1/sessions",
+      "cmd": "changeBkgImgHREF",
+      "requestFields": [
+        "cmd",
+        "href",
+        "sessionID"
+      ],
+      "responseFields": [],
+      "status": "implemented",
+      "test": {
+        "status": "covered",
+        "evidence": "test/rest.test.js"
+      },
+      "sourceEvidence": [
+        "contracts/reference/specs/03_controllers_wire_protocol_rest.md \u00a72",
+        "contracts/reference/specs/02_enterprise_portal_session_management.md \u00a75\u2013\u00a78"
+      ]
+    },
+    {
+      "path": "/users/v1/sessions",
+      "cmd": "changeCustomURL",
+      "requestFields": [
+        "cmd",
+        "cname",
+        "sessionID"
+      ],
+      "responseFields": [
+        "msg",
+        "success"
+      ],
+      "status": "implemented",
+      "test": {
+        "status": "covered",
+        "evidence": "test/frontend.test.js; test/rest.test.js"
+      },
+      "sourceEvidence": [
+        "contracts/reference/specs/03_controllers_wire_protocol_rest.md \u00a72",
+        "contracts/reference/specs/02_enterprise_portal_session_management.md \u00a75\u2013\u00a78"
+      ]
+    },
+    {
+      "path": "/users/v1/sessions",
+      "cmd": "changeLogo",
+      "requestFields": [
+        "cmd",
+        "fpath",
+        "sessionID"
+      ],
+      "responseFields": [
+        "success"
+      ],
+      "status": "implemented",
+      "test": {
+        "status": "covered",
+        "evidence": "test/rest.test.js"
+      },
+      "sourceEvidence": [
+        "contracts/reference/specs/03_controllers_wire_protocol_rest.md \u00a72",
+        "contracts/reference/specs/02_enterprise_portal_session_management.md \u00a75\u2013\u00a78"
+      ]
+    },
+    {
+      "path": "/users/v1/sessions",
+      "cmd": "clearPresenterSetting",
+      "requestFields": [
+        "cmd",
+        "sessionID",
+        "token",
+        "key"
+      ],
+      "responseFields": [
+        "success",
+        "presenterSettings"
+      ],
+      "status": "implemented",
+      "test": {
+        "status": "covered",
+        "evidence": "test/rest.test.js"
+      },
+      "sourceEvidence": [
+        "contracts/reference/specs/03_controllers_wire_protocol_rest.md \u00a72",
+        "contracts/reference/specs/02_enterprise_portal_session_management.md \u00a75\u2013\u00a78"
+      ]
+    },
+    {
+      "path": "/users/v1/sessions",
+      "cmd": "clearTokensForUsers",
+      "requestFields": [
+        "cmd",
+        "sessionID"
+      ],
+      "responseFields": [
+        "xrefs"
+      ],
+      "status": "implemented",
+      "test": {
+        "status": "covered",
+        "evidence": "test/rest.test.js"
+      },
+      "sourceEvidence": [
+        "contracts/reference/specs/03_controllers_wire_protocol_rest.md \u00a72",
+        "contracts/reference/specs/02_enterprise_portal_session_management.md \u00a75\u2013\u00a78"
+      ]
+    },
+    {
+      "path": "/users/v1/sessions",
+      "cmd": "clearUserList",
+      "requestFields": [
+        "cmd",
+        "sessionID"
+      ],
+      "responseFields": [
+        "xrefs"
+      ],
+      "status": "implemented",
+      "test": {
+        "status": "covered",
+        "evidence": "test/rest.test.js"
+      },
+      "sourceEvidence": [
+        "contracts/reference/specs/03_controllers_wire_protocol_rest.md \u00a72",
+        "contracts/reference/specs/02_enterprise_portal_session_management.md \u00a75\u2013\u00a78"
+      ]
+    },
+    {
+      "path": "/users/v1/sessions",
+      "cmd": "clearUserListFT",
+      "requestFields": [
+        "cmd",
+        "sessionID"
+      ],
+      "responseFields": [
+        "xrefs"
+      ],
+      "status": "implemented",
+      "test": {
+        "status": "covered",
+        "evidence": "test/rest.test.js"
+      },
+      "sourceEvidence": [
+        "contracts/reference/specs/03_controllers_wire_protocol_rest.md \u00a72",
+        "contracts/reference/specs/02_enterprise_portal_session_management.md \u00a75\u2013\u00a78"
+      ]
+    },
+    {
+      "path": "/users/v1/sessions",
+      "cmd": "cloneSession",
+      "requestFields": [
+        "cmd",
+        "name",
+        "sessionID"
+      ],
+      "responseFields": [],
+      "status": "implemented",
+      "test": {
+        "status": "covered",
+        "evidence": "test/rest.test.js; test/stats.test.js"
+      },
+      "sourceEvidence": [
+        "contracts/reference/specs/03_controllers_wire_protocol_rest.md \u00a72",
+        "contracts/reference/specs/02_enterprise_portal_session_management.md \u00a75\u2013\u00a78"
+      ]
+    },
+    {
+      "path": "/users/v1/sessions",
+      "cmd": "deleteBadge",
+      "requestFields": [
+        "badgeID",
+        "cmd"
+      ],
+      "responseFields": [
+        "badges",
+        "success"
+      ],
+      "status": "partial",
+      "test": {
+        "status": "covered",
+        "evidence": "test/rest.test.js"
+      },
+      "limitation": "Badge definitions are shared within an account; original implementation is unavailable for direct comparison.",
+      "sourceEvidence": [
+        "contracts/reference/specs/03_controllers_wire_protocol_rest.md \u00a72",
+        "contracts/reference/specs/02_enterprise_portal_session_management.md \u00a75\u2013\u00a78"
+      ]
+    },
+    {
+      "path": "/users/v1/sessions",
+      "cmd": "deleteFile",
+      "requestFields": [
+        "cmd",
+        "fileID"
+      ],
+      "responseFields": [],
+      "status": "implemented",
+      "test": {
+        "status": "covered",
+        "evidence": "test/rest.test.js"
+      },
+      "sourceEvidence": [
+        "contracts/reference/specs/03_controllers_wire_protocol_rest.md \u00a72",
+        "contracts/reference/specs/02_enterprise_portal_session_management.md \u00a75\u2013\u00a78"
+      ]
+    },
+    {
+      "path": "/users/v1/sessions",
+      "cmd": "deleteSession",
+      "requestFields": [
+        "cmd",
+        "sessionID"
+      ],
+      "responseFields": [],
+      "status": "implemented",
+      "test": {
+        "status": "covered",
+        "evidence": "test/room-deletion.test.js"
+      },
+      "sourceEvidence": [
+        "contracts/reference/specs/03_controllers_wire_protocol_rest.md \u00a72",
+        "contracts/reference/specs/02_enterprise_portal_session_management.md \u00a75\u2013\u00a78"
+      ]
+    },
+    {
+      "path": "/users/v1/sessions",
+      "cmd": "editUsername",
+      "requestFields": [
+        "cmd",
+        "newUsername",
+        "sessionID",
+        "xrefID"
+      ],
+      "responseFields": [
+        "success"
+      ],
+      "status": "implemented",
+      "test": {
+        "status": "covered",
+        "evidence": "test/rest.test.js"
+      },
+      "sourceEvidence": [
+        "contracts/reference/specs/03_controllers_wire_protocol_rest.md \u00a72",
+        "contracts/reference/specs/02_enterprise_portal_session_management.md \u00a75\u2013\u00a78"
+      ]
+    },
+    {
+      "path": "/users/v1/sessions",
+      "cmd": "emailReminders",
+      "requestFields": [
+        "cmd",
+        "sessionID",
+        "webinarDate"
+      ],
+      "responseFields": [],
+      "status": "implemented",
+      "test": {
+        "status": "covered",
+        "evidence": "test/mailpit.integration.test.js (local Mailpit)"
+      },
+      "sourceEvidence": [
+        "contracts/reference/specs/03_controllers_wire_protocol_rest.md \u00a72",
+        "contracts/reference/specs/02_enterprise_portal_session_management.md \u00a75\u2013\u00a78"
+      ],
+      "provider": "SMTP delivery"
+    },
+    {
+      "path": "/users/v1/sessions",
+      "cmd": "getAppPin",
+      "requestFields": [
+        "cmd",
+        "email"
+      ],
+      "responseFields": [
+        "message",
+        "pin",
+        "success"
+      ],
+      "status": "partial",
+      "limitation": "Reads existing stored PIN; PIN enrollment requires mobile provider.",
+      "test": {
+        "status": "covered",
+        "evidence": "test/rest.test.js"
+      },
+      "sourceEvidence": [
+        "contracts/reference/specs/03_controllers_wire_protocol_rest.md \u00a72",
+        "contracts/reference/specs/02_enterprise_portal_session_management.md \u00a75\u2013\u00a78"
+      ]
+    },
+    {
+      "path": "/users/v1/sessions",
+      "cmd": "getFCMTokens",
+      "requestFields": [
+        "cmd",
+        "sessionID",
+        "xrefID"
+      ],
+      "responseFields": [
+        "fcmTokens",
+        "msg",
+        "success"
+      ],
+      "status": "partial",
+      "limitation": "Returns locally stored tokens; push provider registration is not implemented.",
+      "test": {
+        "status": "covered",
+        "evidence": "test/rest.test.js"
+      },
+      "sourceEvidence": [
+        "contracts/reference/specs/03_controllers_wire_protocol_rest.md \u00a72",
+        "contracts/reference/specs/02_enterprise_portal_session_management.md \u00a75\u2013\u00a78"
+      ]
+    },
+    {
+      "path": "/users/v1/sessions",
+      "cmd": "getSessionFiles",
+      "requestFields": [
+        "cmd",
+        "sessionID",
+        "uploadType"
+      ],
+      "responseFields": [],
+      "status": "implemented",
+      "test": {
+        "status": "covered",
+        "evidence": "test/rest.test.js"
+      },
+      "sourceEvidence": [
+        "contracts/reference/specs/03_controllers_wire_protocol_rest.md \u00a72",
+        "contracts/reference/specs/02_enterprise_portal_session_management.md \u00a75\u2013\u00a78"
+      ]
+    },
+    {
+      "path": "/users/v1/sessions",
+      "cmd": "getUserFiles",
+      "requestFields": [
+        "cmd",
+        "sessionID",
+        "uploadType"
+      ],
+      "responseFields": [],
+      "status": "implemented",
+      "test": {
+        "status": "covered",
+        "evidence": "test/rest.test.js"
+      },
+      "sourceEvidence": [
+        "contracts/reference/specs/03_controllers_wire_protocol_rest.md \u00a72",
+        "contracts/reference/specs/02_enterprise_portal_session_management.md \u00a75\u2013\u00a78"
+      ]
+    },
+    {
+      "path": "/users/v1/sessions",
+      "cmd": "inviteBatchUsers",
+      "requestFields": [
+        "batchEmailsList",
+        "cmd",
+        "emailHost",
+        "inviteHost",
+        "roomID",
+        "sessionID"
+      ],
+      "responseFields": [
+        "success"
+      ],
+      "status": "implemented",
+      "test": {
+        "status": "covered",
+        "evidence": "test/mailpit.integration.test.js (local Mailpit)"
+      },
+      "sourceEvidence": [
+        "contracts/reference/specs/03_controllers_wire_protocol_rest.md \u00a72",
+        "contracts/reference/specs/02_enterprise_portal_session_management.md \u00a75\u2013\u00a78"
+      ],
+      "provider": "SMTP delivery"
+    },
+    {
+      "path": "/users/v1/sessions",
+      "cmd": "inviteUsers",
+      "requestFields": [
+        "cmd",
+        "emailHost",
+        "inviteHost",
+        "persons",
+        "roomID",
+        "sessionID",
+        "tokType"
+      ],
+      "responseFields": [
+        "success"
+      ],
+      "status": "implemented",
+      "test": {
+        "status": "covered",
+        "evidence": "test/rest.test.js; test/mailpit.integration.test.js"
+      },
+      "sourceEvidence": [
+        "contracts/reference/specs/03_controllers_wire_protocol_rest.md \u00a72",
+        "contracts/reference/specs/02_enterprise_portal_session_management.md \u00a75\u2013\u00a78"
+      ],
+      "provider": "SMTP delivery; local Mailpit tested, external opt-in only"
+    },
+    {
+      "path": "/users/v1/sessions",
+      "cmd": "list",
+      "requestFields": [
+        "cmd"
+      ],
+      "responseFields": [],
+      "status": "implemented",
+      "test": {
+        "status": "covered",
+        "evidence": "test/rest.test.js"
+      },
+      "sourceEvidence": [
+        "contracts/reference/specs/03_controllers_wire_protocol_rest.md \u00a72",
+        "contracts/reference/specs/02_enterprise_portal_session_management.md \u00a75\u2013\u00a78"
+      ]
+    },
+    {
+      "path": "/users/v1/sessions",
+      "cmd": "listBadges",
+      "requestFields": [
+        "bkcolor",
+        "cmd",
+        "color",
+        "name",
+        "text"
+      ],
+      "responseFields": [
+        "badges",
+        "keys",
+        "success"
+      ],
+      "status": "partial",
+      "test": {
+        "status": "not_covered",
+        "evidence": null
+      },
+      "limitation": "Badge definitions are shared within an account; original implementation is unavailable for direct comparison.",
+      "sourceEvidence": [
+        "contracts/reference/specs/03_controllers_wire_protocol_rest.md \u00a72",
+        "contracts/reference/specs/02_enterprise_portal_session_management.md \u00a75\u2013\u00a78"
+      ]
+    },
+    {
+      "path": "/users/v1/sessions",
+      "cmd": "loadTextList",
+      "requestFields": [
+        "cmd",
+        "sessionID"
+      ],
+      "responseFields": [],
+      "status": "implemented",
+      "test": {
+        "status": "covered",
+        "evidence": "test/rest.test.js"
+      },
+      "sourceEvidence": [
+        "contracts/reference/specs/03_controllers_wire_protocol_rest.md \u00a72",
+        "contracts/reference/specs/02_enterprise_portal_session_management.md \u00a75\u2013\u00a78"
+      ]
+    },
+    {
+      "path": "/users/v1/sessions",
+      "cmd": "manageFileAccess",
+      "requestFields": [
+        "appcmd",
+        "cmd",
+        "sessionID",
+        "xrefID"
+      ],
+      "responseFields": [
+        "msg",
+        "success"
+      ],
+      "status": "implemented",
+      "test": {
+        "status": "covered",
+        "evidence": "test/rest.test.js"
+      },
+      "sourceEvidence": [
+        "contracts/reference/specs/03_controllers_wire_protocol_rest.md \u00a72",
+        "contracts/reference/specs/02_enterprise_portal_session_management.md \u00a75\u2013\u00a78"
+      ]
+    },
+    {
+      "path": "/users/v1/sessions",
+      "cmd": "manageMobileApp",
+      "requestFields": [
+        "appcmd",
+        "cmd",
+        "sessionID",
+        "xrefID"
+      ],
+      "responseFields": [
+        "msg",
+        "success"
+      ],
+      "status": "partial",
+      "limitation": "Per-user access flag is persisted and enforced for notifications; native app pairing/enrollment behavior is not captured.",
+      "test": {
+        "status": "covered",
+        "evidence": "test/rest.test.js"
+      },
+      "sourceEvidence": [
+        "contracts/reference/specs/03_controllers_wire_protocol_rest.md \u00a72",
+        "contracts/reference/specs/02_enterprise_portal_session_management.md \u00a75\u2013\u00a78"
+      ]
+    },
+    {
+      "path": "/users/v1/sessions",
+      "cmd": "removeBadgeForUser",
+      "requestFields": [
+        "cmd",
+        "sessionID",
+        "xrefID"
+      ],
+      "responseFields": [],
+      "status": "client_does_not_send",
+      "limitation": "Captured function constructs payload but does not issue HTTP request.",
+      "test": {
+        "status": "not_covered",
+        "evidence": null
+      },
+      "sourceEvidence": [
+        "contracts/reference/specs/03_controllers_wire_protocol_rest.md \u00a72",
+        "contracts/reference/specs/02_enterprise_portal_session_management.md \u00a75\u2013\u00a78"
+      ]
+    },
+    {
+      "path": "/users/v1/sessions",
+      "cmd": "removeUserXref",
+      "requestFields": [
+        "cmd",
+        "sessionID",
+        "xrefID"
+      ],
+      "responseFields": [
+        "success"
+      ],
+      "status": "implemented",
+      "test": {
+        "status": "covered",
+        "evidence": "test/rest.test.js"
+      },
+      "sourceEvidence": [
+        "contracts/reference/specs/03_controllers_wire_protocol_rest.md \u00a72",
+        "contracts/reference/specs/02_enterprise_portal_session_management.md \u00a75\u2013\u00a78"
+      ]
+    },
+    {
+      "path": "/users/v1/sessions",
+      "cmd": "resetBkgImgHREF",
+      "requestFields": [
+        "cmd",
+        "href",
+        "sessionID"
+      ],
+      "responseFields": [],
+      "status": "implemented",
+      "test": {
+        "status": "covered",
+        "evidence": "test/rest.test.js"
+      },
+      "sourceEvidence": [
+        "contracts/reference/specs/03_controllers_wire_protocol_rest.md \u00a72",
+        "contracts/reference/specs/02_enterprise_portal_session_management.md \u00a75\u2013\u00a78"
+      ]
+    },
+    {
+      "path": "/users/v1/sessions",
+      "cmd": "resetFCMTokens",
+      "requestFields": [
+        "cmd",
+        "sessionID",
+        "xrefID"
+      ],
+      "responseFields": [
+        "msg",
+        "success"
+      ],
+      "status": "partial",
+      "limitation": "Clears locally stored tokens; push provider revocation is not implemented.",
+      "test": {
+        "status": "covered",
+        "evidence": "test/rest.test.js"
+      },
+      "sourceEvidence": [
+        "contracts/reference/specs/03_controllers_wire_protocol_rest.md \u00a72",
+        "contracts/reference/specs/02_enterprise_portal_session_management.md \u00a75\u2013\u00a78"
+      ]
+    },
+    {
+      "path": "/users/v1/sessions",
+      "cmd": "resetMaxCounts",
+      "requestFields": [
+        "cmd",
+        "sessionID"
+      ],
+      "responseFields": [],
+      "status": "implemented",
+      "test": {
+        "status": "covered",
+        "evidence": "test/rest.test.js"
+      },
+      "sourceEvidence": [
+        "contracts/reference/specs/03_controllers_wire_protocol_rest.md \u00a72",
+        "contracts/reference/specs/02_enterprise_portal_session_management.md \u00a75\u2013\u00a78"
+      ]
+    },
+    {
+      "path": "/users/v1/sessions",
+      "cmd": "resetMediaServerSSH",
+      "requestFields": [
+        "cmd",
+        "sessionID"
+      ],
+      "responseFields": [],
+      "status": "partial",
+      "limitation": "Restarts only the authorized room\u2019s local Janus media resources, reloads its connected clients, and refuses active recordings. It does not restart a remote host over SSH or implement the captured external cluster administration; the mediaServer parameter does not select a remote host.",
+      "test": {
+        "status": "partially_covered",
+        "evidence": "test/realtime.test.js (room restart helper); original host-level SSH behavior is not reproduced"
+      },
+      "sourceEvidence": [
+        "contracts/reference/specs/03_controllers_wire_protocol_rest.md \u00a72",
+        "contracts/reference/specs/02_enterprise_portal_session_management.md \u00a75\u2013\u00a78"
+      ]
+    },
+    {
+      "path": "/users/v1/sessions",
+      "cmd": "resetSingleMediaServerSSH",
+      "requestFields": [
+        "cmd",
+        "sessionID",
+        "token",
+        "mediaServer"
+      ],
+      "responseFields": [
+        "success",
+        "message"
+      ],
+      "status": "partial",
+      "limitation": "Restarts only the authorized room\u2019s local Janus media resources, reloads its connected clients, and refuses active recordings. It does not restart a remote host over SSH or implement the captured external cluster administration; the mediaServer parameter does not select a remote host.",
+      "test": {
+        "status": "partially_covered",
+        "evidence": "test/realtime.test.js (room restart helper); original host-level SSH behavior is not reproduced"
+      },
+      "sourceEvidence": [
+        "contracts/reference/specs/03_controllers_wire_protocol_rest.md \u00a72",
+        "contracts/reference/specs/02_enterprise_portal_session_management.md \u00a75\u2013\u00a78"
+      ]
+    },
+    {
+      "path": "/users/v1/sessions",
+      "cmd": "saveSessField",
+      "requestFields": [
+        "cmd",
+        "fieldName",
+        "fieldVal",
+        "sessionID"
+      ],
+      "responseFields": [],
+      "status": "implemented",
+      "test": {
+        "status": "covered",
+        "evidence": "test/rest.test.js"
+      },
+      "sourceEvidence": [
+        "contracts/reference/specs/03_controllers_wire_protocol_rest.md \u00a72",
+        "contracts/reference/specs/02_enterprise_portal_session_management.md \u00a75\u2013\u00a78"
+      ]
+    },
+    {
+      "path": "/users/v1/sessions",
+      "cmd": "saveTextList",
+      "requestFields": [
+        "cmd",
+        "sessionID",
+        "textList"
+      ],
+      "responseFields": [],
+      "status": "implemented",
+      "test": {
+        "status": "covered",
+        "evidence": "test/rest.test.js"
+      },
+      "sourceEvidence": [
+        "contracts/reference/specs/03_controllers_wire_protocol_rest.md \u00a72",
+        "contracts/reference/specs/02_enterprise_portal_session_management.md \u00a75\u2013\u00a78"
+      ]
+    },
+    {
+      "path": "/users/v1/sessions",
+      "cmd": "sendTestAlert",
+      "requestFields": [
+        "cmd",
+        "msg",
+        "name",
+        "sessionID",
+        "xrefID"
+      ],
+      "responseFields": [
+        "success"
+      ],
+      "status": "partial",
+      "limitation": "FCM adapter implemented with explicit opt-in; live provider delivery not tested.",
+      "test": {
+        "status": "covered",
+        "evidence": "test/notifications-rest.test.js (mock provider)"
+      },
+      "sourceEvidence": [
+        "contracts/reference/specs/03_controllers_wire_protocol_rest.md \u00a72",
+        "contracts/reference/specs/02_enterprise_portal_session_management.md \u00a75\u2013\u00a78"
+      ],
+      "provider": "FCM HTTP v1; credentials and FCM_ENABLED=true required"
+    },
+    {
+      "path": "/users/v1/sessions",
+      "cmd": "sendTestFCM",
+      "requestFields": [
+        "cmd",
+        "msg",
+        "sessionID",
+        "xrefID"
+      ],
+      "responseFields": [
+        "msg",
+        "success"
+      ],
+      "status": "partial",
+      "limitation": "FCM adapter implemented with explicit opt-in; live provider delivery not tested.",
+      "test": {
+        "status": "covered",
+        "evidence": "test/notifications-rest.test.js (mock provider)"
+      },
+      "sourceEvidence": [
+        "contracts/reference/specs/03_controllers_wire_protocol_rest.md \u00a72",
+        "contracts/reference/specs/02_enterprise_portal_session_management.md \u00a75\u2013\u00a78"
+      ],
+      "provider": "FCM HTTP v1; credentials and FCM_ENABLED=true required"
+    },
+    {
+      "path": "/users/v1/sessions",
+      "cmd": "sessionDetails",
+      "requestFields": [
+        "cmd",
+        "sessionID"
+      ],
+      "responseFields": [
+        "session"
+      ],
+      "status": "implemented",
+      "test": {
+        "status": "covered",
+        "evidence": "test/rest.test.js"
+      },
+      "sourceEvidence": [
+        "contracts/reference/specs/03_controllers_wire_protocol_rest.md \u00a72",
+        "contracts/reference/specs/02_enterprise_portal_session_management.md \u00a75\u2013\u00a78"
+      ]
+    },
+    {
+      "path": "/users/v1/sessions",
+      "cmd": "sessionDetailsShort",
+      "requestFields": [
+        "cmd",
+        "sessionID",
+        "uuid"
+      ],
+      "responseFields": [
+        "session"
+      ],
+      "status": "implemented",
+      "test": {
+        "status": "covered",
+        "evidence": "test/rest.test.js"
+      },
+      "sourceEvidence": [
+        "contracts/reference/specs/03_controllers_wire_protocol_rest.md \u00a72",
+        "contracts/reference/specs/02_enterprise_portal_session_management.md \u00a75\u2013\u00a78"
+      ]
+    },
+    {
+      "path": "/users/v1/sessions",
+      "cmd": "sessionPubData",
+      "requestFields": [
+        "cmd",
+        "sessionID"
+      ],
+      "responseFields": [
+        "allowPWLoginWithSSO",
+        "authMode",
+        "customEnterDisclosure"
+      ],
+      "status": "implemented",
+      "test": {
+        "status": "covered",
+        "evidence": "test/rest.test.js"
+      },
+      "sourceEvidence": [
+        "contracts/reference/specs/03_controllers_wire_protocol_rest.md \u00a72",
+        "contracts/reference/specs/02_enterprise_portal_session_management.md \u00a75\u2013\u00a78"
+      ]
+    },
+    {
+      "path": "/users/v1/sessions",
+      "cmd": "sessionPubFiles",
+      "requestFields": [
+        "cmd",
+        "sessionID",
+        "uploadType"
+      ],
+      "responseFields": [],
+      "status": "implemented",
+      "test": {
+        "status": "covered",
+        "evidence": "test/rest.test.js"
+      },
+      "sourceEvidence": [
+        "contracts/reference/specs/03_controllers_wire_protocol_rest.md \u00a72",
+        "contracts/reference/specs/02_enterprise_portal_session_management.md \u00a75\u2013\u00a78"
+      ]
+    },
+    {
+      "path": "/users/v1/sessions",
+      "cmd": "setPresenterSetting",
+      "requestFields": [
+        "cmd",
+        "sessionID",
+        "token",
+        "key",
+        "val"
+      ],
+      "responseFields": [
+        "success",
+        "presenterSettings"
+      ],
+      "status": "implemented",
+      "test": {
+        "status": "covered",
+        "evidence": "test/rest.test.js"
+      },
+      "sourceEvidence": [
+        "contracts/reference/specs/03_controllers_wire_protocol_rest.md \u00a72",
+        "contracts/reference/specs/02_enterprise_portal_session_management.md \u00a75\u2013\u00a78"
+      ]
+    },
+    {
+      "path": "/users/v1/sessions",
+      "cmd": "showFreeTrials",
+      "requestFields": [
+        "cmd",
+        "sessionID"
+      ],
+      "responseFields": [
+        "xrefs"
+      ],
+      "status": "implemented",
+      "test": {
+        "status": "covered",
+        "evidence": "test/rest.test.js"
+      },
+      "sourceEvidence": [
+        "contracts/reference/specs/03_controllers_wire_protocol_rest.md \u00a72",
+        "contracts/reference/specs/02_enterprise_portal_session_management.md \u00a75\u2013\u00a78"
+      ]
+    },
+    {
+      "path": "/users/v1/sessions",
+      "cmd": "statsForSession",
+      "requestFields": [
+        "cmd",
+        "d1",
+        "d2",
+        "filterFT",
+        "sessionID",
+        "showMobileStat",
+        "userSearch"
+      ],
+      "responseFields": [
+        "forEach",
+        "length",
+        "sort"
+      ],
+      "status": "partial",
+      "limitation": "Recorded socket visits include duration, mobile status, server-observed remote address and bounded raw User-Agent. The address can be a reverse proxy address; older REST-only visits may not contain these fields. Original aggregation details are not independently verified.",
+      "test": {
+        "status": "partially_covered",
+        "evidence": "test/rest.test.js; test/stats.test.js (shared attendance serialization including IP and browser)"
+      },
+      "sourceEvidence": [
+        "contracts/reference/specs/03_controllers_wire_protocol_rest.md \u00a72",
+        "contracts/reference/specs/02_enterprise_portal_session_management.md \u00a75\u2013\u00a78"
+      ]
+    },
+    {
+      "path": "/users/v1/sessions",
+      "cmd": "statsForSessionMontly",
+      "requestFields": [
+        "cmd",
+        "endMonth",
+        "endYear",
+        "sessionID",
+        "startMonth",
+        "startYear"
+      ],
+      "responseFields": [],
+      "status": "partial",
+      "limitation": "Uses actual locally recorded visits; original backend aggregation details are not independently verified.",
+      "test": {
+        "status": "covered",
+        "evidence": "test/rest.test.js"
+      },
+      "sourceEvidence": [
+        "contracts/reference/specs/03_controllers_wire_protocol_rest.md \u00a72",
+        "contracts/reference/specs/02_enterprise_portal_session_management.md \u00a75\u2013\u00a78"
+      ]
+    },
+    {
+      "path": "/users/v1/sessions",
+      "cmd": "uniqueLinkLogin",
+      "requestFields": [
+        "cmd",
+        "sessionID"
+      ],
+      "responseFields": [
+        "msg",
+        "success",
+        "uniqueLinkLogin"
+      ],
+      "status": "implemented",
+      "test": {
+        "status": "covered",
+        "evidence": "test/frontend.test.js; test/rest.test.js"
+      },
+      "sourceEvidence": [
+        "contracts/reference/specs/03_controllers_wire_protocol_rest.md \u00a72",
+        "contracts/reference/specs/02_enterprise_portal_session_management.md \u00a75\u2013\u00a78"
+      ]
+    },
+    {
+      "path": "/users/v1/sessions",
+      "cmd": "updateClusterID",
+      "requestFields": [
+        "cmd",
+        "sessionID"
+      ],
+      "responseFields": [],
+      "status": "provider_unavailable",
+      "limitation": "external media cluster is not configured or implemented.",
+      "test": {
+        "status": "not_covered",
+        "evidence": null
+      },
+      "sourceEvidence": [
+        "contracts/reference/specs/03_controllers_wire_protocol_rest.md \u00a72",
+        "contracts/reference/specs/02_enterprise_portal_session_management.md \u00a75\u2013\u00a78"
+      ]
+    },
+    {
+      "path": "/users/v1/sessions",
+      "cmd": "updateUserFCMTok",
+      "requestFields": [
+        "cmd",
+        "sessionID",
+        "tokcmd",
+        "xrefID"
+      ],
+      "responseFields": [
+        "msg",
+        "success"
+      ],
+      "status": "implemented",
+      "test": {
+        "status": "covered",
+        "evidence": "test/rest.test.js"
+      },
+      "sourceEvidence": [
+        "contracts/reference/specs/03_controllers_wire_protocol_rest.md \u00a72",
+        "contracts/reference/specs/02_enterprise_portal_session_management.md \u00a75\u2013\u00a78"
+      ],
+      "provider": "Stored token state; live mobile client registration not captured."
+    },
+    {
+      "path": "/users/v1/sessions",
+      "cmd": "updateUserXref",
+      "requestFields": [
+        "allRooms",
+        "canEditNotes",
+        "cmd",
+        "emailOut",
+        "hasAdminChat",
+        "hasCam",
+        "hasMic",
+        "hasScreen",
+        "inviteStatus",
+        "isPMUpdate",
+        "newBadges",
+        "newPW",
+        "newRole",
+        "note",
+        "permsChange",
+        "restrictPM",
+        "sessionID",
+        "xrefID"
+      ],
+      "responseFields": [
+        "success"
+      ],
+      "status": "implemented",
+      "test": {
+        "status": "covered",
+        "evidence": "test/rest.test.js"
+      },
+      "sourceEvidence": [
+        "contracts/reference/specs/03_controllers_wire_protocol_rest.md \u00a72",
+        "contracts/reference/specs/02_enterprise_portal_session_management.md \u00a75\u2013\u00a78"
+      ]
+    },
+    {
+      "path": "/users/v1/sessions",
+      "cmd": "updateUserXrefMulty",
+      "requestFields": [
+        "applyToAllRooms",
+        "cmd",
+        "emailList",
+        "newRole",
+        "sessionID",
+        "xrefIDs"
+      ],
+      "responseFields": [
+        "success"
+      ],
+      "status": "implemented",
+      "test": {
+        "status": "covered",
+        "evidence": "test/rest.test.js"
+      },
+      "sourceEvidence": [
+        "contracts/reference/specs/03_controllers_wire_protocol_rest.md \u00a72",
+        "contracts/reference/specs/02_enterprise_portal_session_management.md \u00a75\u2013\u00a78"
+      ]
+    },
+    {
+      "path": "/users/v1/sessions",
+      "cmd": "updateUserXrefMultyBadge",
+      "requestFields": [
+        "applyToAllRooms",
+        "badge",
+        "badgeCmd",
+        "cmd",
+        "emailList",
+        "sessionID",
+        "xrefIDs"
+      ],
+      "responseFields": [
+        "success"
+      ],
+      "status": "implemented",
+      "test": {
+        "status": "covered",
+        "evidence": "test/rest.test.js"
+      },
+      "sourceEvidence": [
+        "contracts/reference/specs/03_controllers_wire_protocol_rest.md \u00a72",
+        "contracts/reference/specs/02_enterprise_portal_session_management.md \u00a75\u2013\u00a78"
+      ]
+    },
+    {
+      "path": "/users/v1/sessions",
+      "cmd": "updateUserXrefMultyEmailList",
+      "requestFields": [
+        "applyToAllRooms",
+        "cmd",
+        "emailList",
+        "newRole",
+        "sessionID"
+      ],
+      "responseFields": [
+        "success"
+      ],
+      "status": "implemented",
+      "test": {
+        "status": "covered",
+        "evidence": "test/rest.test.js"
+      },
+      "sourceEvidence": [
+        "contracts/reference/specs/03_controllers_wire_protocol_rest.md \u00a72",
+        "contracts/reference/specs/02_enterprise_portal_session_management.md \u00a75\u2013\u00a78"
+      ]
+    },
+    {
+      "path": "/users/v1/sessions",
+      "cmd": "userList",
+      "requestFields": [
+        "cmd",
+        "searchTerm",
+        "sessionID"
+      ],
+      "responseFields": [
+        "xrefs"
+      ],
+      "status": "implemented",
+      "test": {
+        "status": "covered",
+        "evidence": "test/rest.test.js"
+      },
+      "sourceEvidence": [
+        "contracts/reference/specs/03_controllers_wire_protocol_rest.md \u00a72",
+        "contracts/reference/specs/02_enterprise_portal_session_management.md \u00a75\u2013\u00a78"
+      ]
+    },
+    {
+      "path": "/users/v1/sessions",
+      "cmd": "userListBanned",
+      "requestFields": [
+        "cmd",
+        "searchTerm",
+        "sessionID"
+      ],
+      "responseFields": [
+        "xrefs"
+      ],
+      "status": "implemented",
+      "test": {
+        "status": "covered",
+        "evidence": "test/rest.test.js"
+      },
+      "sourceEvidence": [
+        "contracts/reference/specs/03_controllers_wire_protocol_rest.md \u00a72",
+        "contracts/reference/specs/02_enterprise_portal_session_management.md \u00a75\u2013\u00a78"
+      ]
+    },
+    {
+      "path": "/users/v1/sessions",
+      "cmd": "userListMarketplace",
+      "requestFields": [
+        "cmd",
+        "searchTerm",
+        "sessionID"
+      ],
+      "responseFields": [
+        "xrefs"
+      ],
+      "status": "implemented",
+      "test": {
+        "status": "covered",
+        "evidence": "test/rest.test.js"
+      },
+      "sourceEvidence": [
+        "contracts/reference/specs/03_controllers_wire_protocol_rest.md \u00a72",
+        "contracts/reference/specs/02_enterprise_portal_session_management.md \u00a75\u2013\u00a78"
+      ]
+    },
+    {
+      "path": "/users/v1/sessions",
+      "cmd": "userListMuted",
+      "requestFields": [
+        "cmd",
+        "searchTerm",
+        "sessionID"
+      ],
+      "responseFields": [
+        "xrefs"
+      ],
+      "status": "implemented",
+      "test": {
+        "status": "covered",
+        "evidence": "test/rest.test.js"
+      },
+      "sourceEvidence": [
+        "contracts/reference/specs/03_controllers_wire_protocol_rest.md \u00a72",
+        "contracts/reference/specs/02_enterprise_portal_session_management.md \u00a75\u2013\u00a78"
+      ]
+    },
+    {
+      "path": "/users/v1/sessions",
+      "cmd": "userListPresenters",
+      "requestFields": [
+        "cmd",
+        "searchTerm",
+        "sessionID"
+      ],
+      "responseFields": [
+        "xrefs"
+      ],
+      "status": "implemented",
+      "test": {
+        "status": "covered",
+        "evidence": "test/rest.test.js"
+      },
+      "sourceEvidence": [
+        "contracts/reference/specs/03_controllers_wire_protocol_rest.md \u00a72",
+        "contracts/reference/specs/02_enterprise_portal_session_management.md \u00a75\u2013\u00a78"
+      ]
+    },
+    {
+      "path": "/users/v1/users.json",
+      "cmd": "getAttachments",
+      "requestFields": [
+        "cmd",
+        "roomID"
+      ],
+      "responseFields": [],
+      "status": "implemented",
+      "test": {
+        "status": "covered",
+        "evidence": "test/rest.test.js"
+      },
+      "sourceEvidence": [
+        "contracts/reference/specs/03_controllers_wire_protocol_rest.md \u00a72",
+        "contracts/reference/specs/02_enterprise_portal_session_management.md \u00a75\u2013\u00a78"
+      ]
+    },
+    {
+      "path": "/users/v1/users.json",
+      "cmd": "inviteParticipants",
+      "requestFields": [
+        "cmd",
+        "participants",
+        "roomID"
+      ],
+      "responseFields": [
+        "msg",
+        "success"
+      ],
+      "status": "implemented",
+      "test": {
+        "status": "not_covered",
+        "evidence": null
+      },
+      "sourceEvidence": [
+        "contracts/reference/specs/03_controllers_wire_protocol_rest.md \u00a72",
+        "contracts/reference/specs/02_enterprise_portal_session_management.md \u00a75\u2013\u00a78"
+      ]
+    },
+    {
+      "path": "/users/v1/users.json",
+      "cmd": "loginChat",
+      "requestFields": [
+        "cmd",
+        "email",
+        "pin",
+        "pw",
+        "roomID",
+        "siteToken",
+        "tagline",
+        "token"
+      ],
+      "responseFields": [
+        "uuid"
+      ],
+      "status": "implemented",
+      "test": {
+        "status": "covered",
+        "evidence": "test/sso.test.js; test/rest.test.js"
+      },
+      "sourceEvidence": [
+        "contracts/reference/specs/03_controllers_wire_protocol_rest.md \u00a72",
+        "contracts/reference/specs/02_enterprise_portal_session_management.md \u00a75\u2013\u00a78"
+      ]
+    },
+    {
+      "path": "/users/v1/users.json",
+      "cmd": "logout",
+      "requestFields": [
+        "cmd",
+        "email",
+        "token"
+      ],
+      "responseFields": [],
+      "status": "implemented",
+      "test": {
+        "status": "covered",
+        "evidence": "test/rest.test.js"
+      },
+      "sourceEvidence": [
+        "contracts/reference/specs/03_controllers_wire_protocol_rest.md \u00a72",
+        "contracts/reference/specs/02_enterprise_portal_session_management.md \u00a75\u2013\u00a78"
+      ]
+    },
+    {
+      "path": "/users/v1/users.json",
+      "cmd": "newSession",
+      "requestFields": [
+        "cmd",
+        "demoRoom",
+        "email",
+        "token"
+      ],
+      "responseFields": [
+        "_id",
+        "uuid"
+      ],
+      "status": "implemented",
+      "test": {
+        "status": "covered",
+        "evidence": "test/rest.test.js"
+      },
+      "sourceEvidence": [
+        "contracts/reference/specs/03_controllers_wire_protocol_rest.md \u00a72",
+        "contracts/reference/specs/02_enterprise_portal_session_management.md \u00a75\u2013\u00a78"
+      ]
+    },
+    {
+      "path": "/users/v1/users.json",
+      "cmd": "registerByEmail",
+      "requestFields": [
+        "cmd",
+        "email",
+        "name",
+        "recaptcha",
+        "roomID"
+      ],
+      "responseFields": [
+        "message",
+        "success"
+      ],
+      "status": "implemented",
+      "test": {
+        "status": "covered",
+        "evidence": "test/mailpit.integration.test.js"
+      },
+      "sourceEvidence": [
+        "contracts/reference/specs/03_controllers_wire_protocol_rest.md \u00a72",
+        "contracts/reference/specs/02_enterprise_portal_session_management.md \u00a75\u2013\u00a78"
+      ],
+      "provider": "SMTP delivery; local Mailpit tested, external opt-in only"
+    }
+  ],
+  "documentedStatsAPI": [
+    {
+      "method": "POST",
+      "path": "/stats/v1/sessions/delUsers",
+      "authentication": [
+        "apiKey",
+        "apiSecret"
+      ],
+      "rateLimit": "1 request per second per API key and command",
+      "status": "partial",
+      "limitation": "Removes locally stored tokens; remote FCM unsubscribe is unavailable without a provider and is reported.",
+      "test": {
+        "status": "covered",
+        "evidence": "test/stats.test.js"
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/stats/v1/sessions/addUsers",
+      "authentication": [
+        "apiKey",
+        "apiSecret"
+      ],
+      "rateLimit": "1 request per second per API key and command",
+      "status": "implemented",
+      "limitation": null,
+      "test": {
+        "status": "covered",
+        "evidence": "test/stats.test.js"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/stats/v1/sessions/list",
+      "authentication": [
+        "apiKey",
+        "apiSecret"
+      ],
+      "rateLimit": "1 request per second per API key and command",
+      "status": "implemented",
+      "limitation": null,
+      "test": {
+        "status": "covered",
+        "evidence": "test/stats.test.js"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/stats/v1/sessions/userstats",
+      "authentication": [
+        "apiKey",
+        "apiSecret"
+      ],
+      "rateLimit": "1 request per second per API key and command",
+      "status": "partial",
+      "limitation": "Visits include connection timestamps, duration, mobile flag, server-observed remote address and raw user agent; a reverse proxy may appear as the remote address.",
+      "test": {
+        "status": "covered",
+        "evidence": "test/stats.test.js"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/stats/v1/sessions/users",
+      "authentication": [
+        "apiKey",
+        "apiSecret"
+      ],
+      "rateLimit": "1 request per second per API key and command",
+      "status": "implemented",
+      "limitation": null,
+      "test": {
+        "status": "covered",
+        "evidence": "test/stats.test.js"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/stats/v1/sessions/chatlogs",
+      "authentication": [
+        "apiKey",
+        "apiSecret"
+      ],
+      "rateLimit": "1 request per second per API key and command",
+      "status": "implemented",
+      "limitation": null,
+      "test": {
+        "status": "covered",
+        "evidence": "test/stats.test.js"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/stats/v1/sessions/alertlogs",
+      "authentication": [
+        "apiKey",
+        "apiSecret"
+      ],
+      "rateLimit": "1 request per second per API key and command",
+      "status": "implemented",
+      "limitation": null,
+      "test": {
+        "status": "covered",
+        "evidence": "test/stats.test.js"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/stats/v1/sessions/deletedlogs",
+      "authentication": [
+        "apiKey",
+        "apiSecret"
+      ],
+      "rateLimit": "1 request per second per API key and command",
+      "status": "partial",
+      "limitation": "Delete events are recorded; edit-event capture is not implemented.",
+      "test": {
+        "status": "covered",
+        "evidence": "test/stats.test.js"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/stats/v1/sessions/archivedlogs",
+      "authentication": [
+        "apiKey",
+        "apiSecret"
+      ],
+      "rateLimit": "1 request per second per API key and command",
+      "status": "implemented",
+      "limitation": null,
+      "test": {
+        "status": "covered",
+        "evidence": "test/stats.test.js"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/stats/v1/sessions/recordings",
+      "authentication": [
+        "apiKey",
+        "apiSecret"
+      ],
+      "rateLimit": "1 request per second per API key and command",
+      "status": "partial",
+      "limitation": "vidPath is a protected local URL; external media-server URLs are not exposed.",
+      "test": {
+        "status": "covered",
+        "evidence": "test/stats.test.js"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/stats/v1/sessions/cloneSession",
+      "authentication": [
+        "apiKey",
+        "apiSecret"
+      ],
+      "rateLimit": "1 request per second per API key and command",
+      "status": "partial",
+      "limitation": "Uses an internal 24-hex _id and public numeric UUID string. Enforces local reconstructed room limit, not a verified original billing rule.",
+      "test": {
+        "status": "covered",
+        "evidence": "test/stats.test.js"
+      }
+    }
+  ],
+  "additionalIntegrations": [
+    {
+      "area": "Marketplace",
+      "handlers": [
+        "src/routes/marketplace.js"
+      ],
+      "status": "partial",
+      "implementation": "Room-scoped listing and membership-plan CRUD, publishing, search, image/logo upload and removal, free signup, scoped reporting and temporary access are implemented against the recovered client calls.",
+      "verification": "test/marketplace.test.js; recovered marketplace UI browser checks",
+      "limitation": "The original marketplace backend is unavailable for direct comparison; the separate legacy sessionReport provider is explicitly unavailable."
+    },
+    {
+      "area": "Courses",
+      "handlers": [
+        "src/routes/courses.js",
+        "src/routes/marketplace.js"
+      ],
+      "status": "partial",
+      "implementation": "Captured course and section/unit CRUD, publication, access checks, and MP4/WebM uploads are implemented. Paid lesson notes and video delivery require a linked active membership or explicitly enabled room access.",
+      "verification": "test/marketplace.test.js; frontend course access checks",
+      "limitation": "Membership-based checkout follows the recovered client flow; the original private course and purchase implementations are not available for direct comparison."
+    },
+    {
+      "area": "Stripe Connect",
+      "handlers": [
+        "src/routes/marketplace.js",
+        "src/services/stripe.js"
+      ],
+      "status": "partial",
+      "implementation": "When explicitly configured, Connect onboarding and one-time or recurring Checkout use stored plan prices; signed webhooks update membership and payment state, and connected-account balance transactions provide fees and net totals when available.",
+      "verification": "test/marketplace.test.js uses mocked Stripe and email providers; no live payments were made",
+      "limitation": "Real Stripe onboarding, payment and webhook delivery have not been verified. Missing balance or refund data remains pending, and refund lists exceeding 1,000 entries require review. The captured UI did not establish separate cancellation or refund action contracts."
+    },
+    {
+      "area": "WordPress JWT shortcode",
+      "handlers": [
+        "integrations/wordpress/protradingroom.php",
+        "src/routes/users.js",
+        "src/middleware/auth.js"
+      ],
+      "status": "partial",
+      "implementation": "A reconstructed server-side shortcode creates a user-bound WordPress ticket and signs a short-lived room JWT accepted by both JWT and SSO room modes.",
+      "verification": "test/sso.test.js; test/wordpress.test.js separately run with the PHP Docker fixture and local HTTP handoff",
+      "limitation": "This is not the original WordPress plugin. Opaque legacy SSO token formats and private remote protocol behavior remain unverified."
+    }
+  ]
+}
