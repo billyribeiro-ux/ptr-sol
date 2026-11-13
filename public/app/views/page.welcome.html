@@ -336,7 +336,7 @@
           </h4>
           <div class="row">
             <div class="col-md-4 panel pane-default">
-              <input type="text" ng-model="sessSearch" placeholder="search" class="form-control" />
+              <input type="text" ng-model="sessSearch" placeholder="search" class="form-control" name="sessSearch" aria-label="search" />
             </div>
             <button class="btn btn-sm btn-default" ng-click="toggleArchivedRooms()">
               <span ng-show="!showArchivedRooms">Show</span> <span ng-show="showArchivedRooms">Hide</span> Archived
@@ -425,14 +425,14 @@
                 <form>
                   <div ng-hide="badges.hasOwnProperty('imgURL') && badges.imgURL">
                     <span>Background: </span>
-                    <input type="color" ng-model="badges.bkcolor" />
+                    <input type="color" ng-model="badges.bkcolor" name="badges.bkcolor" aria-label="bkcolor" />
                     &nbsp;<button class="btn btn-tiny btn-default" ng-click="badges.bkcolor='rgba(1,0,0,0)';">Transparent</button
                     >&nbsp;
                     <span>Text: </span>
-                    <input type="color" ng-model="badges.color" />
+                    <input type="color" ng-model="badges.color" name="badges.color" aria-label="color" />
                     <span>&nbsp;&nbsp;Badge Text: </span>
 
-                    <input class="input-emoji-txt" id="badgeInputTxt" type="text" ng-model="badges.text" value="TEST" />
+                    <input class="input-emoji-txt" id="badgeInputTxt" type="text" ng-model="badges.text" value="TEST" aria-label="text" />
                     <button id="emoji-picker" class="btn btn-default btn-sm">
                       <i class="fa fa-smile-o fa-1x"></i>
                     </button>
@@ -446,10 +446,10 @@
                     type="text"
                     ng-model="badges.name"
                     value=""
-                    placeholder="Badge Name"
+                    placeholder="Badge Name" aria-label="Badge Name"
                   />
                   <label>Auto assign this badge to this WP roles (comma separated):</label>
-                  <textarea class="input-text" id="badgeRolesTxt" type="text" ng-model="badges.roles" cols="70" rows="2"></textarea>
+                  <textarea class="input-text" id="badgeRolesTxt" type="text" ng-model="badges.roles" cols="70" rows="2" aria-label="roles"></textarea>
 
                   <hr />
                   <button ng-show="badges.mode=='add'" type="button" ng-click="addBadge(false)" class="btn btn btn-warning pull-right">
@@ -476,7 +476,7 @@
                 <div class="intercom-composer-popover intercom-composer-emoji-popover">
                   <div class="intercom-emoji-picker">
                     <div class="intercom-composer-popover-header">
-                      <input class="intercom-composer-popover-input" placeholder="Search" value="" />
+                      <input class="intercom-composer-popover-input" placeholder="Search" value="" name="Search" aria-label="Search" />
                     </div>
                     <div class="intercom-composer-popover-body-container">
                       <div class="intercom-composer-popover-body">
@@ -1246,11 +1246,11 @@
                   <form ng-submit="addAdminUser()">
                     <div class="form-group">
                       <label>Name</label>
-                      <input type="text" class="form-control" ng-model="adminUser.name" placeholder="Enter name" required />
+                      <input type="text" class="form-control" ng-model="adminUser.name" placeholder="Enter name" required name="adminUser.name" aria-label="Enter name" />
                     </div>
                     <div class="form-group">
                       <label>Email</label>
-                      <input type="email" class="form-control" ng-model="adminUser.email" placeholder="Enter email" required />
+                      <input type="email" class="form-control" ng-model="adminUser.email" placeholder="Enter email" required name="adminUser.email" aria-label="Enter email" />
                     </div>
                     <div class="form-group">
                       <label>Password</label>
@@ -1259,7 +1259,7 @@
                         class="form-control"
                         ng-model="adminUser.password"
                         placeholder="Enter password"
-                        required
+                        required name="adminUser.password" aria-label="Enter password"
                       />
                     </div>
                     <div class="form-group">
@@ -1374,7 +1374,7 @@
                   autocomplete="off"
                   class="form-control"
                   ng-model="signup.email"
-                  autocorrect="off"
+                  autocorrect="off" aria-label="Your email"
                 />
 
                 <span class="fa fa-envelope form-control-feedback text-muted"></span>
@@ -1386,7 +1386,7 @@
                   type="password"
                   placeholder="Your password"
                   class="form-control"
-                  ng-model="signup.pass"
+                  ng-model="signup.pass" aria-label="Your password"
                 />
                 <span class="fa fa-lock form-control-feedback text-muted"></span>
                 <div class="text-right mt">

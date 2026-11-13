@@ -62,7 +62,7 @@
                 <div class="form-group m0">
                 <label class="col-sm-2 control-label">Registration Link:</label>
                 <div class="input-group">
-                        <input type="text" class="form-control col-md-6" id="webinarRegLinkTxt" readonly="readonly"  value="https://{{hostname}}/r/{{sess._id}}">
+                        <input type="text" class="form-control col-md-6" id="webinarRegLinkTxt" readonly="readonly"  value="{{origin}}/r/{{sess._id}}" aria-label="webinar Reg Link Txt">
                         <span class="input-group-btn">
                             <button class="btn btn-info" type="button" onclick="copyLinkToClipboard('webinarRegLinkTxt')">Copy
                                         <i class="fa fa-copy"></i>
@@ -74,7 +74,7 @@
                 <div class="form-group m0">
                      <label class="col-sm-2 control-label">Event Time (for email template):</label>
                      <div  class="col-sm-10 ">
-                      <input type="text"  ng-model="webinarTimeTxt" value="" placeholder="at 7pm EST">
+                      <input type="text"  ng-model="webinarTimeTxt" value="" placeholder="at 7pm EST" name="webinarTimeTxt" aria-label="at 7pm EST">
                     </div>
                 </div>
                 <br clear="both">
@@ -99,7 +99,7 @@
                 <div ng-show="sess.authMode=='webinarRoom' || sess.authMode=='open' || sess.authMode=='unamePW' || sess.allowPWLoginWithSSO">
                     <label class="col-sm-2 control-label">Room Link:</label>
                     <div class="input-group">
-                            <input type="text" class="form-control col-md-6" id="webinarLinkTxt" readonly="readonly"  value="https://{{hostname}}/u/{{sess._id}}">
+                            <input type="text" class="form-control col-md-6" id="webinarLinkTxt" readonly="readonly"  value="{{origin}}/u/{{sess._id}}" aria-label="webinar Link Txt">
                             <span class="input-group-btn">
                                 <button class="btn btn-info" type="button" onclick="copyLinkToClipboard('webinarLinkTxt')">Copy
                                             <i class="fa fa-copy"></i>
@@ -109,7 +109,7 @@
 
                     <label class="col-sm-2 control-label">Vanity Link:</label>
                     <div class="input-group">
-                        <input type="text" class="form-control col-md-6" id="customLinkTxt" readonly="readonly"  value="https://{{hostname}}/room/{{sess.customCname ? sess.customCname : '[yournamehere]'}}">
+                        <input type="text" class="form-control col-md-6" id="customLinkTxt" readonly="readonly"  value="{{origin}}/room/{{sess.customCname ? sess.customCname : '[yournamehere]'}}" aria-label="custom Link Txt">
                         <span class="input-group-btn">
                             <button class="btn btn-warning" type="button" ng-click="setCustomRoomURL()">Edit
                                 <i class="fa fa-edit"></i>
@@ -123,7 +123,7 @@
                 </div>
                     <label class="col-sm-2 control-label">Unique Link:</label>
                     <div class="input-group">
-                        <input type="text" class="form-control col-md-6" id="uniqueLinkTxt" readonly="readonly"  value="https://{{hostname}}/room/{{sess.uniqueLinkLogin ? sess.uniqueLinkLogin : '[youruniquelinkhere]'}}">
+                        <input type="text" class="form-control col-md-6" id="uniqueLinkTxt" readonly="readonly"  value="{{origin}}/room/{{sess.uniqueLinkLogin ? sess.uniqueLinkLogin : '[youruniquelinkhere]'}}" aria-label="unique Link Txt">
                         <span class="input-group-btn">
                             <button class="btn btn-primary" type="button" ng-click="setUniqueRoomURL()">Generate
                                 <i class="fa fa-link"></i>
@@ -138,7 +138,7 @@
                 <div ng-show="sess.hasAppPairLink">
                     <label class="col-sm-2 control-label">App Pair Link:</label>
                     <div class="input-group">
-                        <input type="text" class="form-control col-md-6" id="appPairLink" readonly="readonly"  value="https://{{hostname}}/room/">
+                        <input type="text" class="form-control col-md-6" id="appPairLink" readonly="readonly"  value="{{origin}}/room/" aria-label="app Pair Link">
                         <span class="input-group-btn">
                             <!-- <button class="btn btn-warning" type="button" ng-click="setCustomRoomURL()">Edit
                                 <i class="fa fa-edit"></i>
@@ -243,7 +243,7 @@
 
 
                                         <input type="search" name="title"
-                                            ng-enter="loadUsers(uSearch)" class="form-control " ng-model="uSearch ">
+                                            ng-enter="loadUsers(uSearch)" class="form-control " ng-model="uSearch " aria-label="u Search">
 
                                         <button class="btn btn-sm btn-primary" ng-click="loadUsers(uSearch)">Search / Load Users</button>
 
@@ -255,11 +255,11 @@
 <div class="users-many-actions">
                 <div class="checkbox" ng-if="completeUserList && completeUserList.length>0">
     <label ng-click="getCheckedAllUserIds()">
-      <input type="checkbox" ng-click="getCheckedAllUserIds()" ng-checked="checkedAllUsers"> <span ng-if="!checkedAllUsers">Select All</span><span ng-if="checkedAllUsers">Unselect All</span>
+      <input type="checkbox" ng-click="getCheckedAllUserIds()" ng-checked="checkedAllUsers" name="page.manageSession-field"> <span ng-if="!checkedAllUsers">Select All</span><span ng-if="checkedAllUsers">Unselect All</span>
     </label>
 
     <label class="checkbox-apply-to-all-rooms">
-      <input ng-change="toggleApplyToAllRooms()" type="checkbox"  ng-model="applyToAllRooms" >
+      <input ng-change="toggleApplyToAllRooms()" type="checkbox"  ng-model="applyToAllRooms" name="applyToAllRooms" >
       <span >Apply to all rooms?</span>
     </label>
   </div>
@@ -347,7 +347,7 @@
 
                                     <td>{{$index}}</td>
                                     <td>
-                                        <input ng-show="user.role!==0" type="checkbox" name="checkbox" ng-checked="checkedUserIds[user._id]" ng-click="getCheckedUserIds(user._id)">
+                                        <input ng-show="user.role!==0" type="checkbox" name="checkbox" ng-checked="checkedUserIds[user._id]" ng-click="getCheckedUserIds(user._id)" aria-label="checkbox">
                                         <i ng-show="{{sess.fileAccessCaseByCase && user.hasFileAccess}}" class="fa fa-folder-o fa-2x" aria-hidden="true"></i>
                                         <i ng-show="{{sess.ptrMobileAppCaseByCaseEnabled && user.hasMobileApp}}" class="fa fa-mobile fa-2x" aria-hidden="true"></i>
                                         <i ng-show="{{!sess.ptrMobileAppCaseByCaseEnabled && user.alerterAppTokens.length >0}}" class="fa fa-mobile" aria-hidden="true"></i>
@@ -609,7 +609,7 @@
                 <tab heading="Text List" ng-show="sess.twillioApiToken">
                         <div class="form-vertical">
                           <button class="btn btn-info pull-right" ng-click="saveTextList()"><i class="fa fa-save"></i> Save List</button>
-                          <textarea id="textListTxt" style="width: 100%; height:100%" rows="40"></textarea>
+                          <textarea id="textListTxt" style="width: 100%; height:100%" rows="40" aria-label="text List Txt"></textarea>
                         </div>
 
                 </tab>
@@ -685,18 +685,18 @@
                             <div ng-show="statXrefs.length>0 || true">
                             <label class="col-sm-2 control-label ">Search Users</label>
                             <div class="col-sm-4">
-                                <input type="search " name="title " required=" " class="form-control " ng-model="uSearchStat "><br>
+                                <input type="search " name="title " required=" " class="form-control " ng-model="uSearchStat " aria-label="u Search Stat"><br>
                                 <label>
-                                        <input type="checkbox" ng-model="filterOnline">&nbsp;Show Online Users Only
+                                        <input type="checkbox" ng-model="filterOnline" name="filterOnline">&nbsp;Show Online Users Only
                                 </label>
                                 <label>
-                                    <input type="checkbox" ng-model="filterFT">&nbsp;Show <span class="badge badge-danger">Free Trials</span> Only?
+                                    <input type="checkbox" ng-model="filterFT" name="filterFT">&nbsp;Show <span class="badge badge-danger">Free Trials</span> Only?
                                 </label>
                                  <label>
-                                    <input type="checkbox" ng-model="showMobileStat">&nbsp;Show Mobile Only?
+                                    <input type="checkbox" ng-model="showMobileStat" name="showMobileStat">&nbsp;Show Mobile Only?
                                 </label>
                                 <label>
-                                    <input type="checkbox" ng-model="remDupes">&nbsp;Remove duplicates?
+                                    <input type="checkbox" ng-model="remDupes" name="remDupes">&nbsp;Remove duplicates?
                                 </label>
 
                             </div>
@@ -1138,7 +1138,7 @@
                                 <div ng-show="sess.hasAppPairLink && sess.pairSecretKey">
                                 <br>
                                 <label>Sample link you would need to use to add each user: (replace email/name with the real user email/name</label>
-                                <input  type="text" class="form-control col-md-6" id="pairURLLink" readonly="readonly"  value="https://chat.protradingroom.com/ptr_app/sessions/v2/addUser/{{sess._id}}/?sec={{sess.pairSecretKey}}&email=__userEmail__&name=__userName__">
+                                <input  type="text" class="form-control col-md-6" id="pairURLLink" readonly="readonly"  value="https://chat.protradingroom.com/ptr_app/sessions/v2/addUser/{{sess._id}}/?sec={{sess.pairSecretKey}}&email=__userEmail__&name=__userName__" aria-label="pair URLLink">
                                 </div>
 
                                 <p class="form-control-static">
@@ -2417,8 +2417,8 @@
                                     <div ng-show="showAdServer" >
 
                                         <hr/>
-                                    <br><input type="text" id="addServerTxt"><button class="btn btn-inverse" ng-click="addLiveServer()">Add Server</button>
-                                    <br><input type="text" id="removeServerTxt"><button class="btn btn-inverse" ng-click="removeLiveServer()">Remove Server</button>
+                                    <br><input type="text" id="addServerTxt" aria-label="add Server Txt"><button class="btn btn-inverse" ng-click="addLiveServer()">Add Server</button>
+                                    <br><input type="text" id="removeServerTxt" aria-label="remove Server Txt"><button class="btn btn-inverse" ng-click="removeLiveServer()">Remove Server</button>
                                     <br>
                                 </div>
 

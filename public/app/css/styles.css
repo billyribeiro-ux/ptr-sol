@@ -179,6 +179,7 @@ input[type='password'],
 input[type='url'],
 input[type='number'] {
   -webkit-appearance: none;
+  appearance: none;
 }
 .table > thead > tr > th {
   border-bottom-width: 1px;
@@ -265,6 +266,7 @@ input[type='number'] {
   -o-transition: box-shadow 0.2s ease;
   transition: box-shadow 0.2s ease; */
   -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
   /* chrome jump */
 }
 .topnavbar > .navbar-header {
@@ -519,7 +521,9 @@ body {
 @media only screen and (max-width: 767px) {
   .csstransforms3d1 .app-container {
     -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
     -moz-backface-visibility: hidden;
+    backface-visibility: hidden;
     backface-visibility: hidden;
   }
   .csstransforms3d1 .app-container > aside {
@@ -527,13 +531,16 @@ body {
     transform-style: preserve-3d;
     -webkit-transform: translate3d(0, 0, 0);
     transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
     /* -webkit-transition: -webkit-transform 0.35s;
     -moz-transition: -moz-transform 0.35s;
+    transition: -moz-transform 0.35s;
     -o-transition: -o-transform 0.35s;
     transition: transform 0.35s; */
   }
   .csstransforms3d1 .aside-offscreen .app-container > aside {
     -webkit-transform: translate3d(-240px, 0, 0);
+    transform: translate3d(-240px, 0, 0);
     transform: translate3d(-240px, 0, 0);
   }
 }
@@ -802,6 +809,7 @@ body {
   width: 240px;
   padding-bottom: 20px;
   -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
 }
 .sidebar > .sidebar-nav > .nav {
   position: relative;
@@ -1016,10 +1024,12 @@ body {
     opacity: 0;
     -webkit-transform: translate3d(-18px, 0, 0);
     transform: translate3d(-18px, 0, 0);
+    transform: translate3d(-18px, 0, 0);
   }
   100% {
     opacity: 1;
     -webkit-transform: none;
+    transform: none;
     transform: none;
   }
 }
@@ -1027,12 +1037,14 @@ body {
   0% {
     opacity: 0;
     -webkit-transform: translate3d(-18px, 0, 0);
+    transform: translate3d(-18px, 0, 0);
     -ms-transform: translate3d(-18px, 0, 0);
     transform: translate3d(-18px, 0, 0);
   }
   100% {
     opacity: 1;
     -webkit-transform: none;
+    transform: none;
     -ms-transform: none;
     transform: none;
   }
@@ -1064,7 +1076,9 @@ body {
   pointer-events: none;
   -webkit-pointer-events: none;
   -webkit-transition: 350ms linear all;
+  transition: 350ms linear all;
   -moz-transition: 350ms linear all;
+  transition: 350ms linear all;
   -o-transition: 350ms linear all;
   transition: 350ms linear all;
 }
@@ -1084,7 +1098,9 @@ body {
   height: 100%;
   width: 100%;
   -webkit-transition: width 350ms;
+  transition: width 350ms;
   -moz-transition: width 350ms;
+  transition: width 350ms;
   -o-transition: width 350ms;
   transition: width 350ms;
   background: #363f45;
@@ -1132,9 +1148,11 @@ body {
   0% {
     -webkit-transform: rotate(0deg);
     transform: rotate(0deg);
+    transform: rotate(0deg);
   }
   100% {
     -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
     transform: rotate(360deg);
   }
 }
@@ -1142,9 +1160,11 @@ body {
   0% {
     -moz-transform: rotate(0deg);
     transform: rotate(0deg);
+    transform: rotate(0deg);
   }
   100% {
     -moz-transform: rotate(360deg);
+    transform: rotate(360deg);
     transform: rotate(360deg);
   }
 }
@@ -1219,6 +1239,7 @@ body {
   right: -254px;
   z-index: 3001;
   -webkit-transition: right 0.3s cubic-bezier(0.86, 0, 0.07, 1);
+  transition: right 0.3s cubic-bezier(0.86, 0, 0.07, 1);
   -o-transition: right 0.3s cubic-bezier(0.86, 0, 0.07, 1);
   transition: right 0.3s cubic-bezier(0.86, 0, 0.07, 1);
 }
@@ -1245,6 +1266,8 @@ body {
   text-align: center;
   -webkit-transition: top 0.3s ease 0.1s, right 0.3s ease 0.1s, box-shadow 0s linear 0.3s, border 0.3s linear 0.3s,
     background 0s linear 0.3s;
+  transition: top 0.3s ease 0.1s, right 0.3s ease 0.1s, box-shadow 0s linear 0.3s, border 0.3s linear 0.3s,
+    background 0s linear 0.3s;
   -o-transition: top 0.3s ease 0.1s, right 0.3s ease 0.1s, box-shadow 0s linear 0.3s, border 0.3s linear 0.3s,
     background 0s linear 0.3s;
   transition: top 0.3s ease 0.1s, right 0.3s ease 0.1s, box-shadow 0s linear 0.3s, border 0.3s linear 0.3s, background 0s linear 0.3s;
@@ -1256,6 +1279,7 @@ body {
 }
 .settings-wrapper > .settings-inner .settings-button > em:before {
   -webkit-transition: content 0s linear 0.4s;
+  transition: content 0s linear 0.4s;
   -o-transition: content 0s linear 0.4s;
   transition: content 0s linear 0.4s;
   content: '\e023';
@@ -1280,6 +1304,7 @@ body {
   box-shadow: none !important;
   background-color: transparent;
   -webkit-transition: top 0.3s ease 0.1s, right 0.3s ease 0.1s;
+  transition: top 0.3s ease 0.1s, right 0.3s ease 0.1s;
   -o-transition: top 0.3s ease 0.1s, right 0.3s ease 0.1s;
   transition: top 0.3s ease 0.1s, right 0.3s ease 0.1s;
 }
@@ -1348,7 +1373,7 @@ body {
   margin-left: -10px;
   text-align: center;
   font-size: 1.33333333em;
-  vertical-align: -15%;
+
   color: #fff;
   opacity: 0;
 }
@@ -1401,6 +1426,7 @@ body {
   border-radius: 400px;
   box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
   -webkit-transition: all 0.2s;
+  transition: all 0.2s;
 }
 .switch.switch-lg span {
   width: 50px;
@@ -1658,6 +1684,7 @@ body {
 */
 .btn {
   -webkit-appearance: none;
+  appearance: none;
   outline: none !important;
   /* -webkit-transition: all 0.1s;
   -o-transition: all 0.1s;
@@ -2073,6 +2100,7 @@ fieldset[disabled] .btn-orange.active {
   top: 20px;
   -webkit-transform: translate3d(0, 0, 0);
   transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
 }
 .btn-offset .layout-fixed,
 .btn-offset .layout-material {
@@ -2095,6 +2123,7 @@ fieldset[disabled] .btn-orange.active {
   background-color: #d1d2d3;
   border-radius: 50%;
   -webkit-transform: scale(0);
+  transform: scale(0);
   -ms-transform: scale(0);
   -o-transform: scale(0);
   transform: scale(0);
@@ -2107,6 +2136,7 @@ fieldset[disabled] .btn-orange.active {
 @keyframes ripple {
   from {
     -webkit-transform: scale(0);
+    transform: scale(0);
     -ms-transform: scale(0);
     -o-transform: scale(0);
     transform: scale(0);
@@ -2114,6 +2144,7 @@ fieldset[disabled] .btn-orange.active {
   }
   to {
     -webkit-transform: scale(3);
+    transform: scale(3);
     -ms-transform: scale(3);
     -o-transform: scale(3);
     transform: scale(3);
@@ -2123,6 +2154,7 @@ fieldset[disabled] .btn-orange.active {
 @-moz-keyframes ripple {
   from {
     -webkit-transform: scale(0);
+    transform: scale(0);
     -ms-transform: scale(0);
     -o-transform: scale(0);
     transform: scale(0);
@@ -2130,6 +2162,7 @@ fieldset[disabled] .btn-orange.active {
   }
   to {
     -webkit-transform: scale(3);
+    transform: scale(3);
     -ms-transform: scale(3);
     -o-transform: scale(3);
     transform: scale(3);
@@ -2139,6 +2172,7 @@ fieldset[disabled] .btn-orange.active {
 @-webkit-keyframes ripple {
   from {
     -webkit-transform: scale(0);
+    transform: scale(0);
     -ms-transform: scale(0);
     -o-transform: scale(0);
     transform: scale(0);
@@ -2146,6 +2180,7 @@ fieldset[disabled] .btn-orange.active {
   }
   to {
     -webkit-transform: scale(3);
+    transform: scale(3);
     -ms-transform: scale(3);
     -o-transform: scale(3);
     transform: scale(3);
@@ -2164,6 +2199,7 @@ scrollable {
   border: 0 !important;
   border-radius: 1px !important;
   -webkit-transition: opacity 0.3s ease;
+  transition: opacity 0.3s ease;
   -o-transition: opacity 0.3s ease;
   transition: opacity 0.3s ease;
 }
@@ -2230,6 +2266,7 @@ body .toast-warning {
   height: 100%;
   z-index: 9001;
   -webkit-transition: visibility 0s linear 0.5s;
+  transition: visibility 0s linear 0.5s;
   -o-transition: visibility 0s linear 0.5s;
   transition: visibility 0s linear 0.5s;
 }
@@ -2238,6 +2275,7 @@ body .toast-warning {
   border-radius: 100%;
   z-index: 1;
   -webkit-transform: scale(0);
+  transform: scale(0);
   -ms-transform: scale(0);
   -o-transform: scale(0);
   transform: scale(0);
@@ -2246,10 +2284,14 @@ body .toast-warning {
   -ms-transform-origin: 50% 50%;
   transform-origin: 50% 50%;
   -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
   -moz-backface-visibility: hidden;
   backface-visibility: hidden;
+  backface-visibility: hidden;
   -webkit-transition: -webkit-transform 0.5s cubic-bezier(0.42, 0, 0.58, 1);
+  transition: -webkit-transform 0.5s cubic-bezier(0.42, 0, 0.58, 1);
   -moz-transition: -moz-transform 0.5s cubic-bezier(0.42, 0, 0.58, 1);
+  transition: -moz-transform 0.5s cubic-bezier(0.42, 0, 0.58, 1);
   -o-transition: -o-transform 0.5s cubic-bezier(0.42, 0, 0.58, 1);
   transition: transform 0.5s cubic-bezier(0.42, 0, 0.58, 1);
 }
@@ -2264,6 +2306,7 @@ body .toast-warning {
   cursor: pointer;
   visibility: hidden;
   -webkit-transition: opacity 0.2s ease 0s;
+  transition: opacity 0.2s ease 0s;
   -o-transition: opacity 0.2s ease 0s;
   transition: opacity 0.2s ease 0s;
 }
@@ -2280,16 +2323,20 @@ body .toast-warning {
 .layer-morph-active .layer-morph-overlay {
   visibility: visible;
   -webkit-transition: visibility 0s linear 0;
+  transition: visibility 0s linear 0;
   -o-transition: visibility 0s linear 0;
   transition: visibility 0s linear 0;
 }
 .layer-morph-active .layer-morph-overlay > .layer-morph-inner {
   -webkit-transform: scale(1);
+  transform: scale(1);
   -ms-transform: scale(1);
   -o-transform: scale(1);
   transform: scale(1);
   -webkit-transition: -webkit-transform 0.5s cubic-bezier(0.42, 0, 0.58, 1);
+  transition: -webkit-transform 0.5s cubic-bezier(0.42, 0, 0.58, 1);
   -moz-transition: -moz-transform 0.5s cubic-bezier(0.42, 0, 0.58, 1);
+  transition: -moz-transform 0.5s cubic-bezier(0.42, 0, 0.58, 1);
   -o-transition: -o-transform 0.5s cubic-bezier(0.42, 0, 0.58, 1);
   transition: transform 0.5s cubic-bezier(0.42, 0, 0.58, 1);
 }
@@ -2297,6 +2344,7 @@ body .toast-warning {
   visibility: visible;
   opacity: 1;
   -webkit-transition: opacity 0.2s ease 0.4s;
+  transition: opacity 0.2s ease 0.4s;
   -o-transition: opacity 0.2s ease 0.4s;
   transition: opacity 0.2s ease 0.4s;
 }
@@ -2336,6 +2384,7 @@ body .toast-warning {
   height: 0;
   overflow: hidden;
   -webkit-transition: opacity 0.5s ease 0s;
+  transition: opacity 0.5s ease 0s;
   -o-transition: opacity 0.5s ease 0s;
   transition: opacity 0.5s ease 0s;
 }
@@ -4869,7 +4918,9 @@ a.text-gray-lighter:focus {
 }
 .avatarChooser {
   -webkit-transition: all 0.25s ease;
+  transition: all 0.25s ease;
   -moz-transition: all 0.25s ease;
+  transition: all 0.25s ease;
   -o-transition: all 0.25s ease;
   -ms-transition: all 0.25s ease;
   transition: all 0.25s ease;
@@ -4878,7 +4929,9 @@ a.text-gray-lighter:focus {
   border: 10px;
   border-color: yellow;
   -webkit-transform: rotate(-20deg);
+  transform: rotate(-20deg);
   -moz-transform: rotate(-20deg);
+  transform: rotate(-20deg);
   -o-transform: rotate(-20deg);
   -ms-transform: rotate(-20deg);
   transform: rotate(-20deg);
@@ -5041,7 +5094,7 @@ li.chatUpvoted.light {
   height: 100%;
 }
 .onLabel {
-  olor: #ffcc00;
+  color: #ffcc00;
   top: 11px;
   position: relative;
   text-align: center;
@@ -5156,8 +5209,7 @@ a.editable-click {
   background-color: black;
   color: white;
 }
-.light {
-}
+
 
 div.l-row.dark {
   background-color: black;
@@ -5756,6 +5808,7 @@ input[type='password'],
 input[type='url'],
 input[type='number'] {
   -webkit-appearance: none;
+  appearance: none;
 }
 .table > thead > tr > th {
   border-bottom-width: 1px;
@@ -5842,6 +5895,7 @@ input[type='number'] {
   -o-transition: box-shadow 0.2s ease;
   transition: box-shadow 0.2s ease; */
   -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
   /* chrome jump */
 }
 .topnavbar > .navbar-header {
@@ -6096,7 +6150,9 @@ body {
 @media only screen and (max-width: 767px) {
   .csstransforms3d1 .app-container {
     -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
     -moz-backface-visibility: hidden;
+    backface-visibility: hidden;
     backface-visibility: hidden;
   }
   .csstransforms3d1 .app-container > aside {
@@ -6104,13 +6160,16 @@ body {
     transform-style: preserve-3d;
     -webkit-transform: translate3d(0, 0, 0);
     transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
     /* -webkit-transition: -webkit-transform 0.35s;
     -moz-transition: -moz-transform 0.35s;
+    transition: -moz-transform 0.35s;
     -o-transition: -o-transform 0.35s;
     transition: transform 0.35s; */
   }
   .csstransforms3d1 .aside-offscreen .app-container > aside {
     -webkit-transform: translate3d(-240px, 0, 0);
+    transform: translate3d(-240px, 0, 0);
     transform: translate3d(-240px, 0, 0);
   }
 }
@@ -6379,6 +6438,7 @@ body {
   width: 240px;
   padding-bottom: 20px;
   -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
 }
 .sidebar > .sidebar-nav > .nav {
   position: relative;
@@ -6593,10 +6653,12 @@ body {
     opacity: 0;
     -webkit-transform: translate3d(-18px, 0, 0);
     transform: translate3d(-18px, 0, 0);
+    transform: translate3d(-18px, 0, 0);
   }
   100% {
     opacity: 1;
     -webkit-transform: none;
+    transform: none;
     transform: none;
   }
 }
@@ -6604,12 +6666,14 @@ body {
   0% {
     opacity: 0;
     -webkit-transform: translate3d(-18px, 0, 0);
+    transform: translate3d(-18px, 0, 0);
     -ms-transform: translate3d(-18px, 0, 0);
     transform: translate3d(-18px, 0, 0);
   }
   100% {
     opacity: 1;
     -webkit-transform: none;
+    transform: none;
     -ms-transform: none;
     transform: none;
   }
@@ -6641,7 +6705,9 @@ body {
   pointer-events: none;
   -webkit-pointer-events: none;
   -webkit-transition: 350ms linear all;
+  transition: 350ms linear all;
   -moz-transition: 350ms linear all;
+  transition: 350ms linear all;
   -o-transition: 350ms linear all;
   transition: 350ms linear all;
 }
@@ -6661,7 +6727,9 @@ body {
   height: 100%;
   width: 100%;
   -webkit-transition: width 350ms;
+  transition: width 350ms;
   -moz-transition: width 350ms;
+  transition: width 350ms;
   -o-transition: width 350ms;
   transition: width 350ms;
   background: #363f45;
@@ -6709,9 +6777,11 @@ body {
   0% {
     -webkit-transform: rotate(0deg);
     transform: rotate(0deg);
+    transform: rotate(0deg);
   }
   100% {
     -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
     transform: rotate(360deg);
   }
 }
@@ -6719,9 +6789,11 @@ body {
   0% {
     -moz-transform: rotate(0deg);
     transform: rotate(0deg);
+    transform: rotate(0deg);
   }
   100% {
     -moz-transform: rotate(360deg);
+    transform: rotate(360deg);
     transform: rotate(360deg);
   }
 }
@@ -6796,6 +6868,7 @@ body {
   right: -254px;
   z-index: 3001;
   -webkit-transition: right 0.3s cubic-bezier(0.86, 0, 0.07, 1);
+  transition: right 0.3s cubic-bezier(0.86, 0, 0.07, 1);
   -o-transition: right 0.3s cubic-bezier(0.86, 0, 0.07, 1);
   transition: right 0.3s cubic-bezier(0.86, 0, 0.07, 1);
 }
@@ -6822,6 +6895,8 @@ body {
   text-align: center;
   -webkit-transition: top 0.3s ease 0.1s, right 0.3s ease 0.1s, box-shadow 0s linear 0.3s, border 0.3s linear 0.3s,
     background 0s linear 0.3s;
+  transition: top 0.3s ease 0.1s, right 0.3s ease 0.1s, box-shadow 0s linear 0.3s, border 0.3s linear 0.3s,
+    background 0s linear 0.3s;
   -o-transition: top 0.3s ease 0.1s, right 0.3s ease 0.1s, box-shadow 0s linear 0.3s, border 0.3s linear 0.3s,
     background 0s linear 0.3s;
   transition: top 0.3s ease 0.1s, right 0.3s ease 0.1s, box-shadow 0s linear 0.3s, border 0.3s linear 0.3s, background 0s linear 0.3s;
@@ -6833,6 +6908,7 @@ body {
 }
 .settings-wrapper > .settings-inner .settings-button > em:before {
   -webkit-transition: content 0s linear 0.4s;
+  transition: content 0s linear 0.4s;
   -o-transition: content 0s linear 0.4s;
   transition: content 0s linear 0.4s;
   content: '\e023';
@@ -6857,6 +6933,7 @@ body {
   box-shadow: none !important;
   background-color: transparent;
   -webkit-transition: top 0.3s ease 0.1s, right 0.3s ease 0.1s;
+  transition: top 0.3s ease 0.1s, right 0.3s ease 0.1s;
   -o-transition: top 0.3s ease 0.1s, right 0.3s ease 0.1s;
   transition: top 0.3s ease 0.1s, right 0.3s ease 0.1s;
 }
@@ -6925,7 +7002,7 @@ body {
   margin-left: -10px;
   text-align: center;
   font-size: 1.33333333em;
-  vertical-align: -15%;
+
   color: #fff;
   opacity: 0;
 }
@@ -6978,6 +7055,7 @@ body {
   border-radius: 400px;
   box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
   -webkit-transition: all 0.2s;
+  transition: all 0.2s;
 }
 .switch.switch-lg span {
   width: 50px;
@@ -7235,6 +7313,7 @@ body {
 */
 .btn {
   -webkit-appearance: none;
+  appearance: none;
   outline: none !important;
   /* -webkit-transition: all 0.1s;
   -o-transition: all 0.1s;
@@ -7650,6 +7729,7 @@ fieldset[disabled] .btn-orange.active {
   top: 20px;
   -webkit-transform: translate3d(0, 0, 0);
   transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
 }
 .btn-offset .layout-fixed,
 .btn-offset .layout-material {
@@ -7672,6 +7752,7 @@ fieldset[disabled] .btn-orange.active {
   background-color: #d1d2d3;
   border-radius: 50%;
   -webkit-transform: scale(0);
+  transform: scale(0);
   -ms-transform: scale(0);
   -o-transform: scale(0);
   transform: scale(0);
@@ -7684,6 +7765,7 @@ fieldset[disabled] .btn-orange.active {
 @keyframes ripple {
   from {
     -webkit-transform: scale(0);
+    transform: scale(0);
     -ms-transform: scale(0);
     -o-transform: scale(0);
     transform: scale(0);
@@ -7691,6 +7773,7 @@ fieldset[disabled] .btn-orange.active {
   }
   to {
     -webkit-transform: scale(3);
+    transform: scale(3);
     -ms-transform: scale(3);
     -o-transform: scale(3);
     transform: scale(3);
@@ -7700,6 +7783,7 @@ fieldset[disabled] .btn-orange.active {
 @-moz-keyframes ripple {
   from {
     -webkit-transform: scale(0);
+    transform: scale(0);
     -ms-transform: scale(0);
     -o-transform: scale(0);
     transform: scale(0);
@@ -7707,6 +7791,7 @@ fieldset[disabled] .btn-orange.active {
   }
   to {
     -webkit-transform: scale(3);
+    transform: scale(3);
     -ms-transform: scale(3);
     -o-transform: scale(3);
     transform: scale(3);
@@ -7716,6 +7801,7 @@ fieldset[disabled] .btn-orange.active {
 @-webkit-keyframes ripple {
   from {
     -webkit-transform: scale(0);
+    transform: scale(0);
     -ms-transform: scale(0);
     -o-transform: scale(0);
     transform: scale(0);
@@ -7723,6 +7809,7 @@ fieldset[disabled] .btn-orange.active {
   }
   to {
     -webkit-transform: scale(3);
+    transform: scale(3);
     -ms-transform: scale(3);
     -o-transform: scale(3);
     transform: scale(3);
@@ -7741,6 +7828,7 @@ scrollable {
   border: 0 !important;
   border-radius: 1px !important;
   -webkit-transition: opacity 0.3s ease;
+  transition: opacity 0.3s ease;
   -o-transition: opacity 0.3s ease;
   transition: opacity 0.3s ease;
 }
@@ -7807,6 +7895,7 @@ body .toast-warning {
   height: 100%;
   z-index: 9001;
   -webkit-transition: visibility 0s linear 0.5s;
+  transition: visibility 0s linear 0.5s;
   -o-transition: visibility 0s linear 0.5s;
   transition: visibility 0s linear 0.5s;
 }
@@ -7815,6 +7904,7 @@ body .toast-warning {
   border-radius: 100%;
   z-index: 1;
   -webkit-transform: scale(0);
+  transform: scale(0);
   -ms-transform: scale(0);
   -o-transform: scale(0);
   transform: scale(0);
@@ -7823,10 +7913,14 @@ body .toast-warning {
   -ms-transform-origin: 50% 50%;
   transform-origin: 50% 50%;
   -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
   -moz-backface-visibility: hidden;
   backface-visibility: hidden;
+  backface-visibility: hidden;
   -webkit-transition: -webkit-transform 0.5s cubic-bezier(0.42, 0, 0.58, 1);
+  transition: -webkit-transform 0.5s cubic-bezier(0.42, 0, 0.58, 1);
   -moz-transition: -moz-transform 0.5s cubic-bezier(0.42, 0, 0.58, 1);
+  transition: -moz-transform 0.5s cubic-bezier(0.42, 0, 0.58, 1);
   -o-transition: -o-transform 0.5s cubic-bezier(0.42, 0, 0.58, 1);
   transition: transform 0.5s cubic-bezier(0.42, 0, 0.58, 1);
 }
@@ -7841,6 +7935,7 @@ body .toast-warning {
   cursor: pointer;
   visibility: hidden;
   -webkit-transition: opacity 0.2s ease 0s;
+  transition: opacity 0.2s ease 0s;
   -o-transition: opacity 0.2s ease 0s;
   transition: opacity 0.2s ease 0s;
 }
@@ -7857,16 +7952,20 @@ body .toast-warning {
 .layer-morph-active .layer-morph-overlay {
   visibility: visible;
   -webkit-transition: visibility 0s linear 0;
+  transition: visibility 0s linear 0;
   -o-transition: visibility 0s linear 0;
   transition: visibility 0s linear 0;
 }
 .layer-morph-active .layer-morph-overlay > .layer-morph-inner {
   -webkit-transform: scale(1);
+  transform: scale(1);
   -ms-transform: scale(1);
   -o-transform: scale(1);
   transform: scale(1);
   -webkit-transition: -webkit-transform 0.5s cubic-bezier(0.42, 0, 0.58, 1);
+  transition: -webkit-transform 0.5s cubic-bezier(0.42, 0, 0.58, 1);
   -moz-transition: -moz-transform 0.5s cubic-bezier(0.42, 0, 0.58, 1);
+  transition: -moz-transform 0.5s cubic-bezier(0.42, 0, 0.58, 1);
   -o-transition: -o-transform 0.5s cubic-bezier(0.42, 0, 0.58, 1);
   transition: transform 0.5s cubic-bezier(0.42, 0, 0.58, 1);
 }
@@ -7874,6 +7973,7 @@ body .toast-warning {
   visibility: visible;
   opacity: 1;
   -webkit-transition: opacity 0.2s ease 0.4s;
+  transition: opacity 0.2s ease 0.4s;
   -o-transition: opacity 0.2s ease 0.4s;
   transition: opacity 0.2s ease 0.4s;
 }
@@ -7913,6 +8013,7 @@ body .toast-warning {
   height: 0;
   overflow: hidden;
   -webkit-transition: opacity 0.5s ease 0s;
+  transition: opacity 0.5s ease 0s;
   -o-transition: opacity 0.5s ease 0s;
   transition: opacity 0.5s ease 0s;
 }
@@ -10439,7 +10540,9 @@ a.text-gray-lighter:focus {
 }
 .avatarChooser {
   -webkit-transition: all 0.25s ease;
+  transition: all 0.25s ease;
   -moz-transition: all 0.25s ease;
+  transition: all 0.25s ease;
   -o-transition: all 0.25s ease;
   -ms-transition: all 0.25s ease;
   transition: all 0.25s ease;
@@ -10448,7 +10551,9 @@ a.text-gray-lighter:focus {
   border: 10px;
   border-color: yellow;
   -webkit-transform: rotate(-20deg);
+  transform: rotate(-20deg);
   -moz-transform: rotate(-20deg);
+  transform: rotate(-20deg);
   -o-transform: rotate(-20deg);
   -ms-transform: rotate(-20deg);
   transform: rotate(-20deg);
@@ -10611,7 +10716,7 @@ li.chatUpvoted.light {
   height: 100%;
 }
 .onLabel {
-  olor: #ffcc00;
+  color: #ffcc00;
   top: 11px;
   position: relative;
   text-align: center;
@@ -10726,8 +10831,7 @@ a.editable-click {
   background-color: black;
   color: white;
 }
-.light {
-}
+
 
 div.l-row.dark {
   background-color: black;

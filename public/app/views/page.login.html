@@ -53,17 +53,17 @@
     <div class="form-group has-feedback"></div>
     <div class="input-group"></div>
     <div class="form-group has-feedback mb">
-      <input id="loginNickTxt" type="text" placeholder="Your Nick/Name" autocomplete="off" ng-model="nick" class="form-control" />
+      <input id="loginNickTxt" type="text" placeholder="Your Nick/Name" autocomplete="off" ng-model="nick" class="form-control" aria-label="Your Nick/Name" />
       <span class="fa fa-user form-control-feedback text-muted"></span>
     </div>
     <!--- auth to session -->
     <div class="form-group has-feedback mb" ng-show="(authToSession || isWebinarRoom || isReg) ">
-      <input id="exampleInputEmail1" type="email" placeholder="Your Email" name="username" ng-model="email" class="form-control" />
+      <input id="exampleInputEmail1" type="email" placeholder="Your Email" name="username" ng-model="email" class="form-control" aria-label="Your Email" />
       <span class="fa fa-envelope form-control-feedback text-muted"></span>
     </div>
     <!--phone validator-->
     <div class="form-group has-feedback mb" ng-show="hasPhoneValidation">
-      <input type="tel" class="form-control" id="phoneTxt" name="phoneTxt" placeholder="Phone Number" />
+      <input type="tel" class="form-control" id="phoneTxt" name="phoneTxt" placeholder="Phone Number" aria-label="Phone Number" />
     </div>
 
     <div class="form-group has-feedback" ng-show="(authToSession || isWebinarRoom) ">
@@ -74,7 +74,7 @@
         autocomplete="on"
         placeholder="Password"
         ng-model="pw"
-        class="form-control"
+        class="form-control" aria-label="Password"
       />
       <span class="fa fa-lock form-control-feedback text-muted"></span>
       <label class="text-muted" ng-show="!isWebinarRoom">(PW ONLY REQUIRED IF YOU HAVE ONE)</label>
@@ -107,7 +107,7 @@
         autocomplete="on"
         ng-model="tagline"
         maxlength="30"
-        class="form-control"
+        class="form-control" aria-label="John from Chicago)"
       />
       <span class="fa fa-info-circle form-control-feedback text-muted"></span>
     </div>
@@ -115,12 +115,12 @@
     <div class="form-group has-feedback" ng-hide="isReg || simpleLF">
       <div class="input-group">
         <label style="font-weight: 400">
-          <input type="checkbox" value="remember-me" checked="checked" />&nbsp;&nbsp;Remember me
+          <input type="checkbox" value="remember-me" checked="checked" name="page.login-field" />&nbsp;&nbsp;Remember me
         </label>
       </div>
       <div class="input-group" ng-show="isSimpler || true  ">
         <label style="font-weight: 400">
-          <input type="checkbox" value="nonPresenter" ng-model="nonPresenter" />&nbsp;&nbsp;Non Presenter Admin
+          <input type="checkbox" value="nonPresenter" ng-model="nonPresenter" name="nonPresenter" />&nbsp;&nbsp;Non Presenter Admin
         </label>
       </div>
     </div>
@@ -169,10 +169,10 @@
     <div class="input-group" ng-show="(!isReg && !simpleLF) && false" style="border: 1px solid #f0f0f0; text-align: left">
       <p>Troubleshooting: If you are having trouble with the audio and video try checking these boxes to see if it helps</p>
       <label style="font-weight: 400">
-        <input type="checkbox" value="" ng-model="useMPGScreenService" />&nbsp;&nbsp;JPG Screens&nbsp;&nbsp;
+        <input type="checkbox" value="" ng-model="useMPGScreenService" name="useMPGScreenService" />&nbsp;&nbsp;JPG Screens&nbsp;&nbsp;
       </label>
       <label style="font-weight: 400">
-        <input type="checkbox" value="" ng-click="doMpegWarning()" ng-model="useMPGAudioService" />&nbsp;&nbsp;MP3 Audio</label
+        <input type="checkbox" value="" ng-click="doMpegWarning()" ng-model="useMPGAudioService" name="useMPGAudioService" />&nbsp;&nbsp;MP3 Audio</label
       >
     </div>
   </form>

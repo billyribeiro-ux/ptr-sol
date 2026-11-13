@@ -7,7 +7,7 @@
     <div class="form-group">
       <label class="col-md-4 control-label" for="appendedtext">Name</label>
       <div class="col-md-7">
-        <input ng-model="invite.name" class="form-control" name="name" placeholder="Name" type="text" />
+        <input ng-model="invite.name" class="form-control" name="name" placeholder="Name" type="text" aria-label="Name" />
       </div>
     </div>
 
@@ -15,13 +15,13 @@
     <div class="form-group">
       <label class="col-md-4 control-label" for="appendedtext">Email</label>
       <div class="col-md-7">
-        <input ng-model="invite.email" class="form-control" placeholder="Email" type="email" />
+        <input ng-model="invite.email" class="form-control" placeholder="Email" type="email" name="invite.email" aria-label="Email" />
       </div>
     </div>
     <div class="form-group">
       <label class="col-md-4 control-label" for="appendedtext">Password</label>
       <div class="col-md-7">
-        <input ng-model="invite.pw" class="form-control" name="Password" id="invitePW" placeholder="Password (optional)" type="text" />
+        <input ng-model="invite.pw" class="form-control" name="Password" id="invitePW" placeholder="Password (optional)" type="text" aria-label="Password (optional)" />
       </div>
     </div>
 
@@ -37,7 +37,7 @@
     <div class="form-group">
       <label class="col-md-4 control-label" for="appendedtext">Role</label>
       <div class="col-md-7">
-        <select name="singleSelect" id="singleSelect" ng-model="invite.role" style="margin-top: 10px">
+        <select name="singleSelect" id="singleSelect" ng-model="invite.role" style="margin-top: 10px" aria-label="role">
           <option value="2" selected>Participant</option>
           <option value="1">* Presenter *</option>
         </select>
@@ -48,7 +48,7 @@
       <div class="col-md-7">
         <div class="checkbox">
           <label>
-            <input type="checkbox" ng-model="invite.sendEmail" />
+            <input type="checkbox" ng-model="invite.sendEmail" name="invite.sendEmail" />
           </label>
           <p>If checked, the system will email the user this credentials</p>
         </div>

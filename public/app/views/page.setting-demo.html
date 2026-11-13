@@ -14,12 +14,12 @@
             <div class="row">
               <div class="col-md-6">
                 <div class="form-group has-feedback">
-                  <input ng-model="demoSignup.name" type="text" placeholder="Your full name" autocomplete="off" class="form-control" />
+                  <input ng-model="demoSignup.name" type="text" placeholder="Your full name" autocomplete="off" class="form-control" name="demoSignup.name" aria-label="Your full name" />
                   <span class="form-control-feedback text-muted"></span>
                 </div>
 
                 <div class="form-group has-feedback">
-                  <input ng-model="demoSignup.email" type="email" placeholder="Your email" autocomplete="off" class="form-control" />
+                  <input ng-model="demoSignup.email" type="email" placeholder="Your email" autocomplete="off" class="form-control" name="demoSignup.email" aria-label="Your email" />
                   <span class="fa fa-envelope form-control-feedback text-muted"></span>
                 </div>
                 <div class="form-group has-feedback">
@@ -29,7 +29,7 @@
                     type="password"
                     placeholder="Your password"
                     autocomplete="off"
-                    class="form-control"
+                    class="form-control" aria-label="Your password"
                   />
                   <span class="fa fa-lock form-control-feedback text-muted"></span>
                 </div>
@@ -40,16 +40,16 @@
                     type="password"
                     placeholder="Type your password again"
                     autocomplete="off"
-                    class="form-control"
+                    class="form-control" aria-label="Type your password again"
                   />
                   <span class="fa fa-lock form-control-feedback text-muted"></span>
                 </div>
                 <div class="form-group has-feedback">
-                  <input ng-model="demoSignup.roomName" type="text" placeholder="Room name" autocomplete="off" class="form-control" />
+                  <input ng-model="demoSignup.roomName" type="text" placeholder="Room name" autocomplete="off" class="form-control" name="demoSignup.roomName" aria-label="Room name" />
                   <span class="form-control-feedback text-muted"></span>
                 </div>
                 <div class="form-group has-feedback">
-                  <input ng-model="demoSignup.clusterID" type="text" placeholder="ClusterID" autocomplete="off" class="form-control" />
+                  <input ng-model="demoSignup.clusterID" type="text" placeholder="ClusterID" autocomplete="off" class="form-control" name="demoSignup.clusterID" aria-label="Cluster ID" />
                   <span class="form-control-feedback text-muted"></span>
                 </div>
 
@@ -60,7 +60,7 @@
                 <div class="clearfix">
                   <div class="checkbox c-checkbox pull-left mt0">
                     <label>
-                      <input type="checkbox" value="" ng-model="demoSignup.agreeTOSChk" />
+                      <input type="checkbox" value="" ng-model="demoSignup.agreeTOSChk" name="demoSignup.agreeTOSChk" />
                       <span class="fa fa-check"></span>I agree with the <a href="">terms</a>
                     </label>
                   </div>

@@ -329,7 +329,7 @@
             <p ng-show="volumeUnsuported && !audioMuted">
               Sorry, volume control is not supported on this browser yet... Use your device volume instead.
             </p>
-            <input ng-hide="audioMuted || volumeUnsuported" type="text" value="100" class="dial" /><br />
+            <input ng-hide="audioMuted || volumeUnsuported" type="text" value="100" class="dial" name="top-navbar-field" /><br />
             <button type="button" ng-click="toggleMute()" ripple="" class="mr mb-sm btn btn-primary">
               <div ng-show="audioMuted"><i class="fa fa-volume-up"></i> UnMute</div>
               <div ng-show="!audioMuted"><i class="fa fa-volume-off"></i> Mute</div>
@@ -348,7 +348,7 @@
                 value="100"
                 width="50%"
                 onchange="setBkgMusicVol(this.value)"
-                oninput="setBkgMusicVol(this.value)"
+                oninput="setBkgMusicVol(this.value)" aria-label="sc Music Volume Name"
               />
             </div>
           </div>

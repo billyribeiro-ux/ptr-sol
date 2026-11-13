@@ -23,7 +23,7 @@
               type="text"
               placeholder="Search"
               class="form-control"
-              ng-model="search"
+              ng-model="search" name="search" aria-label="Search"
             />
           </div>
           <div class="col-md-1">
@@ -110,7 +110,7 @@
                       <label>
                         <input
                           type="checkbox"
-                          value="{{file._id}}"
+                          value="{{file._id}}" name="files-field"
                         />&nbsp;&nbsp;{{file.name}}</label
                       >
                     </div>
@@ -122,7 +122,7 @@
                       <label>
                         <input
                           type="checkbox"
-                          value="{{file._id}}"
+                          value="{{file._id}}" name="files-field"
                         />&nbsp;&nbsp; {{file.name}}</label
                       >
                     </div>

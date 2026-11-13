@@ -446,7 +446,7 @@
             </div>
             <div id="alertsToolbarDiv" class="input-group chatToolbar" style="display: none;">
               <input type="text" placeholder="Type your Search, then Enter" ng-model="alertSearch" ng-keypress="doAlertSearchKey($event)"
-                class="form-control" tooltip-placement="bottom" tooltip="Type your search terms, then press enter" />
+                class="form-control" tooltip-placement="bottom" tooltip="Type your search terms, then press enter" name="alertSearch" aria-label="Type your Search, then Enter" />
               <div dropdown="dropdown" class="input-group-btn">
                 <button type="button" tabindex="-1" ng-click="doSearchAlertsClear()" class="btn btn-default toolbarBtn">
                   <div class="icon fa fa-times" tooltip-placement="bottom" tooltip="Clear the Search"></div>
@@ -578,7 +578,7 @@
               <div class="input-group chatToolbar" style="width: 100%">
 
                 <input type="text" placeholder="Type your Search, then Enter" ng-model="chatSearch2" ng-keypress="doChatSearchKey($event)"
-                  class="form-control" tooltip-placement="bottom" tooltip="Type your search terms, then press enter" />
+                  class="form-control" tooltip-placement="bottom" tooltip="Type your search terms, then press enter" name="chatSearch2" aria-label="Type your Search, then Enter" />
 
                 <div dropdown="dropdown" class="input-group-btn">
                   <button type="button" tabindex="-1" ng-click="doSearchClear()" class="btn btn-default toolbarBtn">
@@ -989,7 +989,7 @@
 
                        <div class="tab-content" id="imageUploadGifsTab" ng-show="uploadTab=='gif'" >
                         <img src="/public/images/PoweredBy_200px-White_HorizLogo.png">
-                        <input type="search" placeholder="search" class="form-control" ng-model="gifQuery" ng-enter="updateGifSearch()">
+                        <input type="search" placeholder="search" class="form-control" ng-model="gifQuery" ng-enter="updateGifSearch()" name="gifQuery" aria-label="search">
                         <div class="text-warning" role="status" ng-if="gifSearchError">{{gifSearchError}}</div>
                         <div class="row" ng-show="gifSearchResults.data">
                             <h3>Double Click image to send it</h3>
@@ -1004,7 +1004,7 @@
                       </div>
                        <div  class="tab-content " id="imageUploadYoutubeTab" ng-show="uploadTab=='yt'">
                           <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Paste Youtube URL" aria-describedby="basic-addonYoutube" ng-model="youtubeURL">
+                            <input type="text" class="form-control" placeholder="Paste Youtube URL" aria-describedby="basic-addonYoutube" ng-model="youtubeURL" name="youtubeURL" aria-label="Paste Youtube URL">
                             <span ng-show="youtubeURL" class="input-group-addon" id="basic-addonClearYoutube" ng-click="clearYTURL($event)"> &times; </span>
                             <span  class="input-group-addon" id="basic-addonSaveYoutube" ng-click="saveYtUrl()">Save</span>
                             <span  class="input-group-addon" id="basic-addonYoutube" ng-click="playYtVideo($event)">Play For All</span>
@@ -1029,7 +1029,7 @@
               <div class="input-group fw">
                 <textarea onpaste="onImagePaste(event)" autocomplete="off" autocapitalize="off" maxlength="500" placeholder="Type your message here. Press Enter/Return to send..."
                   class="form-control" ng-class="themeClass" id="chatTxt" style="font-size: 12px; padding: 3px; resize: none; overflow-y: scroll;"
-                  rows="3"></textarea>
+                  rows="3" aria-label=""></textarea>
                   <span class="input-group-addon" ng-if="emojisEnabled || imageUploadIcon">
                       <span class="btn-group-vertical" >
                           <button ng-if="emojisEnabled" id="emojiToglerBtn" type="button" class="btn btn-default input-group-addon-p0"  >
@@ -1049,7 +1049,7 @@
               <div  class="intercom-composer-popover intercom-composer-emoji-popover">
                 <div class="intercom-emoji-picker">
                   <div class="intercom-composer-popover-header"><input class="intercom-composer-popover-input" placeholder="Search"
-                      value=""></div>
+                      value="" name="Search" aria-label="Search"></div>
                   <div class="intercom-composer-popover-body-container">
                     <div class="intercom-composer-popover-body">
                       <div class="intercom-emoji-picker-groups">
@@ -1531,9 +1531,9 @@
 
                         <div class="col-md-8">
                           <input ng-model="loadVideoTxt" name="textinput" type="text" placeholder="YouTube URL (single video or a playlist)" class="form-control input-md"
-                            style="width: 100%;">
+                            style="width: 100%;" aria-label="You Tube URL (single video or a playlist)">
                           <input ng-model="loadVideoNameTxt" name="textinput" type="text" placeholder="Video Name/Description" class="form-control input-md"
-                            style="width: 100%;">
+                            style="width: 100%;" aria-label="Video Name/Description">
                           <p style="text-align: left;">NOTE: Videos will be played for everyone in the room. The playhead is synchronized.</p>
                         </div>
 

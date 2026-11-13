@@ -24,7 +24,7 @@
             type="text"
             ng-model="pollQuestion"
             class="form-control"
-            placeholder="Main poll question (i.e. Where do you think the market is going?)"
+            placeholder="Main poll question (i.e. Where do you think the market is going?)" name="pollQuestion" aria-label="Where do you think the market is going?)"
           />
           <hr />
           <h3><span class="label label-warning">2</span> Add Choices/Answers:</h3>
@@ -35,7 +35,7 @@
               ng-model="pollChoice"
               ng-enter="addChoice()"
               class="form-control"
-              placeholder="Enter a choice (i.e. Up, Down, Sideways)"
+              placeholder="Enter a choice (i.e. Up, Down, Sideways)" name="pollChoice" aria-label="Up, Down, Sideways)"
             />
             <span class="input-group-btn">
               <button class="btn btn-default" type="button" ng-click="addChoice()">
@@ -55,7 +55,7 @@
           <h3><span class="label label-warning">3</span> When done editing, Send your poll</h3>
           <div class="checkbox">
             <label
-              ><input ng-model="anonymousPoll" type="checkbox" value="" />Anonymous Poll (Does not show the voting name/email, just
+              ><input ng-model="anonymousPoll" type="checkbox" value="" name="anonymousPoll" />Anonymous Poll (Does not show the voting name/email, just
               results)</label
             >
           </div>
@@ -131,7 +131,7 @@
     <hr />
     <h3>Total Responses: {{total}}</h3>
     <div class="form-group" ng-show="!anonymousPoll">
-      <textarea id="responsesTxt" rows="8" maxlength="500" class="form-control"></textarea>
+      <textarea id="responsesTxt" rows="8" maxlength="500" class="form-control" aria-label="responses Txt"></textarea>
     </div>
     <button class="btn btn-default" type="button" ng-click="savePollResults()">
       <i class="fa fa-download" aria-hidden="true"></i> Download Results

@@ -14,12 +14,12 @@
             <div class="row">
               <div class="col-md-6">
                 <div class="form-group has-feedback">
-                  <input ng-model="signup.name" type="text" placeholder="Your full name" autocomplete="off" class="form-control" />
+                  <input ng-model="signup.name" type="text" placeholder="Your full name" autocomplete="off" class="form-control" name="signup.name" aria-label="Your full name" />
                   <span class="form-control-feedback text-muted"></span>
                 </div>
 
                 <div class="form-group has-feedback">
-                  <input ng-model="signup.email" type="email" placeholder="Your email" autocomplete="off" class="form-control" />
+                  <input ng-model="signup.email" type="email" placeholder="Your email" autocomplete="off" class="form-control" name="signup.email" aria-label="Your email" />
                   <span class="fa fa-envelope form-control-feedback text-muted"></span>
                 </div>
                 <div class="form-group has-feedback">
@@ -29,7 +29,7 @@
                     type="password"
                     placeholder="Your password"
                     autocomplete="off"
-                    class="form-control"
+                    class="form-control" aria-label="Your password"
                   />
                   <span class="fa fa-lock form-control-feedback text-muted"></span>
                 </div>
@@ -40,7 +40,7 @@
                     type="password"
                     placeholder="Type your password again"
                     autocomplete="off"
-                    class="form-control"
+                    class="form-control" aria-label="Type your password again"
                   />
                   <span class="fa fa-lock form-control-feedback text-muted"></span>
                   <div class="text-right mt">
@@ -54,7 +54,7 @@
                 <div class="clearfix">
                   <div class="checkbox c-checkbox pull-left mt0">
                     <label>
-                      <input type="checkbox" value="" ng-model="signup.agreeTOSChk" />
+                      <input type="checkbox" value="" ng-model="signup.agreeTOSChk" name="signup.agreeTOSChk" />
                       <span class="fa fa-check"></span>I agree with the <a href="">terms</a>
                     </label>
                   </div>
